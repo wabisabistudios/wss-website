@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mowglu UI Mockup</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #080808;
+      color: #E8E8E0;
+      font-family: 'DM Mono', monospace;
+      padding: 40px;
+      width: 1200px;
+      height: 800px;
+    }
+    .app {
+      background: #0F0F0F;
+      border: 1px solid rgba(255,255,255,0.08);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .header {
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 24px;
+    }
+    .status {
+      font-size: 12px;
+      color: #5A5A52;
+    }
+    .main {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 1px;
+      background: rgba(255,255,255,0.08);
+    }
+    .sidebar {
+      background: #0F0F0F;
+      padding: 24px;
+    }
+    .nav-item {
+      padding: 12px 0;
+      color: #5A5A52;
+      font-size: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-item.active {
+      color: #E8E8E0;
+    }
+    .content {
+      background: #0F0F0F;
+      padding: 24px;
+    }
+    .panel-title {
+      font-size: 12px;
+      color: #5A5A52;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 20px;
+    }
+    .task {
+      display: flex;
+      align-items: center;
+      padding: 16px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 12px;
+    }
+    .task-checkbox {
+      width: 18px;
+      height: 18px;
+      border: 1px solid rgba(255,255,255,0.3);
+      margin-right: 16px;
+      flex-shrink: 0;
+    }
+    .task.done .task-checkbox {
+      background: #C8F04A;
+      border-color: #C8F04A;
+    }
+    .task-content {
+      flex: 1;
+    }
+    .task-title {
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+    .task.done .task-title {
+      text-decoration: line-through;
+      color: #5A5A52;
+    }
+    .task-meta {
+      font-size: 12px;
+      color: #5A5A52;
+    }
+    .task-timezone {
+      font-size: 11px;
+      color: #5A5A52;
+      margin-left: 16px;
+    }
+    .ghl-tag {
+      display: inline-block;
+      padding: 2px 6px;
+      font-size: 10px;
+      background: rgba(200, 240, 74, 0.1);
+      color: #C8F04A;
+      margin-left: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="header">
+      <div class="logo">Mowglu</div>
+      <div class="status">3 timezones · GHL sync on</div>
+    </div>
+    <div class="main">
+      <div class="sidebar">
+        <div class="nav-item active">Today</div>
+        <div class="nav-item">Upcoming</div>
+        <div class="nav-item">Projects</div>
+        <div class="nav-item">Team</div>
+        <div class="nav-item">GHL Leads</div>
+      </div>
+      <div class="content">
+        <div class="panel-title">Today's Tasks</div>
+        <div class="task done">
+          <div class="task-checkbox"></div>
+          <div class="task-content">
+            <div class="task-title">Review NailScan landing page copy</div>
+            <div class="task-meta">Marketing · Due 10:00 AM</div>
+          </div>
+          <div class="task-timezone">IST</div>
+        </div>
+        <div class="task">
+          <div class="task-checkbox"></div>
+          <div class="task-content">
+            <div class="task-title">Follow up with CG Open Road on Lot Walk feedback</div>
+            <div class="task-meta">Client · Due 2:00 PM <span class="ghl-tag">GHL</span></div>
+          </div>
+          <div class="task-timezone">CST</div>
+        </div>
+        <div class="task">
+          <div class="task-checkbox"></div>
+          <div class="task-content">
+            <div class="task-title">Ship Based POS v1.2 update</div>
+            <div class="task-meta">Product · Due 6:00 PM</div>
+          </div>
+          <div class="task-timezone">IST</div>
+        </div>
+        <div class="task">
+          <div class="task-checkbox"></div>
+          <div class="task-content">
+            <div class="task-title">Draft outreach sequence for US nail salons</div>
+            <div class="task-meta">Sales · Due EOD <span class="ghl-tag">GHL</span></div>
+          </div>
+          <div class="task-timezone">EST</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Based POS UI Mockup</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #080808;
+      color: #E8E8E0;
+      font-family: 'DM Mono', monospace;
+      padding: 40px;
+      width: 1200px;
+      height: 800px;
+    }
+    .app {
+      background: #0F0F0F;
+      border: 1px solid rgba(255,255,255,0.08);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .header {
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 24px;
+    }
+    .status {
+      font-size: 12px;
+      color: #C8F04A;
+    }
+    .main {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 1px;
+      background: rgba(255,255,255,0.08);
+    }
+    .sidebar {
+      background: #0F0F0F;
+      padding: 24px;
+    }
+    .nav-item {
+      padding: 12px 0;
+      color: #5A5A52;
+      font-size: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-item.active {
+      color: #E8E8E0;
+    }
+    .content {
+      background: #0F0F0F;
+      padding: 24px;
+    }
+    .panel-title {
+      font-size: 12px;
+      color: #5A5A52;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 20px;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .stat {
+      background: rgba(255,255,255,0.03);
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .stat-label {
+      font-size: 11px;
+      color: #5A5A52;
+      margin-bottom: 8px;
+    }
+    .stat-value {
+      font-size: 24px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+    }
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .table th,
+    .table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .table th {
+      color: #5A5A52;
+      font-weight: 400;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .table td {
+      color: #E8E8E0;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 8px;
+      font-size: 11px;
+      background: rgba(200, 240, 74, 0.1);
+      color: #C8F04A;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="header">
+      <div class="logo">Based POS</div>
+      <div class="status">Connected to GHL</div>
+    </div>
+    <div class="main">
+      <div class="sidebar">
+        <div class="nav-item">Dashboard</div>
+        <div class="nav-item active">Invoices</div>
+        <div class="nav-item">Clients</div>
+        <div class="nav-item">Staff</div>
+        <div class="nav-item">Day Close</div>
+        <div class="nav-item">Settings</div>
+      </div>
+      <div class="content">
+        <div class="panel-title">Today's Overview</div>
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-label">Revenue</div>
+            <div class="stat-value">₹24,580</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Invoices</div>
+            <div class="stat-value">18</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">New Clients</div>
+            <div class="stat-value">4</div>
+          </div>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Invoice</th>
+              <th>Client</th>
+              <th>Service</th>
+              <th>Amount</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>#INV-1042</td>
+              <td>Priya S.</td>
+              <td>Gel Manicure</td>
+              <td>₹1,800</td>
+              <td><span class="badge">Paid</span></td>
+            </tr>
+            <tr>
+              <td>#INV-1041</td>
+              <td>Ananya R.</td>
+              <td>Nail Art</td>
+              <td>₹2,400</td>
+              <td><span class="badge">Paid</span></td>
+            </tr>
+            <tr>
+              <td>#INV-1040</td>
+              <td>Meera K.</td>
+              <td>Extension Removal</td>
+              <td>₹900</td>
+              <td><span class="badge">Paid</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NailScan UI Mockup</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #080808;
+      color: #E8E8E0;
+      font-family: 'DM Mono', monospace;
+      padding: 40px;
+      width: 1200px;
+      height: 800px;
+    }
+    .app {
+      background: #0F0F0F;
+      border: 1px solid rgba(255,255,255,0.08);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .header {
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 24px;
+    }
+    .status {
+      font-size: 12px;
+      color: #C8F04A;
+    }
+    .main {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: rgba(255,255,255,0.08);
+    }
+    .panel {
+      background: #0F0F0F;
+      padding: 24px;
+    }
+    .panel-title {
+      font-size: 12px;
+      color: #5A5A52;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 20px;
+    }
+    .upload-area {
+      border: 1px dashed rgba(255,255,255,0.2);
+      height: 240px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #5A5A52;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    .btn {
+      background: #C8F04A;
+      color: #080808;
+      border: none;
+      padding: 12px 24px;
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      width: 100%;
+    }
+    .result {
+      background: rgba(200, 240, 74, 0.05);
+      border: 1px solid rgba(200, 240, 74, 0.2);
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .result-label {
+      font-size: 11px;
+      color: #5A5A52;
+      margin-bottom: 8px;
+    }
+    .result-value {
+      font-size: 18px;
+      color: #E8E8E0;
+    }
+    .metric {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-size: 14px;
+    }
+    .metric:last-child {
+      border-bottom: none;
+    }
+    .metric-label {
+      color: #5A5A52;
+    }
+    .metric-value {
+      color: #E8E8E0;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="header">
+      <div class="logo">NailScan</div>
+      <div class="status">Live · AI Analysis Ready</div>
+    </div>
+    <div class="main">
+      <div class="panel">
+        <div class="panel-title">Client Upload</div>
+        <div class="upload-area">Drop nail photo here or click to upload</div>
+        <button class="btn">Analyze Nails</button>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Assessment Result</div>
+        <div class="result">
+          <div class="result-label">Overall Health</div>
+          <div class="result-value">Good — 78/100</div>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Cuticle condition</span>
+          <span class="metric-value">Healthy</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Nail plate</span>
+          <span class="metric-value">Smooth</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Recommended service</span>
+          <span class="metric-value">Gel overlay</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Lead status</span>
+          <span class="metric-value" style="color:#C8F04A">Pushed to CRM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

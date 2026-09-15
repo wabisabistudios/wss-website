@@ -42,6 +42,7 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
     }
 
     a {
@@ -53,6 +54,36 @@
       max-width: 1080px;
       margin: 0 auto;
       width: 100%;
+      position: relative;
+    }
+
+    /* Vertical grid lines */
+    .grid-lines {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .grid-lines::before,
+    .grid-lines::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--hairline);
+    }
+
+    .grid-lines::before {
+      left: 25%;
+    }
+
+    .grid-lines::after {
+      left: 75%;
     }
 
     /* NAV */
@@ -92,7 +123,9 @@
 
     /* SECTIONS */
     .section {
-      padding: 120px 48px;
+      padding: 160px 48px;
+      position: relative;
+      z-index: 1;
     }
 
     .section-label {
@@ -100,38 +133,43 @@
       font-size: 12px;
       color: var(--muted);
       margin-bottom: 64px;
-    }
-
-    .hairline {
-      border-color: var(--hairline);
-      border-style: solid;
-      border-width: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
     }
 
     /* HERO */
     .hero {
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
+      align-items: center;
       position: relative;
-      padding: 72px 48px 80px;
+      padding: 120px 48px 80px;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      max-width: 640px;
+      position: relative;
+      z-index: 2;
     }
 
     .hero-micro {
       font-family: 'DM Mono', monospace;
       font-size: 11px;
       color: var(--muted);
-      margin-bottom: 24px;
+      margin-bottom: 32px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
     }
 
     .hero-headline {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
-      font-size: 72px;
-      line-height: 1.05;
+      font-size: 96px;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
       color: var(--text);
-      margin-bottom: 32px;
+      margin-bottom: 40px;
     }
 
     .cursor {
@@ -139,7 +177,7 @@
       color: var(--accent);
       animation: blink 1s step-end infinite;
       font-weight: 400;
-      margin-left: 2px;
+      margin-left: 4px;
     }
 
     @keyframes blink {
@@ -149,14 +187,18 @@
 
     .hero-subcopy {
       font-family: 'DM Mono', monospace;
-      font-size: 16px;
+      font-size: 20px;
       color: var(--muted);
       max-width: 520px;
-      line-height: 1.7;
+      line-height: 1.6;
+      margin-bottom: 48px;
     }
 
     .hero-cta {
-      margin-top: 48px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      margin-bottom: 48px;
     }
 
     .cta {
@@ -166,15 +208,46 @@
       font-family: 'DM Mono', monospace;
       font-size: 14px;
       font-weight: 500;
-      padding: 14px 32px;
+      padding: 16px 40px;
       border-radius: 2px;
       border: none;
       cursor: pointer;
       line-height: 1.2;
+      transition: background 200ms ease;
     }
 
     .cta:hover {
       background: var(--accent-hover);
+    }
+
+    .hero-stat {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .hero-stat .stat-number {
+      color: var(--accent);
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .hero-visual {
+      position: absolute;
+      right: -10%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 55%;
+      max-width: 720px;
+      z-index: 1;
+      opacity: 0.9;
+    }
+
+    .hero-visual img {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.4));
     }
 
     .scroll-indicator {
@@ -185,13 +258,15 @@
       font-size: 11px;
       color: var(--muted);
       transition: opacity 400ms ease;
+      z-index: 2;
     }
 
     /* WHAT WE DO */
     .what-row {
-      display: flex;
-      gap: 48px;
-      padding: 40px 0;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 64px;
+      padding: 64px 0;
       border-bottom: 1px solid var(--hairline);
     }
 
@@ -201,49 +276,65 @@
 
     .what-label {
       font-family: 'DM Mono', monospace;
-      font-size: 11px;
+      font-size: 12px;
       color: var(--muted);
-      max-width: 80px;
-      width: 80px;
-      flex-shrink: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
     }
 
     .what-statement {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
-      font-size: 36px;
-      line-height: 1.15;
+      font-size: 48px;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
       color: var(--text);
     }
 
     /* PRODUCTS */
     .product-block {
-      display: flex;
-      gap: 48px;
-      padding: 48px 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      padding: 80px 0;
       border-bottom: 1px solid var(--hairline);
+      align-items: center;
     }
 
     .product-block:first-child {
       border-top: 1px solid var(--hairline);
     }
 
+    .product-visual {
+      position: relative;
+    }
+
+    .product-visual img {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.3));
+    }
+
     .product-meta {
-      width: 280px;
-      flex-shrink: 0;
+      max-width: 480px;
     }
 
     .product-name {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
-      font-size: 28px;
+      font-size: 40px;
+      line-height: 1.1;
       color: var(--text);
-      margin-bottom: 10px;
+      margin-bottom: 16px;
     }
 
     .product-status {
       font-family: 'DM Mono', monospace;
       font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 24px;
     }
 
     .product-status.live {
@@ -254,42 +345,43 @@
       color: var(--muted);
     }
 
-    .product-detail {
-      flex: 1;
-    }
-
     .product-description {
       font-family: 'DM Mono', monospace;
-      font-size: 14px;
+      font-size: 16px;
       color: var(--muted);
       line-height: 1.7;
-      margin-bottom: 12px;
+      margin-bottom: 24px;
     }
 
     .product-subline {
       font-family: 'DM Mono', monospace;
-      font-size: 11px;
+      font-size: 13px;
       color: var(--muted);
       line-height: 1.6;
-      margin-bottom: 12px;
+      margin-bottom: 24px;
     }
 
     .product-link {
       font-family: 'DM Mono', monospace;
-      font-size: 12px;
-      color: var(--muted);
+      font-size: 13px;
+      color: var(--text);
+      border-bottom: 1px solid var(--hairline);
+      padding-bottom: 2px;
+      transition: border-color 200ms ease;
     }
 
     .product-link:hover {
-      text-decoration: underline;
+      border-color: var(--text);
     }
 
     /* CASE STUDIES */
     .case-block {
-      display: flex;
-      gap: 64px;
-      padding: 56px 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      padding: 120px 0;
       border-bottom: 1px solid var(--hairline);
+      align-items: start;
     }
 
     .case-block:first-child {
@@ -297,49 +389,64 @@
     }
 
     .case-stat {
-      width: 200px;
-      flex-shrink: 0;
+      position: sticky;
+      top: 120px;
     }
 
     .case-number {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
-      font-size: 80px;
+      font-size: 160px;
       line-height: 1;
+      letter-spacing: -0.02em;
       color: var(--text);
-      margin-bottom: 12px;
+      margin-bottom: 24px;
     }
 
     .case-label {
       font-family: 'DM Mono', monospace;
-      font-size: 11px;
+      font-size: 13px;
       color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
     }
 
     .case-description {
-      flex: 1;
       max-width: 480px;
+      padding-top: 40px;
     }
 
     .case-description p {
       font-family: 'DM Mono', monospace;
-      font-size: 14px;
+      font-size: 16px;
       color: var(--muted);
       line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .case-visual {
+      margin-top: 40px;
+    }
+
+    .case-visual img {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.3));
     }
 
     /* CLIENT WORK */
     .client-intro {
       font-family: 'DM Mono', monospace;
-      font-size: 15px;
+      font-size: 20px;
       color: var(--text);
-      max-width: 560px;
-      line-height: 1.7;
-      margin-bottom: 48px;
+      max-width: 640px;
+      line-height: 1.6;
+      margin-bottom: 64px;
     }
 
     .service-row {
-      padding: 24px 0;
+      padding: 32px 0;
       border-bottom: 1px solid var(--hairline);
     }
 
@@ -349,7 +456,7 @@
 
     .service-row p {
       font-family: 'DM Mono', monospace;
-      font-size: 14px;
+      font-size: 16px;
       color: var(--muted);
     }
 
@@ -357,54 +464,55 @@
     .how-statement {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
-      font-size: 42px;
-      line-height: 1.15;
+      font-size: 72px;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
       color: var(--text);
-      max-width: 760px;
+      max-width: 900px;
+      margin-bottom: 48px;
     }
 
     .how-sub {
       font-family: 'DM Mono', monospace;
-      font-size: 16px;
+      font-size: 18px;
       color: var(--muted);
-      max-width: 560px;
+      max-width: 640px;
       line-height: 1.7;
-      margin-top: 32px;
     }
 
     /* CONTACT */
     .contact-headline {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
-      font-size: 56px;
-      line-height: 1.1;
+      font-size: 80px;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
       color: var(--text);
+      margin-bottom: 32px;
     }
 
     .contact-sub {
       font-family: 'DM Mono', monospace;
-      font-size: 14px;
+      font-size: 16px;
       color: var(--muted);
       max-width: 520px;
       line-height: 1.7;
-      margin-top: 24px;
-    }
-
-    .contact-cta {
-      margin-top: 40px;
+      margin-bottom: 48px;
     }
 
     .contact-note {
       font-family: 'DM Mono', monospace;
       font-size: 12px;
       color: var(--muted);
-      margin-top: 16px;
+      margin-top: 24px;
     }
 
     /* FOOTER */
     .footer {
-      padding: 48px;
+      padding: 64px 48px;
       text-align: center;
+      position: relative;
+      z-index: 1;
     }
 
     .footer p {
@@ -416,7 +524,7 @@
     /* RESPONSIVE */
     @media (max-width: 768px) {
       .section {
-        padding: 80px 24px;
+        padding: 100px 24px;
       }
 
       .nav {
@@ -432,11 +540,38 @@
       }
 
       .hero {
-        padding: 72px 24px 80px;
+        padding: 100px 24px 80px;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .hero-content {
+        max-width: 100%;
       }
 
       .hero-headline {
-        font-size: 38px;
+        font-size: 48px;
+      }
+
+      .hero-subcopy {
+        font-size: 16px;
+      }
+
+      .hero-cta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      .hero-visual {
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none;
+        width: 100%;
+        max-width: 100%;
+        margin-top: 48px;
+        opacity: 1;
       }
 
       .scroll-indicator {
@@ -444,57 +579,54 @@
       }
 
       .what-row {
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      .what-label {
-        width: auto;
-        max-width: none;
-      }
-
-      .what-statement {
-        font-size: 24px;
-      }
-
-      .product-block {
-        flex-direction: column;
+        grid-template-columns: 1fr;
         gap: 16px;
       }
 
-      .product-meta {
-        width: auto;
+      .what-statement {
+        font-size: 32px;
+      }
+
+      .product-block {
+        grid-template-columns: 1fr;
+        gap: 32px;
       }
 
       .product-name {
-        font-size: 22px;
-        margin-bottom: 8px;
+        font-size: 32px;
       }
 
       .case-block {
-        flex-direction: column;
-        gap: 20px;
-      }
-
-      .case-number {
-        font-size: 52px;
+        grid-template-columns: 1fr;
+        gap: 32px;
       }
 
       .case-stat {
-        width: auto;
+        position: static;
+      }
+
+      .case-number {
+        font-size: 96px;
       }
 
       .how-statement {
-        font-size: 28px;
+        font-size: 40px;
       }
 
       .contact-headline {
-        font-size: 36px;
+        font-size: 48px;
+      }
+
+      .grid-lines::before,
+      .grid-lines::after {
+        display: none;
       }
     }
   </style>
 </head>
 <body>
+  <div class="grid-lines" aria-hidden="true"></div>
+
   <nav class="nav" role="navigation" aria-label="Primary">
     <div class="container">
       <div class="nav-wordmark">WABI SABI STUDIOS</div>
@@ -503,17 +635,23 @@
   </nav>
 
   <section class="hero" id="hero">
-    <div class="container">
+    <div class="hero-content">
       <p class="hero-micro">EST. 2023 · CHENNAI</p>
       <h1 class="hero-headline">
-        We put AI to work<br>inside real businesses.
+        We build the AI layer businesses actually use.
       </h1>
       <div class="hero-subcopy">
-        <p>Not strategy decks. Not demos.<br>Nail scanners running at the front desk.<br>Dealer CRMs that went live in 14 days.<br>Task systems that run our own team.</p>
+        <p>Nail scanners at the front desk. Dealer CRMs live in 14 days. Task systems that run our own team.</p>
       </div>
       <div class="hero-cta">
         <a class="cta" href="[PASTE YOUR ACTUAL GHL CALENDAR URL HERE]" target="_blank" rel="noopener noreferrer">Book a call</a>
+        <div class="hero-stat">
+          <span class="stat-number" id="lead-count">0</span> leads captured since July
+        </div>
       </div>
+    </div>
+    <div class="hero-visual">
+      <img src="assets/nailscan-ui.png" alt="NailScan AI nail scanner interface" loading="eager">
     </div>
     <div class="scroll-indicator">scroll to explore</div>
   </section>
@@ -522,7 +660,7 @@
     <div class="container">
       <div class="what-row">
         <div class="what-label">AI integration</div>
-        <div class="what-statement">We wire AI into the systems your business already runs.</div>
+        <div class="what-statement">We don't pitch AI strategy. We ship the scanner that sits at your front desk.</div>
       </div>
       <div class="what-row">
         <div class="what-label">GHL builds</div>
@@ -540,46 +678,50 @@
       <p class="section-label">Products we own and sell</p>
 
       <div class="product-block">
+        <div class="product-visual">
+          <img src="assets/nailscan-ui.png" alt="NailScan interface" loading="lazy">
+        </div>
         <div class="product-meta">
           <h3 class="product-name">NailScan</h3>
           <div class="product-status live">Live · Selling</div>
-        </div>
-        <div class="product-detail">
-          <p class="product-description">AI nail scanner for salons. Client photographs nails, tool returns an assessment and pushes the lead into the salon's CRM. 1,757 leads captured since July at our own studio.</p>
-          <p class="product-subline">Targeting independent nail salons in US and Canada.</p>
+          <p class="product-description">AI nail scanner for salons. Client photographs nails, tool returns an assessment and pushes the lead into the salon's CRM.</p>
+          <p class="product-subline">1,757 leads captured since July at our own studio. Targeting independent nail salons in US and Canada.</p>
           <a class="product-link" href="https://www.nailscan.ai/" target="_blank" rel="noopener noreferrer">nailscan.ai</a>
         </div>
       </div>
 
       <div class="product-block">
+        <div class="product-visual">
+          <img src="assets/based-pos-ui.png" alt="Based POS interface" loading="lazy">
+        </div>
         <div class="product-meta">
           <h3 class="product-name">Based POS</h3>
           <div class="product-status live">Live · In use at our studio</div>
-        </div>
-        <div class="product-detail">
-          <p class="product-description">Full tablet POS connected to GoHighLevel. Invoicing, client records, staff management, WhatsApp notifications, day-close — built for nail salons and aesthetic clinics.</p>
+          <p class="product-description">Full tablet POS connected to GoHighLevel. Invoicing, client records, staff management, WhatsApp notifications, day-close.</p>
           <p class="product-subline">Running daily at Based Aesthetics, Kilpauk, Chennai. Licensing to GHL agencies.</p>
         </div>
       </div>
 
       <div class="product-block">
+        <div class="product-visual">
+          <img src="assets/lotwalk-ui.png" alt="Lot Walk CRM dashboard" loading="lazy">
+        </div>
         <div class="product-meta">
           <h3 class="product-name">Lot Walk</h3>
           <div class="product-status live">Live · Deployed</div>
-        </div>
-        <div class="product-detail">
-          <p class="product-description">CRM dashboard for powersports dealerships built as a GHL Marketplace app. Replaces DP360. Handles lead ownership, AI-drafted replies, sales reporting, live sync from GHL.</p>
+          <p class="product-description">CRM dashboard for powersports dealerships built as a GHL Marketplace app. Replaces DP360. Handles lead ownership, AI-drafted replies, sales reporting.</p>
           <p class="product-subline">Case study: CG Open Road Outlet, Winnipeg. Went live in 14 days.</p>
         </div>
       </div>
 
       <div class="product-block">
+        <div class="product-visual">
+          <img src="assets/mowglu-ui.png" alt="Mowglu task manager" loading="lazy">
+        </div>
         <div class="product-meta">
           <h3 class="product-name">Mowglu</h3>
           <div class="product-status development">In development</div>
-        </div>
-        <div class="product-detail">
-          <p class="product-description">Todoist-style task manager built for small agency teams with multi-timezone support and GHL lead integration. Internal tool being productized.</p>
+          <p class="product-description">Todoist-style task manager built for small agency teams with multi-timezone support and GHL lead integration.</p>
           <p class="product-subline">Internal tool being productized.</p>
           <a class="product-link" href="https://mowglu.com" target="_blank" rel="noopener noreferrer">mowglu.com</a>
         </div>
@@ -597,7 +739,11 @@
           <div class="case-label">leads via nail scanner</div>
         </div>
         <div class="case-description">
-          <p>Based Aesthetics is our own nail wellness studio in Chennai. We deployed the NailScan tool there in July 2026. Every capture flows directly into the GHL CRM as a tagged opportunity. The tool is what we sell to other salons — the proof number comes from our own front desk.</p>
+          <p>Based Aesthetics is our own nail wellness studio in Chennai. We deployed the NailScan tool there in July 2026. Every capture flows directly into the GHL CRM as a tagged opportunity.</p>
+          <p>The tool is what we sell to other salons — the proof number comes from our own front desk.</p>
+          <div class="case-visual">
+            <img src="assets/nailscan-ui.png" alt="NailScan in use at Based Aesthetics" loading="lazy">
+          </div>
         </div>
       </div>
 
@@ -607,7 +753,11 @@
           <div class="case-label">days from zero to live CRM</div>
         </div>
         <div class="case-description">
-          <p>CG Open Road Outlet in Winnipeg needed to migrate off DP360. We built Lot Walk — a full CRM dashboard inside GHL — migrated 21,000+ contacts and 900+ historical leads, set up lead routing from 12 sources, and had it live and in daily use within two weeks.</p>
+          <p>CG Open Road Outlet in Winnipeg needed to migrate off DP360. We built Lot Walk — a full CRM dashboard inside GHL — migrated 21,000+ contacts and 900+ historical leads, set up lead routing from 12 sources.</p>
+          <p>It was live and in daily use within two weeks.</p>
+          <div class="case-visual">
+            <img src="assets/lotwalk-ui.png" alt="Lot Walk dashboard at CG Open Road Outlet" loading="lazy">
+          </div>
         </div>
       </div>
     </div>
@@ -617,7 +767,7 @@
     <div class="container">
       <p class="section-label">Client work</p>
       <div class="client-intro">
-        <p>We take on select clients where the work<br>involves building something real — not managing<br>ad spend or producing reports.</p>
+        <p>We take on select clients where the work involves building something real — not managing ad spend or producing reports.</p>
       </div>
       <div class="service-row">
         <p>GHL system builds — pipelines, automations, lead routing, AI agents</p>
@@ -644,9 +794,7 @@
     <div class="container">
       <h2 class="contact-headline">If the work fits,<br>let's talk.</h2>
       <p class="contact-sub">We don't take every project. If you're building something that needs AI wired in properly — book a call.</p>
-      <div class="contact-cta">
-        <a class="cta" href="[PASTE YOUR ACTUAL GHL CALENDAR URL HERE]" target="_blank" rel="noopener noreferrer">Book a call</a>
-      </div>
+      <a class="cta" href="[PASTE YOUR ACTUAL GHL CALENDAR URL HERE]" target="_blank" rel="noopener noreferrer">Book a call</a>
       <p class="contact-note">All intake forms on this site use NailScan infrastructure — built in-house.</p>
     </div>
   </section>
@@ -657,17 +805,19 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       var headline = document.querySelector('.hero-headline');
       var subcopy = document.querySelector('.hero-subcopy');
       var scrollIndicator = document.querySelector('.scroll-indicator');
+      var leadCount = document.getElementById('lead-count');
 
       if (!headline) return;
 
       // Prepare typewriter effect
-      var line1 = 'We put AI to work';
-      var line2 = 'inside real businesses.';
+      var text = 'We build the AI layer businesses actually use.';
 
       // Clear the static fallback text and start typing
       headline.innerHTML = '';
@@ -698,16 +848,31 @@
         }, 28);
       }
 
-      typeText(line1, function () {
-        var br = document.createElement('br');
-        headline.insertBefore(br, cursor);
-        typeText(line2, function () {
-          setTimeout(function () {
-            if (subcopy) {
-              subcopy.style.opacity = '1';
+      typeText(text, function () {
+        setTimeout(function () {
+          if (subcopy) {
+            subcopy.style.opacity = '1';
+          }
+          // Count up lead stat
+          if (leadCount) {
+            var target = 1757;
+            var duration = 1200;
+            var start = 0;
+            var startTime = null;
+
+            function countUp(timestamp) {
+              if (!startTime) startTime = timestamp;
+              var progress = Math.min((timestamp - startTime) / duration, 1);
+              var value = Math.floor(progress * target);
+              leadCount.textContent = value.toLocaleString();
+              if (progress < 1) {
+                requestAnimationFrame(countUp);
+              }
             }
-          }, 400);
-        });
+
+            requestAnimationFrame(countUp);
+          }
+        }, 400);
       });
 
       // Scroll indicator hide
@@ -717,6 +882,55 @@
             scrollIndicator.style.opacity = '0';
           }
         });
+      }
+
+      // GSAP ScrollTrigger animations
+      if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Fade and rise on section statements
+        gsap.utils.toArray('.what-statement, .product-name, .case-number, .how-statement, .contact-headline').forEach(function (el) {
+          gsap.from(el, {
+            opacity: 0,
+            y: 40,
+            duration: 0.8,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 85%',
+              toggleActions: 'play none none reverse'
+            }
+          });
+        });
+
+        // Parallax on product visuals
+        gsap.utils.toArray('.product-visual, .case-visual').forEach(function (el) {
+          gsap.to(el, {
+            y: -40,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: true
+            }
+          });
+        });
+
+        // Hero visual parallax
+        var heroVisual = document.querySelector('.hero-visual');
+        if (heroVisual) {
+          gsap.to(heroVisual, {
+            y: -60,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: '.hero',
+              start: 'top top',
+              end: 'bottom top',
+              scrub: true
+            }
+          });
+        }
       }
     });
   </script>

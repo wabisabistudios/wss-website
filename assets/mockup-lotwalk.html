@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lot Walk UI Mockup</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #080808;
+      color: #E8E8E0;
+      font-family: 'DM Mono', monospace;
+      padding: 40px;
+      width: 1200px;
+      height: 800px;
+    }
+    .app {
+      background: #0F0F0F;
+      border: 1px solid rgba(255,255,255,0.08);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .header {
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 24px;
+    }
+    .status {
+      font-size: 12px;
+      color: #C8F04A;
+    }
+    .main {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: rgba(255,255,255,0.08);
+    }
+    .panel {
+      background: #0F0F0F;
+      padding: 24px;
+    }
+    .panel-title {
+      font-size: 12px;
+      color: #5A5A52;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 20px;
+    }
+    .lead-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .lead-name {
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+    .lead-meta {
+      font-size: 12px;
+      color: #5A5A52;
+      margin-bottom: 8px;
+    }
+    .lead-tag {
+      display: inline-block;
+      padding: 2px 6px;
+      font-size: 10px;
+      background: rgba(200, 240, 74, 0.1);
+      color: #C8F04A;
+      margin-right: 6px;
+    }
+    .pipeline {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .stage {
+      flex: 1;
+      text-align: center;
+      padding: 12px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      font-size: 12px;
+      color: #5A5A52;
+    }
+    .stage.active {
+      background: rgba(200, 240, 74, 0.1);
+      color: #C8F04A;
+      border-color: rgba(200, 240, 74, 0.3);
+    }
+    .ai-draft {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 16px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #E8E8E0;
+    }
+    .ai-label {
+      font-size: 11px;
+      color: #5A5A52;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="header">
+      <div class="logo">Lot Walk</div>
+      <div class="status">GHL Sync Active</div>
+    </div>
+    <div class="main">
+      <div class="panel">
+        <div class="panel-title">New Leads</div>
+        <div class="lead-card">
+          <div class="lead-name">Jason M.</div>
+          <div class="lead-meta">2024 Yamaha MT-09 · Trade-in: 2019 Honda CBR</div>
+          <span class="lead-tag">Hot</span>
+          <span class="lead-tag">Finance</span>
+        </div>
+        <div class="lead-card">
+          <div class="lead-name">Sarah T.</div>
+          <div class="lead-meta">2023 Kawasaki Ninja 650 · First bike</div>
+          <span class="lead-tag">Warm</span>
+        </div>
+        <div class="lead-card">
+          <div class="lead-name">Mike R.</div>
+          <div class="lead-meta">2024 Suzuki GSX-R750 · Cash buyer</div>
+          <span class="lead-tag">Hot</span>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">AI Draft Reply</div>
+        <div class="pipeline">
+          <div class="stage">New</div>
+          <div class="stage active">Contacted</div>
+          <div class="stage">Qualified</div>
+          <div class="stage">Closed</div>
+        </div>
+        <div class="ai-draft">
+          <div class="ai-label">Suggested response</div>
+          Hi Jason, thanks for your interest in the MT-09. Based on your trade-in, I can get you a numbers sheet today. Are you free for a call at 3 PM?
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
