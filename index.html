@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wabi Sabi Studios — AI Integration for Real Businesses</title>
+  <meta name="description" content="We integrate AI into nail salons, dealerships, and brands. Our own studio runs the tools we sell. Chennai-based, global clients.">
+  <meta property="og:title" content="Wabi Sabi Studios">
+  <meta property="og:description" content="AI integration. GHL builds. Products we use ourselves.">
+  <meta property="og:image" content="https://www.wabisabi.studio/og.png">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◈</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      border-radius: 0;
+    }
+
+    :root {
+      --bg: #080808;
+      --text: #E8E8E0;
+      --muted: #5A5A52;
+      --accent: #C8F04A;
+      --accent-hover: #B8E03A;
+      --hairline: rgba(255, 255, 255, 0.06);
+    }
+
+    html {
+      scroll-behavior: auto;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* NAV */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 24px 48px;
+      background: rgba(8, 8, 8, 0.92);
+      backdrop-filter: blur(4px);
+    }
+
+    .nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-wordmark {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    .nav-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    .nav-link:hover {
+      text-decoration: underline;
+    }
+
+    /* SECTIONS */
+    .section {
+      padding: 120px 48px;
+    }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 64px;
+    }
+
+    .hairline {
+      border-color: var(--hairline);
+      border-style: solid;
+      border-width: 0;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      padding: 72px 48px 80px;
+    }
+
+    .hero-micro {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .hero-headline {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 72px;
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 32px;
+    }
+
+    .cursor {
+      display: inline-block;
+      color: var(--accent);
+      animation: blink 1s step-end infinite;
+      font-weight: 400;
+      margin-left: 2px;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .hero-subcopy {
+      font-family: 'DM Mono', monospace;
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    .hero-cta {
+      margin-top: 48px;
+    }
+
+    .cta {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--bg);
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 14px 32px;
+      border-radius: 2px;
+      border: none;
+      cursor: pointer;
+      line-height: 1.2;
+    }
+
+    .cta:hover {
+      background: var(--accent-hover);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 32px;
+      left: 48px;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      transition: opacity 400ms ease;
+    }
+
+    /* WHAT WE DO */
+    .what-row {
+      display: flex;
+      gap: 48px;
+      padding: 40px 0;
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .what-row:first-child {
+      border-top: 1px solid var(--hairline);
+    }
+
+    .what-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      max-width: 80px;
+      width: 80px;
+      flex-shrink: 0;
+    }
+
+    .what-statement {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 36px;
+      line-height: 1.15;
+      color: var(--text);
+    }
+
+    /* PRODUCTS */
+    .product-block {
+      display: flex;
+      gap: 48px;
+      padding: 48px 0;
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .product-block:first-child {
+      border-top: 1px solid var(--hairline);
+    }
+
+    .product-meta {
+      width: 280px;
+      flex-shrink: 0;
+    }
+
+    .product-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 28px;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    .product-status {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+    }
+
+    .product-status.live {
+      color: var(--accent);
+    }
+
+    .product-status.development {
+      color: var(--muted);
+    }
+
+    .product-detail {
+      flex: 1;
+    }
+
+    .product-description {
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .product-subline {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .product-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .product-link:hover {
+      text-decoration: underline;
+    }
+
+    /* CASE STUDIES */
+    .case-block {
+      display: flex;
+      gap: 64px;
+      padding: 56px 0;
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .case-block:first-child {
+      border-top: 1px solid var(--hairline);
+    }
+
+    .case-stat {
+      width: 200px;
+      flex-shrink: 0;
+    }
+
+    .case-number {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 80px;
+      line-height: 1;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .case-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .case-description {
+      flex: 1;
+      max-width: 480px;
+    }
+
+    .case-description p {
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* CLIENT WORK */
+    .client-intro {
+      font-family: 'DM Mono', monospace;
+      font-size: 15px;
+      color: var(--text);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+    }
+
+    .service-row {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .service-row:first-of-type {
+      border-top: 1px solid var(--hairline);
+    }
+
+    .service-row p {
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    /* HOW WE WORK */
+    .how-statement {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 42px;
+      line-height: 1.15;
+      color: var(--text);
+      max-width: 760px;
+    }
+
+    .how-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-top: 32px;
+    }
+
+    /* CONTACT */
+    .contact-headline {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 56px;
+      line-height: 1.1;
+      color: var(--text);
+    }
+
+    .contact-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-top: 24px;
+    }
+
+    .contact-cta {
+      margin-top: 40px;
+    }
+
+    .contact-note {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 16px;
+    }
+
+    /* FOOTER */
+    .footer {
+      padding: 48px;
+      text-align: center;
+    }
+
+    .footer p {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .section {
+        padding: 80px 24px;
+      }
+
+      .nav {
+        padding: 20px 24px;
+      }
+
+      .nav-wordmark {
+        display: none;
+      }
+
+      .nav .container {
+        justify-content: center;
+      }
+
+      .hero {
+        padding: 72px 24px 80px;
+      }
+
+      .hero-headline {
+        font-size: 38px;
+      }
+
+      .scroll-indicator {
+        left: 24px;
+      }
+
+      .what-row {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .what-label {
+        width: auto;
+        max-width: none;
+      }
+
+      .what-statement {
+        font-size: 24px;
+      }
+
+      .product-block {
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .product-meta {
+        width: auto;
+      }
+
+      .product-name {
+        font-size: 22px;
+        margin-bottom: 8px;
+      }
+
+      .case-block {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .case-number {
+        font-size: 52px;
+      }
+
+      .case-stat {
+        width: auto;
+      }
+
+      .how-statement {
+        font-size: 28px;
+      }
+
+      .contact-headline {
+        font-size: 36px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav" role="navigation" aria-label="Primary">
+    <div class="container">
+      <div class="nav-wordmark">WABI SABI STUDIOS</div>
+      <a class="nav-link" href="[PASTE YOUR ACTUAL GHL CALENDAR URL HERE]" target="_blank" rel="noopener noreferrer">Book a call</a>
+    </div>
+  </nav>
+
+  <section class="hero" id="hero">
+    <div class="container">
+      <p class="hero-micro">EST. 2023 · CHENNAI</p>
+      <h1 class="hero-headline">
+        We put AI to work<br>inside real businesses.
+      </h1>
+      <div class="hero-subcopy">
+        <p>Not strategy decks. Not demos.<br>Nail scanners running at the front desk.<br>Dealer CRMs that went live in 14 days.<br>Task systems that run our own team.</p>
+      </div>
+      <div class="hero-cta">
+        <a class="cta" href="[PASTE YOUR ACTUAL GHL CALENDAR URL HERE]" target="_blank" rel="noopener noreferrer">Book a call</a>
+      </div>
+    </div>
+    <div class="scroll-indicator">scroll to explore</div>
+  </section>
+
+  <section class="section" id="what-we-do">
+    <div class="container">
+      <div class="what-row">
+        <div class="what-label">AI integration</div>
+        <div class="what-statement">We wire AI into the systems your business already runs.</div>
+      </div>
+      <div class="what-row">
+        <div class="what-label">GHL builds</div>
+        <div class="what-statement">GoHighLevel is our engine. We've built on it for salons, dealerships, and agencies.</div>
+      </div>
+      <div class="what-row">
+        <div class="what-label">Own products</div>
+        <div class="what-statement">We build and sell tools we use ourselves first.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="products">
+    <div class="container">
+      <p class="section-label">Products we own and sell</p>
+
+      <div class="product-block">
+        <div class="product-meta">
+          <h3 class="product-name">NailScan</h3>
+          <div class="product-status live">Live · Selling</div>
+        </div>
+        <div class="product-detail">
+          <p class="product-description">AI nail scanner for salons. Client photographs nails, tool returns an assessment and pushes the lead into the salon's CRM. 1,757 leads captured since July at our own studio.</p>
+          <p class="product-subline">Targeting independent nail salons in US and Canada.</p>
+          <a class="product-link" href="https://www.nailscan.ai/" target="_blank" rel="noopener noreferrer">nailscan.ai</a>
+        </div>
+      </div>
+
+      <div class="product-block">
+        <div class="product-meta">
+          <h3 class="product-name">Based POS</h3>
+          <div class="product-status live">Live · In use at our studio</div>
+        </div>
+        <div class="product-detail">
+          <p class="product-description">Full tablet POS connected to GoHighLevel. Invoicing, client records, staff management, WhatsApp notifications, day-close — built for nail salons and aesthetic clinics.</p>
+          <p class="product-subline">Running daily at Based Aesthetics, Kilpauk, Chennai. Licensing to GHL agencies.</p>
+        </div>
+      </div>
+
+      <div class="product-block">
+        <div class="product-meta">
+          <h3 class="product-name">Lot Walk</h3>
+          <div class="product-status live">Live · Deployed</div>
+        </div>
+        <div class="product-detail">
+          <p class="product-description">CRM dashboard for powersports dealerships built as a GHL Marketplace app. Replaces DP360. Handles lead ownership, AI-drafted replies, sales reporting, live sync from GHL.</p>
+          <p class="product-subline">Case study: CG Open Road Outlet, Winnipeg. Went live in 14 days.</p>
+        </div>
+      </div>
+
+      <div class="product-block">
+        <div class="product-meta">
+          <h3 class="product-name">Mowglu</h3>
+          <div class="product-status development">In development</div>
+        </div>
+        <div class="product-detail">
+          <p class="product-description">Todoist-style task manager built for small agency teams with multi-timezone support and GHL lead integration. Internal tool being productized.</p>
+          <p class="product-subline">Internal tool being productized.</p>
+          <a class="product-link" href="https://mowglu.com" target="_blank" rel="noopener noreferrer">mowglu.com</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="case-studies">
+    <div class="container">
+      <p class="section-label">How it's worked</p>
+
+      <div class="case-block">
+        <div class="case-stat">
+          <div class="case-number">1,757</div>
+          <div class="case-label">leads via nail scanner</div>
+        </div>
+        <div class="case-description">
+          <p>Based Aesthetics is our own nail wellness studio in Chennai. We deployed the NailScan tool there in July 2026. Every capture flows directly into the GHL CRM as a tagged opportunity. The tool is what we sell to other salons — the proof number comes from our own front desk.</p>
+        </div>
+      </div>
+
+      <div class="case-block">
+        <div class="case-stat">
+          <div class="case-number">14</div>
+          <div class="case-label">days from zero to live CRM</div>
+        </div>
+        <div class="case-description">
+          <p>CG Open Road Outlet in Winnipeg needed to migrate off DP360. We built Lot Walk — a full CRM dashboard inside GHL — migrated 21,000+ contacts and 900+ historical leads, set up lead routing from 12 sources, and had it live and in daily use within two weeks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="client-work">
+    <div class="container">
+      <p class="section-label">Client work</p>
+      <div class="client-intro">
+        <p>We take on select clients where the work<br>involves building something real — not managing<br>ad spend or producing reports.</p>
+      </div>
+      <div class="service-row">
+        <p>GHL system builds — pipelines, automations, lead routing, AI agents</p>
+      </div>
+      <div class="service-row">
+        <p>AI caller and outreach campaigns — scripted, tested, monitored</p>
+      </div>
+      <div class="service-row">
+        <p>Content and ad production — built on strategy, not vibes</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how-we-work">
+    <div class="container">
+      <p class="how-statement">Everything we sell, we use ourselves first.</p>
+      <div class="how-sub">
+        <p>Based Aesthetics is our test environment. NailScan runs at our front desk. Based POS is how we close every bill. We don't pitch features we haven't shipped.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="container">
+      <h2 class="contact-headline">If the work fits,<br>let's talk.</h2>
+      <p class="contact-sub">We don't take every project. If you're building something that needs AI wired in properly — book a call.</p>
+      <div class="contact-cta">
+        <a class="cta" href="[PASTE YOUR ACTUAL GHL CALENDAR URL HERE]" target="_blank" rel="noopener noreferrer">Book a call</a>
+      </div>
+      <p class="contact-note">All intake forms on this site use NailScan infrastructure — built in-house.</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 Wabi Sabi Studios · Chennai, India · wabisabi.studio</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var headline = document.querySelector('.hero-headline');
+      var subcopy = document.querySelector('.hero-subcopy');
+      var scrollIndicator = document.querySelector('.scroll-indicator');
+
+      if (!headline) return;
+
+      // Prepare typewriter effect
+      var line1 = 'We put AI to work';
+      var line2 = 'inside real businesses.';
+
+      // Clear the static fallback text and start typing
+      headline.innerHTML = '';
+      var cursor = document.createElement('span');
+      cursor.className = 'cursor';
+      cursor.setAttribute('aria-hidden', 'true');
+      cursor.textContent = '|';
+      headline.appendChild(cursor);
+
+      if (subcopy) {
+        subcopy.style.opacity = '0';
+        subcopy.style.transition = 'opacity 600ms ease';
+      }
+
+      function typeText(text, callback) {
+        var i = 0;
+        var interval = setInterval(function () {
+          if (i < text.length) {
+            var char = document.createTextNode(text[i]);
+            headline.insertBefore(char, cursor);
+            i++;
+          } else {
+            clearInterval(interval);
+            if (typeof callback === 'function') {
+              callback();
+            }
+          }
+        }, 28);
+      }
+
+      typeText(line1, function () {
+        var br = document.createElement('br');
+        headline.insertBefore(br, cursor);
+        typeText(line2, function () {
+          setTimeout(function () {
+            if (subcopy) {
+              subcopy.style.opacity = '1';
+            }
+          }, 400);
+        });
+      });
+
+      // Scroll indicator hide
+      if (scrollIndicator) {
+        window.addEventListener('scroll', function () {
+          if (window.scrollY > 100) {
+            scrollIndicator.style.opacity = '0';
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
