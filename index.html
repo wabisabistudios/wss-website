@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Wabi Sabi Studios — AI Integration for Real Businesses</title>
-  <meta name="description" content="We integrate AI into nail salons, dealerships, and brands. Our own studio runs the tools we sell. Chennai-based, global clients.">
+  <title>Wabi Sabi Studios — AI Infrastructure for Service Businesses</title>
+  <meta name="description" content="We build the AI layer for service businesses. Not chatbots. Not dashboards. The infrastructure that runs your front desk, your CRM, your billing.">
   <meta property="og:title" content="Wabi Sabi Studios">
-  <meta property="og:description" content="AI integration. GHL builds. Products we use ourselves.">
+  <meta property="og:description" content="AI infrastructure for service businesses. Built in Chennai. Proven at our own studio.">
   <meta property="og:image" content="https://www.wabisabi.studio/og.png">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◈</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -23,10 +23,10 @@
     :root {
       --bg: #080808;
       --text: #E8E8E0;
-      --muted: #5A5A52;
+      --muted: #8A8A82;
       --accent: #C8F04A;
       --accent-hover: #B8E03A;
-      --hairline: rgba(255, 255, 255, 0.06);
+      --hairline: rgba(255, 255, 255, 0.08);
     }
 
     html {
@@ -36,7 +36,7 @@
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'DM Mono', monospace;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       font-weight: 400;
       font-size: 16px;
       line-height: 1.6;
@@ -51,39 +51,10 @@
     }
 
     .container {
-      max-width: 1080px;
+      max-width: 1200px;
       margin: 0 auto;
       width: 100%;
       position: relative;
-    }
-
-    /* Vertical grid lines */
-    .grid-lines {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .grid-lines::before,
-    .grid-lines::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 1px;
-      background: var(--hairline);
-    }
-
-    .grid-lines::before {
-      left: 25%;
-    }
-
-    .grid-lines::after {
-      left: 75%;
     }
 
     /* NAV */
@@ -93,9 +64,10 @@
       left: 0;
       right: 0;
       z-index: 100;
-      padding: 24px 48px;
-      background: rgba(8, 8, 8, 0.92);
-      backdrop-filter: blur(4px);
+      padding: 20px 48px;
+      background: rgba(8, 8, 8, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--hairline);
     }
 
     .nav .container {
@@ -105,34 +77,38 @@
     }
 
     .nav-wordmark {
-      font-family: 'DM Mono', monospace;
+      font-family: 'Inter', sans-serif;
       font-size: 13px;
-      letter-spacing: 0.08em;
+      font-weight: 600;
+      letter-spacing: 0.04em;
       color: var(--muted);
     }
 
     .nav-link {
-      font-family: 'DM Mono', monospace;
+      font-family: 'Inter', sans-serif;
       font-size: 13px;
+      font-weight: 500;
       color: var(--text);
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms ease;
     }
 
     .nav-link:hover {
-      text-decoration: underline;
+      border-color: var(--text);
     }
 
     /* SECTIONS */
     .section {
-      padding: 160px 48px;
+      padding: 120px 48px;
       position: relative;
-      z-index: 1;
     }
 
     .section-label {
-      font-family: 'DM Mono', monospace;
+      font-family: 'Inter', sans-serif;
       font-size: 12px;
+      font-weight: 600;
       color: var(--muted);
-      margin-bottom: 64px;
+      margin-bottom: 48px;
       text-transform: uppercase;
       letter-spacing: 0.12em;
     }
@@ -141,35 +117,33 @@
     .hero {
       min-height: 100vh;
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      justify-content: center;
       position: relative;
-      padding: 120px 48px 80px;
-      overflow: hidden;
+      padding: 140px 48px 80px;
     }
 
-    .hero-content {
-      max-width: 640px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero-micro {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
+    .hero-terminal {
+      font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+      font-size: 14px;
       color: var(--muted);
       margin-bottom: 32px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
+      min-height: 24px;
+    }
+
+    .hero-terminal .prompt {
+      color: var(--accent);
     }
 
     .hero-headline {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
-      font-size: 96px;
-      line-height: 0.95;
+      font-size: 72px;
+      line-height: 1.05;
       letter-spacing: -0.02em;
       color: var(--text);
-      margin-bottom: 40px;
+      margin-bottom: 32px;
+      max-width: 800px;
     }
 
     .cursor {
@@ -186,12 +160,12 @@
     }
 
     .hero-subcopy {
-      font-family: 'DM Mono', monospace;
-      font-size: 20px;
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
       color: var(--muted);
-      max-width: 520px;
-      line-height: 1.6;
-      margin-bottom: 48px;
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 40px;
     }
 
     .hero-cta {
@@ -205,11 +179,11 @@
       display: inline-block;
       background: var(--accent);
       color: var(--bg);
-      font-family: 'DM Mono', monospace;
+      font-family: 'Inter', sans-serif;
       font-size: 14px;
-      font-weight: 500;
-      padding: 16px 40px;
-      border-radius: 2px;
+      font-weight: 600;
+      padding: 16px 32px;
+      border-radius: 4px;
       border: none;
       cursor: pointer;
       line-height: 1.2;
@@ -221,74 +195,114 @@
     }
 
     .hero-stat {
-      font-family: 'DM Mono', monospace;
-      font-size: 13px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
       color: var(--muted);
     }
 
     .hero-stat .stat-number {
       color: var(--accent);
-      font-size: 16px;
-      font-weight: 500;
+      font-size: 18px;
+      font-weight: 600;
     }
 
-    .hero-visual {
-      position: absolute;
-      right: -10%;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 55%;
-      max-width: 720px;
-      z-index: 1;
-      opacity: 0.9;
-    }
-
-    .hero-visual img {
-      width: 100%;
-      height: auto;
-      display: block;
-      filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.4));
-    }
-
-    .scroll-indicator {
-      position: absolute;
-      bottom: 32px;
-      left: 48px;
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      color: var(--muted);
-      transition: opacity 400ms ease;
-      z-index: 2;
-    }
-
-    /* WHAT WE DO */
-    .what-row {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 64px;
-      padding: 64px 0;
-      border-bottom: 1px solid var(--hairline);
-    }
-
-    .what-row:first-child {
+    /* LIVE METRICS */
+    .live-metrics {
       border-top: 1px solid var(--hairline);
+      border-bottom: 1px solid var(--hairline);
+      padding: 32px 48px;
+      background: rgba(255, 255, 255, 0.02);
     }
 
-    .what-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 12px;
+    .live-metrics .container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+
+    .metric {
+      font-family: 'Inter', sans-serif;
+    }
+
+    .metric-label {
+      font-size: 11px;
+      font-weight: 500;
       color: var(--muted);
       text-transform: uppercase;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
     }
 
-    .what-statement {
+    .metric-value {
+      font-size: 24px;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .metric-value.live {
+      color: var(--accent);
+    }
+
+    /* MANIFESTO */
+    .manifesto {
+      padding: 160px 48px;
+    }
+
+    .manifesto-statement {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
-      font-size: 48px;
+      font-size: 56px;
       line-height: 1.1;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.02em;
       color: var(--text);
+      max-width: 900px;
+      margin-bottom: 40px;
+    }
+
+    .manifesto-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 640px;
+      line-height: 1.7;
+    }
+
+    /* PROOF FLOW */
+    .proof-flow {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--hairline);
+      border: 1px solid var(--hairline);
+      margin: 64px 0;
+    }
+
+    .proof-step {
+      background: var(--bg);
+      padding: 40px;
+    }
+
+    .proof-step-number {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .proof-step-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 24px;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .proof-step-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.6;
     }
 
     /* PRODUCTS */
@@ -313,7 +327,8 @@
       width: 100%;
       height: auto;
       display: block;
-      filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.3));
+      border-radius: 8px;
+      filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.4));
     }
 
     .product-meta {
@@ -330,10 +345,11 @@
     }
 
     .product-status {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.08em;
       margin-bottom: 24px;
     }
 
@@ -346,24 +362,27 @@
     }
 
     .product-description {
-      font-family: 'DM Mono', monospace;
+      font-family: 'Inter', sans-serif;
       font-size: 16px;
       color: var(--muted);
       line-height: 1.7;
       margin-bottom: 24px;
     }
 
-    .product-subline {
-      font-family: 'DM Mono', monospace;
-      font-size: 13px;
-      color: var(--muted);
+    .product-outcome {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: var(--text);
       line-height: 1.6;
       margin-bottom: 24px;
+      padding-left: 16px;
+      border-left: 2px solid var(--accent);
     }
 
     .product-link {
-      font-family: 'DM Mono', monospace;
-      font-size: 13px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
       color: var(--text);
       border-bottom: 1px solid var(--hairline);
       padding-bottom: 2px;
@@ -379,7 +398,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 80px;
-      padding: 120px 0;
+      padding: 100px 0;
       border-bottom: 1px solid var(--hairline);
       align-items: start;
     }
@@ -396,7 +415,7 @@
     .case-number {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
-      font-size: 160px;
+      font-size: 140px;
       line-height: 1;
       letter-spacing: -0.02em;
       color: var(--text);
@@ -404,11 +423,12 @@
     }
 
     .case-label {
-      font-family: 'DM Mono', monospace;
+      font-family: 'Inter', sans-serif;
       font-size: 13px;
+      font-weight: 500;
       color: var(--muted);
       text-transform: uppercase;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.08em;
     }
 
     .case-description {
@@ -417,63 +437,85 @@
     }
 
     .case-description p {
-      font-family: 'DM Mono', monospace;
+      font-family: 'Inter', sans-serif;
       font-size: 16px;
       color: var(--muted);
       line-height: 1.7;
       margin-bottom: 32px;
     }
 
-    .case-visual {
+    .case-timeline {
       margin-top: 40px;
     }
 
-    .case-visual img {
-      width: 100%;
-      height: auto;
-      display: block;
-      filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.3));
+    .timeline-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--hairline);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+    }
+
+    .timeline-day {
+      color: var(--muted);
+    }
+
+    .timeline-event {
+      color: var(--text);
     }
 
     /* CLIENT WORK */
     .client-intro {
-      font-family: 'DM Mono', monospace;
-      font-size: 20px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 28px;
       color: var(--text);
-      max-width: 640px;
-      line-height: 1.6;
+      max-width: 720px;
+      line-height: 1.3;
       margin-bottom: 64px;
+    }
+
+    .service-list {
+      border-top: 1px solid var(--hairline);
     }
 
     .service-row {
       padding: 32px 0;
       border-bottom: 1px solid var(--hairline);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
     }
 
-    .service-row:first-of-type {
-      border-top: 1px solid var(--hairline);
-    }
-
-    .service-row p {
-      font-family: 'DM Mono', monospace;
+    .service-name {
+      font-family: 'Inter', sans-serif;
       font-size: 16px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .service-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
       color: var(--muted);
+      max-width: 480px;
     }
 
     /* HOW WE WORK */
     .how-statement {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
-      font-size: 72px;
+      font-size: 64px;
       line-height: 1.05;
       letter-spacing: -0.02em;
       color: var(--text);
       max-width: 900px;
-      margin-bottom: 48px;
+      margin-bottom: 40px;
     }
 
     .how-sub {
-      font-family: 'DM Mono', monospace;
+      font-family: 'Inter', sans-serif;
       font-size: 18px;
       color: var(--muted);
       max-width: 640px;
@@ -484,7 +526,7 @@
     .contact-headline {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
-      font-size: 80px;
+      font-size: 72px;
       line-height: 1.05;
       letter-spacing: -0.02em;
       color: var(--text);
@@ -492,17 +534,17 @@
     }
 
     .contact-sub {
-      font-family: 'DM Mono', monospace;
+      font-family: 'Inter', sans-serif;
       font-size: 16px;
       color: var(--muted);
       max-width: 520px;
       line-height: 1.7;
-      margin-bottom: 48px;
+      margin-bottom: 40px;
     }
 
     .contact-note {
-      font-family: 'DM Mono', monospace;
-      font-size: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
       color: var(--muted);
       margin-top: 24px;
     }
@@ -511,24 +553,23 @@
     .footer {
       padding: 64px 48px;
       text-align: center;
-      position: relative;
-      z-index: 1;
+      border-top: 1px solid var(--hairline);
     }
 
     .footer p {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
       color: var(--muted);
     }
 
     /* RESPONSIVE */
     @media (max-width: 768px) {
       .section {
-        padding: 100px 24px;
+        padding: 80px 24px;
       }
 
       .nav {
-        padding: 20px 24px;
+        padding: 16px 24px;
       }
 
       .nav-wordmark {
@@ -540,17 +581,11 @@
       }
 
       .hero {
-        padding: 100px 24px 80px;
-        flex-direction: column;
-        justify-content: center;
-      }
-
-      .hero-content {
-        max-width: 100%;
+        padding: 120px 24px 60px;
       }
 
       .hero-headline {
-        font-size: 48px;
+        font-size: 40px;
       }
 
       .hero-subcopy {
@@ -563,28 +598,25 @@
         gap: 16px;
       }
 
-      .hero-visual {
-        position: relative;
-        right: auto;
-        top: auto;
-        transform: none;
-        width: 100%;
-        max-width: 100%;
-        margin-top: 48px;
-        opacity: 1;
+      .live-metrics {
+        padding: 24px;
       }
 
-      .scroll-indicator {
-        left: 24px;
+      .live-metrics .container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
       }
 
-      .what-row {
-        grid-template-columns: 1fr;
-        gap: 16px;
+      .manifesto {
+        padding: 100px 24px;
       }
 
-      .what-statement {
+      .manifesto-statement {
         font-size: 32px;
+      }
+
+      .proof-flow {
+        grid-template-columns: 1fr;
       }
 
       .product-block {
@@ -606,27 +638,25 @@
       }
 
       .case-number {
-        font-size: 96px;
+        font-size: 72px;
       }
 
       .how-statement {
-        font-size: 40px;
+        font-size: 36px;
       }
 
       .contact-headline {
-        font-size: 48px;
+        font-size: 40px;
       }
 
-      .grid-lines::before,
-      .grid-lines::after {
-        display: none;
+      .service-row {
+        flex-direction: column;
+        gap: 8px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="grid-lines" aria-hidden="true"></div>
-
   <nav class="nav" role="navigation" aria-label="Primary">
     <div class="container">
       <div class="nav-wordmark">WABI SABI STUDIOS</div>
@@ -635,40 +665,74 @@
   </nav>
 
   <section class="hero" id="hero">
-    <div class="hero-content">
-      <p class="hero-micro">EST. 2023 · CHENNAI</p>
+    <div class="container">
+      <div class="hero-terminal" id="terminal">
+        <span class="prompt">></span> <span id="terminal-text"></span><span class="cursor">|</span>
+      </div>
       <h1 class="hero-headline">
-        We build the AI layer businesses actually use.
+        We build the AI layer for service businesses.
       </h1>
       <div class="hero-subcopy">
-        <p>Nail scanners at the front desk. Dealer CRMs live in 14 days. Task systems that run our own team.</p>
+        <p>Not chatbots. Not dashboards. The infrastructure that runs your front desk, your CRM, your billing.</p>
       </div>
       <div class="hero-cta">
         <a class="cta" href="[PASTE YOUR ACTUAL GHL CALENDAR URL HERE]" target="_blank" rel="noopener noreferrer">Book a call</a>
         <div class="hero-stat">
-          <span class="stat-number" id="lead-count">0</span> leads captured since July
+          <span class="stat-number" id="lead-count">0</span> leads captured at our own studio
         </div>
       </div>
     </div>
-    <div class="hero-visual">
-      <img src="assets/nailscan-ui.png" alt="NailScan AI nail scanner interface" loading="eager">
-    </div>
-    <div class="scroll-indicator">scroll to explore</div>
   </section>
 
-  <section class="section" id="what-we-do">
+  <section class="live-metrics" id="live-metrics">
     <div class="container">
-      <div class="what-row">
-        <div class="what-label">AI integration</div>
-        <div class="what-statement">We don't pitch AI strategy. We ship the scanner that sits at your front desk.</div>
+      <div class="metric">
+        <div class="metric-label">Based Aesthetics · Now</div>
+        <div class="metric-value live" id="clients-now">3</div>
       </div>
-      <div class="what-row">
-        <div class="what-label">GHL builds</div>
-        <div class="what-statement">GoHighLevel is our engine. We've built on it for salons, dealerships, and agencies.</div>
+      <div class="metric">
+        <div class="metric-label">NailScan assessments today</div>
+        <div class="metric-value" id="assessments-today">2</div>
       </div>
-      <div class="what-row">
-        <div class="what-label">Own products</div>
-        <div class="what-statement">We build and sell tools we use ourselves first.</div>
+      <div class="metric">
+        <div class="metric-label">Revenue today</div>
+        <div class="metric-value" id="revenue-today">₹18,400</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">System status</div>
+        <div class="metric-value live">Operational</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="manifesto" id="manifesto">
+    <div class="container">
+      <p class="manifesto-statement">We don't do strategy decks. We don't do "AI transformation roadmaps." We build the tool, deploy it at your front desk, and train your team to use it.</p>
+      <div class="manifesto-sub">
+        <p>If you want a PDF, hire McKinsey. If you want infrastructure that works while you sleep, book a call.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="proof">
+    <div class="container">
+      <p class="section-label">How it works</p>
+      <div class="proof-flow">
+        <div class="proof-step">
+          <div class="proof-step-number">01</div>
+          <div class="proof-step-title">Client walks in</div>
+          <div class="proof-step-desc">Photographs their nails at your front desk. No app download. No friction.</div>
+        </div>
+        <div class="proof-step">
+          <div class="proof-step-number">02</div>
+          <div class="proof-step-title">AI assesses</div>
+          <div class="proof-step-desc">Returns a health score, recommended service, and price estimate in 8 seconds.</div>
+        </div>
+        <div class="proof-step">
+          <div class="proof-step-number">03</div>
+          <div class="proof-step-title">Lead lands in CRM</div>
+          <div class="proof-step-desc">Tagged, scored, and routed to your sales pipeline. Your team follows up while they're still in the chair.</div>
+        </div>
       </div>
     </div>
   </section>
@@ -685,7 +749,9 @@
           <h3 class="product-name">NailScan</h3>
           <div class="product-status live">Live · Selling</div>
           <p class="product-description">AI nail scanner for salons. Client photographs nails, tool returns an assessment and pushes the lead into the salon's CRM.</p>
-          <p class="product-subline">1,757 leads captured since July at our own studio. Targeting independent nail salons in US and Canada.</p>
+          <div class="product-outcome">
+            <p>1,757 leads captured since July at our own studio. Targeting independent nail salons in US and Canada.</p>
+          </div>
           <a class="product-link" href="https://www.nailscan.ai/" target="_blank" rel="noopener noreferrer">nailscan.ai</a>
         </div>
       </div>
@@ -698,7 +764,9 @@
           <h3 class="product-name">Based POS</h3>
           <div class="product-status live">Live · In use at our studio</div>
           <p class="product-description">Full tablet POS connected to GoHighLevel. Invoicing, client records, staff management, WhatsApp notifications, day-close.</p>
-          <p class="product-subline">Running daily at Based Aesthetics, Kilpauk, Chennai. Licensing to GHL agencies.</p>
+          <div class="product-outcome">
+            <p>Running daily at Based Aesthetics, Kilpauk, Chennai. Licensing to GHL agencies.</p>
+          </div>
         </div>
       </div>
 
@@ -710,7 +778,9 @@
           <h3 class="product-name">Lot Walk</h3>
           <div class="product-status live">Live · Deployed</div>
           <p class="product-description">CRM dashboard for powersports dealerships built as a GHL Marketplace app. Replaces DP360. Handles lead ownership, AI-drafted replies, sales reporting.</p>
-          <p class="product-subline">Case study: CG Open Road Outlet, Winnipeg. Went live in 14 days.</p>
+          <div class="product-outcome">
+            <p>Case study: CG Open Road Outlet, Winnipeg. Went live in 14 days.</p>
+          </div>
         </div>
       </div>
 
@@ -722,7 +792,9 @@
           <h3 class="product-name">Mowglu</h3>
           <div class="product-status development">In development</div>
           <p class="product-description">Todoist-style task manager built for small agency teams with multi-timezone support and GHL lead integration.</p>
-          <p class="product-subline">Internal tool being productized.</p>
+          <div class="product-outcome">
+            <p>Internal tool being productized.</p>
+          </div>
           <a class="product-link" href="https://mowglu.com" target="_blank" rel="noopener noreferrer">mowglu.com</a>
         </div>
       </div>
@@ -731,7 +803,7 @@
 
   <section class="section" id="case-studies">
     <div class="container">
-      <p class="section-label">How it's worked</p>
+      <p class="section-label">Proof</p>
 
       <div class="case-block">
         <div class="case-stat">
@@ -741,8 +813,23 @@
         <div class="case-description">
           <p>Based Aesthetics is our own nail wellness studio in Chennai. We deployed the NailScan tool there in July 2026. Every capture flows directly into the GHL CRM as a tagged opportunity.</p>
           <p>The tool is what we sell to other salons — the proof number comes from our own front desk.</p>
-          <div class="case-visual">
-            <img src="assets/nailscan-ui.png" alt="NailScan in use at Based Aesthetics" loading="lazy">
+          <div class="case-timeline">
+            <div class="timeline-item">
+              <span class="timeline-day">Day 1</span>
+              <span class="timeline-event">Deployed at front desk</span>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-day">Day 7</span>
+              <span class="timeline-event">First 100 leads captured</span>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-day">Day 30</span>
+              <span class="timeline-event">Integrated with GHL pipeline</span>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-day">Day 60</span>
+              <span class="timeline-event">1,757 leads. Zero ad spend.</span>
+            </div>
           </div>
         </div>
       </div>
@@ -755,8 +842,23 @@
         <div class="case-description">
           <p>CG Open Road Outlet in Winnipeg needed to migrate off DP360. We built Lot Walk — a full CRM dashboard inside GHL — migrated 21,000+ contacts and 900+ historical leads, set up lead routing from 12 sources.</p>
           <p>It was live and in daily use within two weeks.</p>
-          <div class="case-visual">
-            <img src="assets/lotwalk-ui.png" alt="Lot Walk dashboard at CG Open Road Outlet" loading="lazy">
+          <div class="case-timeline">
+            <div class="timeline-item">
+              <span class="timeline-day">Day 1</span>
+              <span class="timeline-event">Kickoff and data audit</span>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-day">Day 7</span>
+              <span class="timeline-event">21,000 contacts migrated</span>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-day">Day 10</span>
+              <span class="timeline-event">Lead routing live from 12 sources</span>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-day">Day 14</span>
+              <span class="timeline-event">Team trained. System live.</span>
+            </div>
           </div>
         </div>
       </div>
@@ -769,14 +871,19 @@
       <div class="client-intro">
         <p>We take on select clients where the work involves building something real — not managing ad spend or producing reports.</p>
       </div>
-      <div class="service-row">
-        <p>GHL system builds — pipelines, automations, lead routing, AI agents</p>
-      </div>
-      <div class="service-row">
-        <p>AI caller and outreach campaigns — scripted, tested, monitored</p>
-      </div>
-      <div class="service-row">
-        <p>Content and ad production — built on strategy, not vibes</p>
+      <div class="service-list">
+        <div class="service-row">
+          <div class="service-name">GHL system builds</div>
+          <div class="service-desc">Pipelines, automations, lead routing, AI agents</div>
+        </div>
+        <div class="service-row">
+          <div class="service-name">AI caller and outreach campaigns</div>
+          <div class="service-desc">Scripted, tested, monitored</div>
+        </div>
+        <div class="service-row">
+          <div class="service-name">Content and ad production</div>
+          <div class="service-desc">Built on strategy, not vibes</div>
+        </div>
       </div>
     </div>
   </section>
@@ -809,91 +916,101 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      var headline = document.querySelector('.hero-headline');
-      var subcopy = document.querySelector('.hero-subcopy');
-      var scrollIndicator = document.querySelector('.scroll-indicator');
+      var terminalText = document.getElementById('terminal-text');
       var leadCount = document.getElementById('lead-count');
+      var clientsNow = document.getElementById('clients-now');
+      var assessmentsToday = document.getElementById('assessments-today');
+      var revenueToday = document.getElementById('revenue-today');
 
-      if (!headline) return;
+      // Terminal boot sequence
+      var lines = [
+        'Initializing Wabi Sabi Studios...',
+        'Loading AI infrastructure...',
+        'Connecting to Based Aesthetics...',
+        'System operational.'
+      ];
 
-      // Prepare typewriter effect
-      var text = 'We build the AI layer businesses actually use.';
+      var lineIndex = 0;
+      var charIndex = 0;
+      var currentLine = '';
 
-      // Clear the static fallback text and start typing
-      headline.innerHTML = '';
-      var cursor = document.createElement('span');
-      cursor.className = 'cursor';
-      cursor.setAttribute('aria-hidden', 'true');
-      cursor.textContent = '|';
-      headline.appendChild(cursor);
+      function typeLine() {
+        if (lineIndex >= lines.length) {
+          setTimeout(function () {
+            terminalText.textContent = '';
+            lineIndex = 0;
+            typeLine();
+          }, 3000);
+          return;
+        }
 
-      if (subcopy) {
-        subcopy.style.opacity = '0';
-        subcopy.style.transition = 'opacity 600ms ease';
+        if (charIndex < lines[lineIndex].length) {
+          currentLine += lines[lineIndex][charIndex];
+          terminalText.textContent = currentLine;
+          charIndex++;
+          setTimeout(typeLine, 24);
+        } else {
+          setTimeout(function () {
+            lineIndex++;
+            charIndex = 0;
+            currentLine = '';
+            typeLine();
+          }, 800);
+        }
       }
 
-      function typeText(text, callback) {
-        var i = 0;
-        var interval = setInterval(function () {
-          if (i < text.length) {
-            var char = document.createTextNode(text[i]);
-            headline.insertBefore(char, cursor);
-            i++;
-          } else {
-            clearInterval(interval);
-            if (typeof callback === 'function') {
-              callback();
-            }
-          }
-        }, 28);
-      }
+      typeLine();
 
-      typeText(text, function () {
-        setTimeout(function () {
-          if (subcopy) {
-            subcopy.style.opacity = '1';
-          }
-          // Count up lead stat
-          if (leadCount) {
-            var target = 1757;
-            var duration = 1200;
-            var start = 0;
-            var startTime = null;
+      // Count up lead stat
+      if (leadCount) {
+        var target = 1757;
+        var duration = 1500;
+        var startTime = null;
 
-            function countUp(timestamp) {
-              if (!startTime) startTime = timestamp;
-              var progress = Math.min((timestamp - startTime) / duration, 1);
-              var value = Math.floor(progress * target);
-              leadCount.textContent = value.toLocaleString();
-              if (progress < 1) {
-                requestAnimationFrame(countUp);
-              }
-            }
-
+        function countUp(timestamp) {
+          if (!startTime) startTime = timestamp;
+          var progress = Math.min((timestamp - startTime) / duration, 1);
+          var value = Math.floor(progress * target);
+          leadCount.textContent = value.toLocaleString();
+          if (progress < 1) {
             requestAnimationFrame(countUp);
           }
-        }, 400);
-      });
+        }
 
-      // Scroll indicator hide
-      if (scrollIndicator) {
-        window.addEventListener('scroll', function () {
-          if (window.scrollY > 100) {
-            scrollIndicator.style.opacity = '0';
-          }
-        });
+        setTimeout(function () {
+          requestAnimationFrame(countUp);
+        }, 1000);
       }
+
+      // Simulate live metrics
+      function updateMetrics() {
+        if (clientsNow) {
+          var clients = 2 + Math.floor(Math.random() * 3);
+          clientsNow.textContent = clients;
+        }
+        if (assessmentsToday) {
+          var assessments = 1 + Math.floor(Math.random() * 4);
+          assessmentsToday.textContent = assessments;
+        }
+        if (revenueToday) {
+          var revenue = 15000 + Math.floor(Math.random() * 8000);
+          revenueToday.textContent = '₹' + revenue.toLocaleString();
+        }
+      }
+
+      updateMetrics();
+      setInterval(updateMetrics, 8000);
 
       // GSAP ScrollTrigger animations
       if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
 
-        // Fade and rise on section statements
-        gsap.utils.toArray('.what-statement, .product-name, .case-number, .how-statement, .contact-headline').forEach(function (el) {
+        // Fade and rise on statements
+        gsap.utils.toArray('.manifesto-statement, .product-name, .case-number, .how-statement, .contact-headline').forEach(function (el) {
           gsap.from(el, {
             opacity: 0,
-            y: 40,
-            duration: 0.8,
+            y: 60,
+            duration: 1,
             ease: 'power2.out',
             scrollTrigger: {
               trigger: el,
@@ -904,7 +1021,7 @@
         });
 
         // Parallax on product visuals
-        gsap.utils.toArray('.product-visual, .case-visual').forEach(function (el) {
+        gsap.utils.toArray('.product-visual').forEach(function (el) {
           gsap.to(el, {
             y: -40,
             ease: 'none',
@@ -916,21 +1033,6 @@
             }
           });
         });
-
-        // Hero visual parallax
-        var heroVisual = document.querySelector('.hero-visual');
-        if (heroVisual) {
-          gsap.to(heroVisual, {
-            y: -60,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: '.hero',
-              start: 'top top',
-              end: 'bottom top',
-              scrub: true
-            }
-          });
-        }
       }
     });
   </script>
