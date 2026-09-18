@@ -121,6 +121,23 @@
       justify-content: center;
       position: relative;
       padding: 140px 48px 80px;
+      overflow: hidden;
+    }
+
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.15;
+      z-index: 0;
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 1;
     }
 
     .hero-terminal {
@@ -665,6 +682,10 @@
   </nav>
 
   <section class="hero" id="hero">
+    <!-- VIDEO PLACEHOLDER: Add hero-video.mp4 here — slow pan of a nail salon or dealership floor, 10s loop, muted -->
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="assets/hero-video.mp4" type="video/mp4">
+    </video>
     <div class="container">
       <div class="hero-terminal" id="terminal">
         <span class="prompt">></span> <span id="terminal-text"></span><span class="cursor">|</span>
@@ -743,6 +764,7 @@
 
       <div class="product-block">
         <div class="product-visual">
+          <!-- IMAGE PLACEHOLDER: Replace with real screenshot of NailScan running at Based Aesthetics front desk -->
           <img src="assets/nailscan-ui.png" alt="NailScan interface" loading="lazy">
         </div>
         <div class="product-meta">
@@ -758,6 +780,7 @@
 
       <div class="product-block">
         <div class="product-visual">
+          <!-- IMAGE PLACEHOLDER: Replace with real screenshot of Based POS on tablet at front desk -->
           <img src="assets/based-pos-ui.png" alt="Based POS interface" loading="lazy">
         </div>
         <div class="product-meta">
@@ -772,6 +795,7 @@
 
       <div class="product-block">
         <div class="product-visual">
+          <!-- IMAGE PLACEHOLDER: Replace with real screenshot of Lot Walk dashboard with live data -->
           <img src="assets/lotwalk-ui.png" alt="Lot Walk CRM dashboard" loading="lazy">
         </div>
         <div class="product-meta">
@@ -786,6 +810,7 @@
 
       <div class="product-block">
         <div class="product-visual">
+          <!-- IMAGE PLACEHOLDER: Replace with real screenshot of Mowglu interface -->
           <img src="assets/mowglu-ui.png" alt="Mowglu task manager" loading="lazy">
         </div>
         <div class="product-meta">
@@ -813,6 +838,8 @@
         <div class="case-description">
           <p>Based Aesthetics is our own nail wellness studio in Chennai. We deployed the NailScan tool there in July 2026. Every capture flows directly into the GHL CRM as a tagged opportunity.</p>
           <p>The tool is what we sell to other salons — the proof number comes from our own front desk.</p>
+          <!-- IMAGE PLACEHOLDER: Add photo of NailScan running at Based Aesthetics front desk -->
+          <!-- VIDEO PLACEHOLDER: Add 15s clip of client using NailScan -->
           <div class="case-timeline">
             <div class="timeline-item">
               <span class="timeline-day">Day 1</span>
@@ -842,6 +869,8 @@
         <div class="case-description">
           <p>CG Open Road Outlet in Winnipeg needed to migrate off DP360. We built Lot Walk — a full CRM dashboard inside GHL — migrated 21,000+ contacts and 900+ historical leads, set up lead routing from 12 sources.</p>
           <p>It was live and in daily use within two weeks.</p>
+          <!-- IMAGE PLACEHOLDER: Add screenshot of Lot Walk dashboard with real dealership data -->
+          <!-- IMAGE PLACEHOLDER: Add photo of CG Open Road Outlet team using the system -->
           <div class="case-timeline">
             <div class="timeline-item">
               <span class="timeline-day">Day 1</span>
@@ -881,8 +910,8 @@
           <div class="service-desc">Scripted, tested, monitored</div>
         </div>
         <div class="service-row">
-          <div class="service-name">Content and ad production</div>
-          <div class="service-desc">Built on strategy, not vibes</div>
+          <div class="service-name">Performance marketing infrastructure</div>
+          <div class="service-desc">Landing pages, tracking, attribution — built to convert, not just spend</div>
         </div>
       </div>
     </div>
@@ -894,6 +923,8 @@
       <div class="how-sub">
         <p>Based Aesthetics is our test environment. NailScan runs at our front desk. Based POS is how we close every bill. We don't pitch features we haven't shipped.</p>
       </div>
+      <!-- IMAGE PLACEHOLDER: Add photo of Based Aesthetics studio interior -->
+      <!-- IMAGE PLACEHOLDER: Add photo of team working at front desk -->
     </div>
   </section>
 
