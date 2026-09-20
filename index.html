@@ -706,6 +706,130 @@
 
     .product-link:hover { border-color: var(--accent); gap: 14px; }
 
+    /* ===== PRODUCT GRID (secondary products) ===== */
+    .product-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--hairline);
+      border: 1px solid var(--hairline);
+      margin-top: 88px;
+    }
+
+    .pcard {
+      background: var(--bg);
+      padding: 44px 40px;
+      transition: background 250ms ease;
+      position: relative;
+    }
+
+    .pcard:hover { background: var(--bg-raised); }
+
+    .pcard-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+
+    .pcard-index {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--dim);
+      letter-spacing: 0.08em;
+    }
+
+    .pcard-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 28px;
+      color: var(--text);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .pcard-desc {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    .pcard-spec {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--dim);
+      letter-spacing: 0.05em;
+      line-height: 1.9;
+    }
+
+    .pcard-spec b { color: var(--accent); font-weight: 500; }
+
+    /* ===== CASE FILE STRUCTURE ===== */
+    .case-part {
+      margin-bottom: 40px;
+    }
+
+    .case-part-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .case-part-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--hairline);
+    }
+
+    .case-bullet {
+      position: relative;
+      padding: 10px 0 10px 28px;
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .case-bullet::before {
+      content: '·';
+      position: absolute;
+      left: 4px;
+      top: 10px;
+      font-family: var(--font-mono);
+      color: var(--dim);
+    }
+
+    .case-bullet.built::before { content: '+'; color: var(--accent); left: 0; }
+    .case-bullet b { color: var(--text); font-weight: 500; }
+
+    .stat-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      padding: 10px 16px;
+      border: 1px solid rgba(200, 240, 74, 0.25);
+      background: var(--accent-dim);
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    .chip b { color: var(--accent); font-weight: 500; }
+
     /* ===== CASE STUDIES ===== */
     .case-block {
       display: grid;
@@ -1430,6 +1554,8 @@
         padding: 64px 0;
       }
       .case-block { grid-template-columns: 1fr; gap: 40px; padding: 72px 0; }
+      .product-grid { grid-template-columns: 1fr; }
+      .pcard { padding: 32px 24px; }
       .case-stat { position: static; }
       .testimonial-grid { grid-template-columns: 1fr; gap: 64px; }
       .qualify-grid { grid-template-columns: 1fr; }
@@ -1518,10 +1644,12 @@
   <div class="ticker" aria-hidden="true">
     <div class="ticker-track" id="ticker-track">
       <span class="ticker-item"><b>1,757</b> LEADS VIA NAILSCAN — ZERO AD SPEND</span>
-      <span class="ticker-item"><b>21,000+</b> CONTACTS MIGRATED FOR CG OPEN ROAD OUTLET</span>
+      <span class="ticker-item"><b>22,000+</b> LEADS ARCHIVED FROM DP360, ZERO DATA LOSS</span>
       <span class="ticker-item"><b>14 DAYS</b> FROM KICKOFF TO LIVE CRM</span>
-      <span class="ticker-item"><b>12</b> LEAD SOURCES ROUTED AUTOMATICALLY</span>
-      <span class="ticker-item"><b>4</b> PRODUCTS RUNNING IN PRODUCTION</span>
+      <span class="ticker-item"><b>1,289</b> OPPORTUNITIES SYNCED IN REAL TIME</span>
+      <span class="ticker-item"><b>12+</b> LEAD SOURCES PARSED &amp; ROUTED TO 13 PIPELINES</span>
+      <span class="ticker-item"><b>159</b> INVENTORY UNITS SYNCED DAILY</span>
+      <span class="ticker-item"><b>85</b> ARTICLES POWERING AI SEARCH RESULTS</span>
       <span class="ticker-item"><b>2</b> CONTINENTS, ONE ENGINEERING TEAM</span>
     </div>
   </div>
@@ -1615,13 +1743,14 @@
           <img src="assets/nailscan-ui.png" alt="NailScan interface" loading="lazy">
         </div>
         <div class="product-meta">
-          <div class="product-index">PRODUCT 01 / 04</div>
+          <div class="product-index">FLAGSHIP 01</div>
           <h3 class="product-name">NailScan</h3>
           <div class="product-status live">Live · Selling</div>
-          <p class="product-description">AI nail scanner for salons. Client photographs nails, tool returns an assessment and pushes the lead into the salon's CRM — before they've left the counter.</p>
+          <p class="product-description">White-label AI nail scanner for salons. Client photographs their nails, gets a five-field assessment and a dated care calendar — and lands in the salon's CRM automatically. Two AI readers cross-check every scan; a third adjudicates when they disagree.</p>
           <div class="product-spec">
-            <b>LEADS CAPTURED</b> · <span class="spec-accent">1,757 since July</span><br>
-            <b>AD SPEND REQUIRED</b> · ₹0<br>
+            <b>LEADS CAPTURED</b> · <span class="spec-accent">1,757 since July, zero ad spend</span><br>
+            <b>AI CORE</b> · Dual-reader consensus + adjudicator<br>
+            <b>PRICING</b> · $399 setup + $97/month<br>
             <b>MARKET</b> · Independent salons, US + Canada
           </div>
           <a class="product-link" href="https://www.nailscan.ai/" target="_blank" rel="noopener noreferrer">nailscan.ai <span>→</span></a>
@@ -1629,57 +1758,60 @@
       </div>
 
       <div class="product-block reverse">
-        <div class="product-visual reveal" data-window="based-pos — day view">
-          <!-- IMAGE PLACEHOLDER: Replace with real screenshot of Based POS on tablet at front desk -->
-          <img src="assets/based-pos-ui.png" alt="Based POS interface" loading="lazy">
-        </div>
-        <div class="product-meta">
-          <div class="product-index">PRODUCT 02 / 04</div>
-          <h3 class="product-name">Based POS</h3>
-          <div class="product-status live">Live · In daily use</div>
-          <p class="product-description">Full tablet POS wired into GoHighLevel. Invoicing, client records, staff management, WhatsApp notifications, day-close — every bill at our studio runs through it.</p>
-          <div class="product-spec">
-            <b>RUNNING AT</b> · Based Aesthetics, Kilpauk<br>
-            <b>UPTIME</b> · <span class="spec-accent">Every business day since launch</span><br>
-            <b>MODEL</b> · Licensing to GHL agencies
-          </div>
-        </div>
-      </div>
-
-      <div class="product-block">
-        <div class="product-visual reveal" data-window="lotwalk — dealer dashboard">
+        <div class="product-visual reveal" data-window="lotwalk — dealership command center">
           <!-- IMAGE PLACEHOLDER: Replace with real screenshot of Lot Walk dashboard with live data -->
           <img src="assets/lotwalk-ui.png" alt="Lot Walk CRM dashboard" loading="lazy">
         </div>
         <div class="product-meta">
-          <div class="product-index">PRODUCT 03 / 04</div>
+          <div class="product-index">FLAGSHIP 02</div>
           <h3 class="product-name">Lot Walk</h3>
           <div class="product-status live">Live · Deployed</div>
-          <p class="product-description">CRM dashboard for powersports dealerships, built as a GHL Marketplace app. Replaces DP360 — lead ownership, AI-drafted replies, sales reporting, live sync.</p>
+          <p class="product-description">A real-time dealership command center that lives inside GoHighLevel. One screen for every lead, every conversation, every follow-up, and every unit in stock. Installs as a Marketplace app — no second login, no separate platform.</p>
           <div class="product-spec">
-            <b>DEPLOYED AT</b> · CG Open Road Outlet, Winnipeg<br>
-            <b>TIME TO LIVE</b> · <span class="spec-accent">14 days</span><br>
-            <b>REPLACED</b> · DP360
+            <b>SYNCED</b> · <span class="spec-accent">1,289 opportunities · 21,000+ contacts</span><br>
+            <b>INTAKE</b> · 12+ lead sources parsed &amp; auto-routed<br>
+            <b>STACK</b> · React + Supabase + Cloudflare<br>
+            <b>DATA RESIDENCY</b> · Canada Central (PIPEDA)
           </div>
         </div>
       </div>
 
-      <div class="product-block reverse">
-        <div class="product-visual reveal" data-window="mowglu — today view">
-          <!-- IMAGE PLACEHOLDER: Replace with real screenshot of Mowglu interface -->
-          <img src="assets/mowglu-ui.png" alt="Mowglu task manager" loading="lazy">
-        </div>
-        <div class="product-meta">
-          <div class="product-index">PRODUCT 04 / 04</div>
-          <h3 class="product-name">Mowglu</h3>
-          <div class="product-status development">In development</div>
-          <p class="product-description">Task manager for small agency teams — multi-timezone, GHL lead integration. The tool that runs our own team, being productized.</p>
-          <div class="product-spec">
-            <b>STATUS</b> · Internal daily driver<br>
-            <b>TIMEZONES SUPPORTED</b> · All of them<br>
-            <b>NEXT</b> · Public beta
+      <div class="product-grid">
+        <div class="pcard reveal">
+          <div class="pcard-top">
+            <span class="pcard-index">P/03</span>
+            <span class="product-status live">Live · In daily use</span>
           </div>
-          <a class="product-link" href="https://mowglu.com" target="_blank" rel="noopener noreferrer">mowglu.com <span>→</span></a>
+          <h3 class="pcard-name">Based POS</h3>
+          <p class="pcard-desc">Tablet point-of-sale wired into GHL. Multiple open bills, UPI + cash + part payments, tips routed straight to the tech's own UPI, biometric staff login, WhatsApp receipts, passkey day-close.</p>
+          <div class="pcard-spec"><b>EVERY BILL</b> at our studio runs through it · English, Tamil, Hindi</div>
+        </div>
+        <div class="pcard reveal">
+          <div class="pcard-top">
+            <span class="pcard-index">P/04</span>
+            <span class="product-status development">In development</span>
+          </div>
+          <h3 class="pcard-name">Signal Engine</h3>
+          <p class="pcard-desc">Content intelligence for local businesses. Scans live trends, breaks down competitor strategy, and returns shoot-ready briefs — hook, script, visual direction, posting window. Plans 60 days ahead of cultural moments.</p>
+          <div class="pcard-spec"><b>TESTED ON</b> our own studio + a Canadian dealership · 9 markets</div>
+        </div>
+        <div class="pcard reveal">
+          <div class="pcard-top">
+            <span class="pcard-index">P/05</span>
+            <span class="product-status development">In development</span>
+          </div>
+          <h3 class="pcard-name">Nail Try-On</h3>
+          <p class="pcard-desc">Photoreal virtual try-on — renders shades on the client's own hand photo, not a filter. Every shade links to a booking. No sign-up, WhatsApp-native, built for Tamil + English.</p>
+          <div class="pcard-spec"><b>QUALITY BAR</b> · anything that looks like a filter is disqualified</div>
+        </div>
+        <div class="pcard reveal">
+          <div class="pcard-top">
+            <span class="pcard-index">P/06</span>
+            <span class="product-status development">In development</span>
+          </div>
+          <h3 class="pcard-name">Mowglu</h3>
+          <p class="pcard-desc">Task manager for small agency teams — multi-timezone by design, GHL lead integration built in. The tool that runs our own team across Chennai and Winnipeg, being productized.</p>
+          <div class="pcard-spec"><b>STATUS</b> · internal daily driver → public beta · <a href="https://mowglu.com" target="_blank" rel="noopener noreferrer" style="color: var(--muted); border-bottom: 1px solid var(--hairline-strong);">mowglu.com</a></div>
         </div>
       </div>
     </div>
@@ -1702,20 +1834,36 @@
           <div class="case-meta">
             <b>CLIENT</b> · Based Aesthetics (ours)<br>
             <b>LOCATION</b> · Kilpauk, Chennai<br>
-            <b>STACK</b> · NailScan + GHL + Based POS<br>
-            <b>AD SPEND</b> · ₹0
+            <b>SCOPE</b> · Full infrastructure buildout<br>
+            <b>STACK</b> · GHL + AI Vision + Cloudflare
           </div>
         </div>
         <div class="case-description">
-          <p>Based Aesthetics is our own nail wellness studio. We deployed NailScan at the front desk in July 2026 — every capture flows into the CRM as a tagged opportunity.</p>
-          <p>The tool is what we sell to other salons. The proof number comes from our own front desk, which means we can show you the pipeline, not a slide about it.</p>
+          <p>India's first nail wellness studio — and our own. When we opened it, nail salons in India ran on WhatsApp and paper. We built the entire technology backbone from zero, then turned the pieces into products.</p>
           <!-- IMAGE PLACEHOLDER: Add photo of NailScan running at Based Aesthetics front desk -->
           <!-- VIDEO PLACEHOLDER: Add 15s clip of client using NailScan -->
-          <div class="case-timeline">
-            <div class="timeline-item"><span class="timeline-day">DAY 1</span><span class="timeline-event">Deployed at front desk</span></div>
-            <div class="timeline-item"><span class="timeline-day">DAY 7</span><span class="timeline-event">First 100 leads captured</span></div>
-            <div class="timeline-item"><span class="timeline-day">DAY 30</span><span class="timeline-event">Integrated with GHL pipeline</span></div>
-            <div class="timeline-item"><span class="timeline-day">DAY 60</span><span class="timeline-event">1,757 leads. Zero ad spend.</span></div>
+          <div class="case-part">
+            <div class="case-part-label">The problem</div>
+            <div class="case-bullet">No CRM, no POS, no lead capture — every walk-in was a one-and-done</div>
+            <div class="case-bullet">Hygiene claims mean nothing without proof; every salon says they're clean</div>
+            <div class="case-bullet">Zero digital infrastructure existed for this category in India</div>
+          </div>
+          <div class="case-part">
+            <div class="case-part-label">What we built</div>
+            <div class="case-bullet built"><b>AI nail scanner</b> as the lead magnet — photograph nails, get a real assessment, become a CRM lead</div>
+            <div class="case-bullet built"><b>Full GHL CRM</b> with booking, automations, and AI conversation bots</div>
+            <div class="case-bullet built"><b>Custom tablet POS</b> — UPI payments, staff attribution, WhatsApp receipts</div>
+            <div class="case-bullet built"><b>Telegram content ops</b> — techs upload daily, content routes and schedules itself</div>
+            <div class="case-bullet built"><b>85-article journal</b> powering SEO and AI search + a proof system with live sterilization logs</div>
+            <div class="case-bullet built"><b>14+ brand films</b> rendered from code — an HTML-to-MP4 pipeline</div>
+          </div>
+          <div class="case-part">
+            <div class="case-part-label">The result</div>
+            <div class="stat-chips">
+              <span class="chip"><b>1,757</b> leads, zero ad spend</span>
+              <span class="chip">Perplexity's <b>top pick</b> for hygiene near Kilpauk</span>
+              <span class="chip">Booking → billing → nurture, <b>fully automated</b></span>
+            </div>
           </div>
         </div>
       </div>
@@ -1727,20 +1875,73 @@
           <div class="case-meta">
             <b>CLIENT</b> · CG Open Road Outlet<br>
             <b>LOCATION</b> · Winnipeg, MB, Canada<br>
-            <b>STACK</b> · Lot Walk + GHL<br>
-            <b>MIGRATED FROM</b> · DP360
+            <b>PRODUCT</b> · Lot Walk<br>
+            <b>STACK</b> · React + Supabase + GHL<br>
+            <b>RESIDENCY</b> · Canada Central · PIPEDA
           </div>
         </div>
         <div class="case-description">
-          <p>A powersports dealership needed off DP360. We built Lot Walk — a full CRM dashboard inside GHL — and moved 21,000+ contacts and 900+ historical leads without losing a single record.</p>
-          <p>Lead routing from 12 sources, AI-drafted replies, sales reporting. Live and in daily use inside two weeks — across an 11.5-hour timezone gap.</p>
+          <p>A CFMOTO powersports dealership — ATVs, snowmobiles, boats, RVs, motorcycles — stuck on a legacy CRM with twelve lead sources landing in different places and no way to see the floor.</p>
           <!-- IMAGE PLACEHOLDER: Add screenshot of Lot Walk dashboard with real dealership data -->
           <!-- IMAGE PLACEHOLDER: Add photo of CG Open Road Outlet team using the system -->
-          <div class="case-timeline">
-            <div class="timeline-item"><span class="timeline-day">DAY 1</span><span class="timeline-event">Kickoff and data audit</span></div>
-            <div class="timeline-item"><span class="timeline-day">DAY 7</span><span class="timeline-event">21,000 contacts migrated</span></div>
-            <div class="timeline-item"><span class="timeline-day">DAY 10</span><span class="timeline-event">Lead routing live from 12 sources</span></div>
-            <div class="timeline-item"><span class="timeline-day">DAY 14</span><span class="timeline-event">Team trained. System live.</span></div>
+          <div class="case-part">
+            <div class="case-part-label">The problem</div>
+            <div class="case-bullet">No manager visibility — no single screen showing which leads are going cold and who's responding</div>
+            <div class="case-bullet">New inquiries sat unassigned; follow-ups depended on humans remembering</div>
+            <div class="case-bullet">No speed-to-lead tracking — the single biggest factor in closing a sale, unmeasured</div>
+            <div class="case-bullet">Data scattered across DP360, GHL, and Kenect; 150+ stock units invisible to reps</div>
+          </div>
+          <div class="case-part">
+            <div class="case-part-label">What we built</div>
+            <div class="case-bullet built"><b>Live lead board + My Day</b> — the full floor for managers, a personal morning screen for each rep</div>
+            <div class="case-bullet built"><b>AI summaries and suggested replies</b> — the rep reviews and approves every draft; AI never sends on its own</div>
+            <div class="case-bullet built"><b>Custom email parser</b> — 12+ vendor formats classified by vehicle type and routed to 13 pipelines automatically</div>
+            <div class="case-bullet built"><b>Round-robin assignment</b> + inventory matching inside the lead card — "units in stock that fit"</div>
+            <div class="case-bullet built"><b>DP360 archive</b> — five years of history captured before the old CRM was cancelled</div>
+          </div>
+          <div class="case-part">
+            <div class="case-part-label">The result</div>
+            <div class="stat-chips">
+              <span class="chip">Live in <b>14 days</b></span>
+              <span class="chip"><b>1,289</b> opportunities synced</span>
+              <span class="chip"><b>22,000+</b> leads archived, zero data loss</span>
+              <span class="chip"><b>159</b> units synced daily</span>
+              <span class="chip">DP360 <b>fully replaced</b></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-block">
+        <div class="case-stat">
+          <div class="case-number" data-count="8">0</div>
+          <div class="case-label">Stage acquisition pipeline</div>
+          <div class="case-meta">
+            <b>CLIENT</b> · Brew Media<br>
+            <b>LOCATION</b> · Canada<br>
+            <b>SCOPE</b> · GHL operating system<br>
+            <b>COMPLIANCE</b> · CASL · A2P verified
+          </div>
+        </div>
+        <div class="case-description">
+          <p>A Canadian real estate marketing agency with no automated acquisition or nurture — in a market where getting outbound compliance wrong carries real legal risk.</p>
+          <div class="case-part">
+            <div class="case-part-label">The problem</div>
+            <div class="case-bullet">No automated lead acquisition or nurture system — everything manual</div>
+            <div class="case-bullet">Canadian CASL rules make non-compliant outbound a liability, not just bad practice</div>
+          </div>
+          <div class="case-part">
+            <div class="case-part-label">What we built</div>
+            <div class="case-bullet built"><b>Acquisition machine</b> — enrichment cascade from Realtor.ca, 8-stage pipeline, speed-to-lead automation</div>
+            <div class="case-bullet built"><b>Tripwire subscription products</b> — $20–$100 CAD/month entry offers that fund the funnel</div>
+            <div class="case-bullet built"><b>Compliance architecture</b> — A2P toll-free verification and consent field tracking on every contact</div>
+          </div>
+          <div class="case-part">
+            <div class="case-part-label">The result</div>
+            <div class="stat-chips">
+              <span class="chip">Acquisition <b>runs itself</b></span>
+              <span class="chip">Outbound <b>legally clean</b></span>
+            </div>
           </div>
         </div>
       </div>
