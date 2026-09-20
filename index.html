@@ -566,6 +566,242 @@
       margin-top: 24px;
     }
 
+    /* LOGO STRIP */
+    .logo-strip {
+      padding: 40px 48px;
+      border-top: 1px solid var(--hairline);
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .logo-strip .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+
+    .logo-strip-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      flex-shrink: 0;
+    }
+
+    .logo-item {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--muted);
+      opacity: 0.7;
+    }
+
+    /* TESTIMONIALS */
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--hairline);
+      border: 1px solid var(--hairline);
+    }
+
+    .testimonial {
+      background: var(--bg);
+      padding: 48px;
+    }
+
+    .testimonial-quote {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      line-height: 1.4;
+      color: var(--text);
+      margin-bottom: 32px;
+    }
+
+    .testimonial-quote .highlight {
+      color: var(--accent);
+    }
+
+    .testimonial-author {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .testimonial-role {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ENGAGEMENT MODEL */
+    .engagement-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--hairline);
+      border: 1px solid var(--hairline);
+    }
+
+    .engagement-step {
+      background: var(--bg);
+      padding: 48px 40px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .engagement-phase {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 16px;
+    }
+
+    .engagement-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 26px;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .engagement-duration {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .engagement-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 24px;
+      flex: 1;
+    }
+
+    .engagement-deliverable {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      padding-left: 16px;
+      border-left: 2px solid var(--accent);
+      line-height: 1.6;
+    }
+
+    /* QUALIFICATION */
+    .qualify-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+    }
+
+    .qualify-col-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 24px;
+      color: var(--text);
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    .qualify-col-title.not-for {
+      border-bottom-color: var(--hairline);
+      color: var(--muted);
+    }
+
+    .qualify-item {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      color: var(--text);
+      line-height: 1.6;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .qualify-item.negative {
+      color: var(--muted);
+    }
+
+    .scarcity-note {
+      margin-top: 64px;
+      padding: 32px 40px;
+      border: 1px solid var(--hairline);
+      background: rgba(200, 240, 74, 0.04);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .scarcity-note strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* FAQ */
+    .faq-item {
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .faq-item:first-of-type {
+      border-top: 1px solid var(--hairline);
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 28px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--text);
+      text-align: left;
+      gap: 24px;
+    }
+
+    .faq-toggle {
+      font-family: 'Inter', sans-serif;
+      font-size: 24px;
+      font-weight: 300;
+      color: var(--accent);
+      flex-shrink: 0;
+      transition: transform 300ms ease;
+    }
+
+    .faq-item.open .faq-toggle {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 400ms ease;
+    }
+
+    .faq-answer-inner {
+      padding: 0 48px 28px 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
     /* FOOTER */
     .footer {
       padding: 64px 48px;
@@ -670,6 +906,36 @@
         flex-direction: column;
         gap: 8px;
       }
+
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .testimonial {
+        padding: 32px 24px;
+      }
+
+      .testimonial-quote {
+        font-size: 18px;
+      }
+
+      .engagement-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .qualify-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .logo-strip .container {
+        justify-content: flex-start;
+        gap: 24px;
+      }
+
+      .faq-question {
+        font-size: 16px;
+      }
     }
   </style>
 </head>
@@ -725,6 +991,18 @@
       </div>
     </div>
   </section>
+
+  <div class="logo-strip">
+    <div class="container">
+      <span class="logo-strip-label">Systems live at</span>
+      <!-- LOGO PLACEHOLDERS: Replace text with client logo SVGs/PNGs when permissions confirmed -->
+      <span class="logo-item">Based Aesthetics</span>
+      <span class="logo-item">CG Open Road Outlet</span>
+      <span class="logo-item">NailScan</span>
+      <span class="logo-item">Mowglu</span>
+      <!-- LOGO PLACEHOLDER: Add 2-3 more client logos here as they come -->
+    </div>
+  </div>
 
   <section class="manifesto" id="manifesto">
     <div class="container">
@@ -894,6 +1172,26 @@
     </div>
   </section>
 
+  <section class="section" id="testimonials">
+    <div class="container">
+      <p class="section-label">What clients say</p>
+      <div class="testimonial-grid">
+        <!-- TESTIMONIAL PLACEHOLDER: Replace with real quote from CG Open Road Outlet owner/GM. Video testimonial is even better — 30s clip. -->
+        <div class="testimonial">
+          <p class="testimonial-quote">"We were quoted six months by two other vendors. These guys had us <span class="highlight">off DP360 and fully live in 14 days.</span> The team actually uses it."</p>
+          <div class="testimonial-author">[NAME PLACEHOLDER]</div>
+          <div class="testimonial-role">General Manager, CG Open Road Outlet — Winnipeg</div>
+        </div>
+        <!-- TESTIMONIAL PLACEHOLDER: Replace with real quote from a GHL agency or salon licensing Based POS / NailScan -->
+        <div class="testimonial">
+          <p class="testimonial-quote">"The scanner paid for itself in the first month. <span class="highlight">1,700+ leads without a rupee of ad spend</span> — from a tool that sits on the front desk."</p>
+          <div class="testimonial-author">[NAME PLACEHOLDER]</div>
+          <div class="testimonial-role">Owner, Based Aesthetics — Chennai</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="client-work">
     <div class="container">
       <p class="section-label">Client work</p>
@@ -917,6 +1215,38 @@
     </div>
   </section>
 
+  <section class="section" id="engagement">
+    <div class="container">
+      <p class="section-label">How engagements work</p>
+      <div class="engagement-grid">
+        <div class="engagement-step">
+          <div class="engagement-phase">Phase 01</div>
+          <div class="engagement-title">Diagnostic</div>
+          <div class="engagement-duration">Week 1 · Paid</div>
+          <div class="engagement-desc">We audit your lead flow, CRM, and front-desk operations. You get a written teardown of where revenue is leaking and exactly what we'd build to stop it.</div>
+          <div class="engagement-deliverable">Deliverable: a build plan with hard numbers — not a slide deck.</div>
+        </div>
+        <div class="engagement-step">
+          <div class="engagement-phase">Phase 02</div>
+          <div class="engagement-title">Build sprint</div>
+          <div class="engagement-duration">Weeks 2–6</div>
+          <div class="engagement-desc">We build and deploy the system — CRM, automations, AI tooling, front-desk infrastructure. Your team is trained on it before we call it done. Live in weeks, not quarters.</div>
+          <div class="engagement-deliverable">Deliverable: a working system your team uses daily.</div>
+        </div>
+        <div class="engagement-step">
+          <div class="engagement-phase">Phase 03</div>
+          <div class="engagement-title">Retainer</div>
+          <div class="engagement-duration">Monthly · Ongoing</div>
+          <div class="engagement-desc">We run, monitor, and extend the system. New automations, AI callers, campaign infrastructure, reporting. You get an engineering team on call — without hiring one.</div>
+          <div class="engagement-deliverable">Deliverable: the system compounds instead of decaying.</div>
+        </div>
+      </div>
+      <div class="scarcity-note">
+        <strong>We take on a maximum of 3 retainer clients per quarter.</strong> Every build runs through the same team that runs our own products — we don't outsource, so we don't overbook. The diagnostic is how we decide fit, on both sides.
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="how-we-work">
     <div class="container">
       <p class="how-statement">Everything we sell, we use ourselves first.</p>
@@ -928,12 +1258,60 @@
     </div>
   </section>
 
+  <section class="section" id="qualify">
+    <div class="container">
+      <p class="section-label">Fit check</p>
+      <div class="qualify-grid">
+        <div>
+          <div class="qualify-col-title">This is for you if</div>
+          <div class="qualify-item">You run a service business doing serious monthly revenue and your operations haven't caught up to your growth</div>
+          <div class="qualify-item">You're spending on marketing but leads leak because follow-up depends on humans remembering</div>
+          <div class="qualify-item">You've been burned by agencies that deliver reports instead of systems</div>
+          <div class="qualify-item">You want infrastructure you own — not a dependency on a vendor</div>
+        </div>
+        <div>
+          <div class="qualify-col-title not-for">This is not for you if</div>
+          <div class="qualify-item negative">You want the cheapest possible option — we're not it</div>
+          <div class="qualify-item negative">You're looking for someone to "manage your ads" and send a monthly PDF</div>
+          <div class="qualify-item negative">You need a committee to approve every button color</div>
+          <div class="qualify-item negative">You're not ready to change how your team works</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="container">
+      <p class="section-label">Questions we get</p>
+      <div class="faq-item">
+        <button class="faq-question">What does a retainer actually cost?<span class="faq-toggle">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">It depends on scope, but our engagements are priced for businesses where the system pays for itself in recovered revenue. If a missed lead costs you four figures, the math is simple. The diagnostic gives you exact numbers before you commit to anything ongoing.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">How is this different from hiring a GHL agency?<span class="faq-toggle">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Most agencies configure. We build. Our tools — NailScan, Based POS, Lot Walk — are products we engineered from scratch and run in production daily. When your build needs something GHL can't do out of the box, we write the code. Agencies file a support ticket.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Why should we trust a team in Chennai with our operations?<span class="faq-toggle">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Because we've already done it across timezones. CG Open Road Outlet runs in Winnipeg — we migrated 21,000 contacts and had their team live in 14 days, working their hours. Our own studio runs on the same stack, so if something breaks, it breaks for us first. We feel it before you do.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">What happens if we stop the retainer?<span class="faq-toggle">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">You keep everything. The system lives in your accounts, your GHL location, your infrastructure. We build it that way deliberately — clients who stay, stay because it works, not because they're locked in.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">How fast can we start?<span class="faq-toggle">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">The diagnostic starts within a week of the call. The build sprint begins as soon as the plan is signed off. Most clients are live inside 6 weeks of first contact — CG Open Road went from kickoff to daily use in 14 days.</div></div>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="contact">
     <div class="container">
       <h2 class="contact-headline">If the work fits,<br>let's talk.</h2>
-      <p class="contact-sub">We don't take every project. If you're building something that needs AI wired in properly — book a call.</p>
-      <a class="cta" href="[PASTE YOUR ACTUAL GHL CALENDAR URL HERE]" target="_blank" rel="noopener noreferrer">Book a call</a>
-      <p class="contact-note">All intake forms on this site use NailScan infrastructure — built in-house.</p>
+      <p class="contact-sub">We take a maximum of 3 retainer clients per quarter. The call is 30 minutes: you walk us through your operation, we tell you honestly whether we can move your numbers — and by how much.</p>
+      <a class="cta" href="[PASTE YOUR ACTUAL GHL CALENDAR URL HERE]" target="_blank" rel="noopener noreferrer">Book the 30-minute call</a>
+      <p class="contact-note">No pitch deck. No junior "strategist." You talk to the people who build.</p>
     </div>
   </section>
 
@@ -1032,12 +1410,33 @@
       updateMetrics();
       setInterval(updateMetrics, 8000);
 
+      // FAQ accordion
+      document.querySelectorAll('.faq-question').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var item = btn.parentElement;
+          var answer = item.querySelector('.faq-answer');
+          var isOpen = item.classList.contains('open');
+
+          // Close all
+          document.querySelectorAll('.faq-item.open').forEach(function (openItem) {
+            openItem.classList.remove('open');
+            openItem.querySelector('.faq-answer').style.maxHeight = '0';
+          });
+
+          // Open clicked one if it was closed
+          if (!isOpen) {
+            item.classList.add('open');
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+          }
+        });
+      });
+
       // GSAP ScrollTrigger animations
       if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
 
         // Fade and rise on statements
-        gsap.utils.toArray('.manifesto-statement, .product-name, .case-number, .how-statement, .contact-headline').forEach(function (el) {
+        gsap.utils.toArray('.manifesto-statement, .product-name, .case-number, .how-statement, .contact-headline, .testimonial-quote, .engagement-title, .qualify-col-title, .scarcity-note').forEach(function (el) {
           gsap.from(el, {
             opacity: 0,
             y: 60,
