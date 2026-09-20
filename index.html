@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/site.css?v=2.14.0">
+  <link rel="stylesheet" href="assets/site.css?v=2.18.0">
 </head>
 <body class="home">
   <div class="preloader" id="preloader" aria-hidden="true">
@@ -128,54 +128,71 @@
     </div>
   </div>
 
-  <section class="live-metrics" id="live-metrics">
+  <section class="live-metrics" id="live-metrics" data-scene="reel">
     <div class="metrics-slate">
       <span class="rec"><i></i> LIVE</span>
-      <span>CONTROL ROOM — 19 SALONS · 12 DEALER GROUPS · 8 AGENCIES</span>
-      <span>ALL FIGURES USD</span>
+      <span id="metrics-slate-copy">CONTROL ROOM — PICK A FLOOR. SEE THE PROFIT.</span>
+      <span>MODEL · USD</span>
     </div>
-    <div class="container">
-      <div class="metric">
+    <div class="metrics-desk">
+      <div class="metrics-choose" role="tablist" aria-label="Control room floor">
+        <button type="button" class="on" data-scene="reel" role="tab" aria-selected="true">The reel</button>
+        <button type="button" data-scene="salon" role="tab" aria-selected="false">1 salon</button>
+        <button type="button" data-scene="dealership" role="tab" aria-selected="false">1 rooftop</button>
+        <button type="button" data-scene="agency" role="tab" aria-selected="false">1 agency</button>
+      </div>
+      <div class="metrics-dial" id="metrics-dial" hidden>
+        <button type="button" data-dial="-1" aria-label="Fewer">−</button>
+        <div class="metrics-dial-read">
+          <b id="dial-n">1</b>
+          <span id="dial-unit">salon</span>
+        </div>
+        <button type="button" data-dial="1" aria-label="More">+</button>
+      </div>
+    </div>
+    <div class="container" id="metrics-board">
+      <div class="metric" data-slot="0">
         <div class="metric-label"><span class="status-dot"></span> SALONS · LIVE</div>
         <div class="metric-value live">19</div>
         <div class="metric-sub">OPERATORS ON THE FLOOR</div>
       </div>
-      <div class="metric">
+      <div class="metric" data-slot="1">
         <div class="metric-label">REVENUE · TODAY</div>
         <div class="metric-value" id="revenue-today">$52,410</div>
         <div class="metric-sub">CLOSED ACROSS THE REEL</div>
       </div>
-      <div class="metric">
+      <div class="metric" data-slot="2">
         <div class="metric-label">NAILSCAN · TODAY</div>
         <div class="metric-value" id="assessments-today">71</div>
         <div class="metric-sub">SCANS ACROSS 19 SALONS</div>
       </div>
-      <div class="metric">
+      <div class="metric" data-slot="3">
         <div class="metric-label">AVG TICKET</div>
         <div class="metric-value">$184</div>
         <div class="metric-sub">USD · SALON POS</div>
       </div>
-      <div class="metric">
+      <div class="metric" data-slot="4">
         <div class="metric-label">DEALER GROUPS · LIVE</div>
         <div class="metric-value">12</div>
         <div class="metric-sub">LOT WALK IN PRODUCTION</div>
       </div>
-      <div class="metric">
+      <div class="metric" data-slot="5">
         <div class="metric-label">OPEN PIPELINE</div>
         <div class="metric-value" id="pipeline-usd">$2.14M</div>
         <div class="metric-sub">USD · 12 ROOFTOPS</div>
       </div>
-      <div class="metric">
+      <div class="metric" data-slot="6">
         <div class="metric-label">AGENCIES · LIVE</div>
         <div class="metric-value">8</div>
         <div class="metric-sub">WHITE-LABEL + GHL OS</div>
       </div>
-      <div class="metric">
+      <div class="metric" data-slot="7">
         <div class="metric-label">AD SPEND · FLAGSHIP</div>
         <div class="metric-value live">$0</div>
         <div class="metric-sub">1,757 LEADS · NAILSCAN</div>
       </div>
     </div>
+    <p class="metrics-note">A model, not a promise. Change the floor. Change the count. The call is where we put <em>your</em> numbers in.</p>
   </section>
 
   <section class="manifesto" id="manifesto">
@@ -552,18 +569,18 @@
       <div class="service-list">
         <div class="service-row">
           <span class="service-index">S/01</span>
-          <div class="service-name">GHL system builds</div>
-          <div class="service-desc">Pipelines, automations, lead routing, AI agents — engineered, not configured.</div>
+          <div class="service-name">Ads</div>
+          <div class="service-desc">Media, creative, the page the click hits. Your ad account. Not a monthly PDF of screenshots.</div>
         </div>
         <div class="service-row">
           <span class="service-index">S/02</span>
-          <div class="service-name">AI caller &amp; outreach</div>
-          <div class="service-desc">Scripted, tested, monitored. Campaigns that run without babysitting.</div>
+          <div class="service-name">Websites</div>
+          <div class="service-desc">The public face — booking, proof, the story. No template, no page builder.</div>
         </div>
         <div class="service-row">
           <span class="service-index">S/03</span>
-          <div class="service-name">Performance marketing infrastructure</div>
-          <div class="service-desc">Landing pages, tracking, attribution — built to convert, not just spend.</div>
+          <div class="service-name">CRM management</div>
+          <div class="service-desc">GoHighLevel built, piped, kept from rotting. They own the location. We don’t hold the keys.</div>
         </div>
       </div>
     </div>
@@ -786,6 +803,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script src="assets/site.js?v=2.14.0"></script>
+  <script src="assets/site.js?v=2.18.0"></script>
 </body>
 </html>

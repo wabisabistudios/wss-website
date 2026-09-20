@@ -231,6 +231,92 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       })();
 
+      /* ===== MOBILE CALL SHEET ===== */
+      (function () {
+        var nav = document.querySelector('.nav');
+        var links = nav && nav.querySelector('.nav-links');
+        if (!nav || !links || document.getElementById('call-sheet')) return;
+
+        var n = links.querySelectorAll('a').length;
+        var pad = (n < 10 ? '0' : '') + n;
+
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'nav-slate-btn';
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('aria-controls', 'call-sheet');
+        btn.innerHTML = '<i class="nav-slate-dots" aria-hidden="true"><b></b><b></b></i><span class="nav-slate-word">Index</span>';
+
+        var right = nav.querySelector('.nav-right');
+        if (right) right.insertBefore(btn, right.firstChild);
+        else nav.appendChild(btn);
+
+        var sheet = document.createElement('div');
+        sheet.id = 'call-sheet';
+        sheet.className = 'call-sheet';
+        sheet.hidden = true;
+        sheet.setAttribute('role', 'dialog');
+        sheet.setAttribute('aria-label', 'Call sheet');
+        sheet.innerHTML =
+          '<div class="call-sheet-letterbox top" aria-hidden="true"></div>' +
+          '<div class="call-sheet-inner">' +
+            '<div class="call-sheet-head">Call sheet · ' + pad + ' scenes</div>' +
+            '<div class="call-sheet-rows"></div>' +
+            '<div class="call-sheet-foot"><span>Wabi Sabi Studios</span><span>MAA ⇄ YWG</span></div>' +
+          '</div>' +
+          '<div class="call-sheet-letterbox bot" aria-hidden="true"></div>';
+
+        var rows = sheet.querySelector('.call-sheet-rows');
+        var word = btn.querySelector('.nav-slate-word');
+
+        links.querySelectorAll('a').forEach(function (a, i) {
+          var row = document.createElement('a');
+          row.href = a.getAttribute('href');
+          if (a.classList.contains('active')) row.classList.add('is-now');
+          row.classList.add('call-sheet-row');
+          row.innerHTML = '<em>' + (a.getAttribute('data-ix') || String(i).padStart(2, '0')) + '</em><b>' + a.textContent.trim() + '</b>';
+          rows.appendChild(row);
+        });
+
+        document.body.appendChild(sheet);
+
+        function openSheet() {
+          sheet.hidden = false;
+          document.body.classList.add('call-sheet-open');
+          btn.setAttribute('aria-expanded', 'true');
+          word.textContent = 'Cut';
+          requestAnimationFrame(function () { sheet.classList.add('is-on'); });
+        }
+        function closeSheet() {
+          sheet.classList.remove('is-on');
+          document.body.classList.remove('call-sheet-open');
+          btn.setAttribute('aria-expanded', 'false');
+          word.textContent = 'Index';
+          setTimeout(function () {
+            if (!sheet.classList.contains('is-on')) sheet.hidden = true;
+          }, 360);
+        }
+        function toggleSheet() {
+          if (sheet.classList.contains('is-on')) closeSheet();
+          else openSheet();
+        }
+
+        btn.addEventListener('click', toggleSheet);
+        rows.addEventListener('click', function (e) {
+          var a = e.target.closest('a');
+          if (a && a.getAttribute('href') && a.getAttribute('href').charAt(0) === '#') closeSheet();
+        });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && sheet.classList.contains('is-on')) closeSheet();
+        });
+        if (window.matchMedia) {
+          var wide = window.matchMedia('(min-width: 901px)');
+          var onWide = function (mq) { if (mq.matches) closeSheet(); };
+          if (wide.addEventListener) wide.addEventListener('change', onWide);
+          else if (wide.addListener) wide.addListener(onWide);
+        }
+      })();
+
       /* ===== DUAL CLOCKS (Chennai + Winnipeg) ===== */
       function updateClocks() {
         var fmt = function (tz) {
@@ -415,35 +501,217 @@ document.addEventListener('DOMContentLoaded', function () {
       var marqueeInner = document.getElementById('marquee-inner');
       if (marqueeInner) marqueeInner.innerHTML += marqueeInner.innerHTML;
 
-      /* ===== LIVE METRICS SIMULATION ===== */
-      var assessmentsToday = document.getElementById('assessments-today');
-      var revenueToday = document.getElementById('revenue-today');
-      var pipelineUsd = document.getElementById('pipeline-usd');
-      var assessBase = 71, revBase = 52410, pipeBase = 2140000;
+      /* ===== CONTROL ROOM — PICK A FLOOR, SEE PROFIT ===== */
+      (function () {
+        var root = document.getElementById('live-metrics');
+        var board = document.getElementById('metrics-board');
+        if (!root || !board) return;
 
-      function usd(n) {
-        return '$' + Math.floor(n).toLocaleString('en-US');
-      }
-      function usdCompact(n) {
-        if (n >= 1000000) return '$' + (n / 1000000).toFixed(2) + 'M';
-        return usd(n);
-      }
+        function usd(n) {
+          var sign = n < 0 ? '-' : '';
+          return sign + '$' + Math.abs(Math.round(n)).toLocaleString('en-US');
+        }
+        function usdCompact(n) {
+          if (Math.abs(n) >= 1000000) return (n < 0 ? '-' : '') + '$' + (Math.abs(n) / 1000000).toFixed(2) + 'M';
+          if (Math.abs(n) >= 10000) return usd(n);
+          return usd(n);
+        }
 
-      function updateMetrics() {
-        if (assessmentsToday) {
+        var assessBase = 71, revBase = 52410, pipeBase = 2140000;
+        var tickTimer = null;
+
+        function reelCells() {
+          return [
+            { label: '<span class="status-dot"></span> SALONS · LIVE', value: '19', sub: 'OPERATORS ON THE FLOOR', live: true, jump: 'salon' },
+            { label: 'REVENUE · TODAY', value: usd(revBase), sub: 'CLOSED ACROSS THE REEL', id: 'revenue-today' },
+            { label: 'NAILSCAN · TODAY', value: String(assessBase), sub: 'SCANS ACROSS 19 SALONS', id: 'assessments-today' },
+            { label: 'AVG TICKET', value: '$184', sub: 'USD · SALON POS' },
+            { label: 'DEALER GROUPS · LIVE', value: '12', sub: 'LOT WALK IN PRODUCTION', jump: 'dealership' },
+            { label: 'OPEN PIPELINE', value: usdCompact(pipeBase), sub: 'USD · 12 ROOFTOPS', id: 'pipeline-usd' },
+            { label: 'AGENCIES · LIVE', value: '8', sub: 'WHITE-LABEL + GHL OS', jump: 'agency' },
+            { label: 'AD SPEND · FLAGSHIP', value: '$0', sub: '1,757 LEADS · NAILSCAN', live: true }
+          ];
+        }
+
+        function salonCells(n) {
+          var scans = 80 * n;
+          var booked = Math.round(scans * 0.3);
+          var ticket = 184;
+          var recovered = booked * ticket;
+          var leak = Math.round(scans * 0.55 * ticket);
+          var cost = 97 * n + Math.round((399 * n) / 12);
+          var profit = recovered - cost;
+          var year = profit * 12;
+          var perDay = profit / 30;
+          var payback = perDay > 0 ? Math.max(1, Math.ceil((399 * n) / perDay)) : '—';
+          return [
+            { label: 'WALK-INS · LEAK', value: usd(leak), sub: 'LEFT WITH NO NAME' },
+            { label: 'SCANS → BOOKS', value: String(booked), sub: scans + ' SCANS · 30% BOOK' },
+            { label: 'AVG TICKET', value: '$184', sub: 'USD · SALON POS' },
+            { label: 'STACK / MO', value: usd(cost), sub: '$97 + SETUP AMORTISED' },
+            { label: 'RECOVERED / MO', value: usd(recovered), sub: 'INCREMENTAL BOOKINGS' },
+            { label: 'PROFIT / MO', value: usd(profit), sub: 'AFTER THE STACK', profit: true },
+            { label: 'PAYBACK', value: payback + ' DAYS', sub: 'SETUP FROM MONTH ONE' },
+            { label: 'YEAR ONE', value: usdCompact(year), sub: 'MODEL · USD' }
+          ];
+        }
+
+        function dealershipCells(n) {
+          var leads = 160 * n;
+          var recoveredUnits = Math.round(leads * 0.22 * 0.09);
+          var gross = 2800;
+          var recovered = recoveredUnits * gross;
+          var cost = 2500 * n;
+          var profit = recovered - cost;
+          var pipeline = Math.round(leads * 0.45 * gross);
+          var year = profit * 12;
+          var payback = profit > 0 ? Math.max(1, Math.ceil((cost * 0.5) / (profit / 30))) : '—';
+          return [
+            { label: 'LEADS / MO', value: String(leads), sub: n + ' ROOFTOP' + (n > 1 ? 'S' : '') },
+            { label: 'DYING IN THE PILE', value: Math.round(leads * 0.22) + '', sub: '22% UNASSIGNED' },
+            { label: 'UNITS RECOVERED', value: String(recoveredUnits), sub: '9% CLOSE ON THE LEAK' },
+            { label: 'FRONT-END GROSS', value: '$2,800', sub: 'USD · PER UNIT' },
+            { label: 'RECOVERED / MO', value: usd(recovered), sub: 'GROSS ON SAVED DEALS' },
+            { label: 'PROFIT / MO', value: usd(profit), sub: 'AFTER THE OS', profit: true },
+            { label: 'OPEN PIPELINE', value: usdCompact(pipeline), sub: 'MODEL · ACTIVE OPPS' },
+            { label: 'YEAR ONE', value: usdCompact(year), sub: 'PAYBACK · ' + payback + ' DAYS' }
+          ];
+        }
+
+        function agencyCells(n) {
+          var hours = 28 * n;
+          var hourRate = 150;
+          var hoursUsd = hours * hourRate;
+          var tripwire = 12 * 48 * n;
+          var os = 1800 * n;
+          var profit = hoursUsd + tripwire;
+          var year = profit * 12;
+          return [
+            { label: 'HOURS YOU STOP BURNING', value: String(hours), sub: 'PER MONTH · DELIVERY' },
+            { label: 'THOSE HOURS · USD', value: usd(hoursUsd), sub: '$150 / HR MODEL' },
+            { label: 'TRIPWIRE MRR', value: usd(tripwire), sub: '12 × $48 · THEY KEEP IT' },
+            { label: 'OS YOU CAN SELL', value: usd(os), sub: 'ONE GHL OS / SEAT' },
+            { label: 'RECOVERED / MO', value: usd(hoursUsd + tripwire), sub: 'HOURS + ENTRY OFFERS' },
+            { label: 'PROFIT / MO', value: usd(profit), sub: 'WHAT THE AGENCY KEEPS', profit: true },
+            { label: 'YEAR ONE', value: usdCompact(year), sub: 'MODEL · USD' },
+            { label: 'YOU STOP SELLING', value: 'HOURS ONLY', sub: 'THE CLIENT OWNS THE OS' }
+          ];
+        }
+
+        var DIAL = {
+          salon: { min: 1, max: 19, unit: 'salon', plural: 'salons' },
+          dealership: { min: 1, max: 12, unit: 'rooftop', plural: 'rooftops' },
+          agency: { min: 1, max: 8, unit: 'agency', plural: 'agencies' }
+        };
+
+        var scene = 'reel';
+        var count = 1;
+        var slate = document.getElementById('metrics-slate-copy');
+        var dial = document.getElementById('metrics-dial');
+        var dialN = document.getElementById('dial-n');
+        var dialUnit = document.getElementById('dial-unit');
+        var choose = root.querySelector('.metrics-choose');
+
+        function cellsFor() {
+          if (scene === 'salon') return salonCells(count);
+          if (scene === 'dealership') return dealershipCells(count);
+          if (scene === 'agency') return agencyCells(count);
+          return reelCells();
+        }
+
+        function slateFor() {
+          if (scene === 'salon') return 'MODEL · ' + count + ' SALON' + (count > 1 ? 'S' : '') + ' · SATURDAY MATH';
+          if (scene === 'dealership') return 'MODEL · ' + count + ' ROOFTOP' + (count > 1 ? 'S' : '') + ' · SPEED-TO-LEAD';
+          if (scene === 'agency') return 'MODEL · ' + count + ' AGENC' + (count > 1 ? 'IES' : 'Y') + ' · HOURS → PRODUCT';
+          return 'CONTROL ROOM — 19 SALONS · 12 DEALER GROUPS · 8 AGENCIES';
+        }
+
+        function paint() {
+          var cells = cellsFor();
+          var slots = board.querySelectorAll('[data-slot]');
+          cells.forEach(function (c, i) {
+            var el = slots[i];
+            if (!el) return;
+            el.classList.toggle('is-profit', !!c.profit);
+            el.setAttribute('data-jump', c.jump || '');
+            if (c.jump) el.style.cursor = 'pointer';
+            else el.style.cursor = '';
+            var lab = el.querySelector('.metric-label');
+            var val = el.querySelector('.metric-value');
+            var sub = el.querySelector('.metric-sub');
+            if (lab) lab.innerHTML = c.label;
+            if (val) {
+              val.textContent = c.value;
+              val.classList.toggle('live', !!(c.live || c.profit));
+              if (c.id) val.id = c.id;
+              else val.removeAttribute('id');
+            }
+            if (sub) sub.textContent = c.sub;
+          });
+          if (slate) slate.textContent = slateFor();
+          var spec = DIAL[scene];
+          if (dial) {
+            if (!spec) {
+              dial.hidden = true;
+            } else {
+              dial.hidden = false;
+              if (dialN) dialN.textContent = String(count);
+              if (dialUnit) dialUnit.textContent = count === 1 ? spec.unit : spec.plural;
+            }
+          }
+          root.setAttribute('data-scene', scene);
+          if (choose) {
+            choose.querySelectorAll('[data-scene]').forEach(function (b) {
+              var on = b.getAttribute('data-scene') === scene;
+              b.classList.toggle('on', on);
+              b.setAttribute('aria-selected', on ? 'true' : 'false');
+            });
+          }
+        }
+
+        function setScene(next, n) {
+          scene = next;
+          if (DIAL[scene]) {
+            count = Math.min(DIAL[scene].max, Math.max(DIAL[scene].min, n || count || 1));
+          }
+          paint();
+        }
+
+        if (choose) {
+          choose.addEventListener('click', function (e) {
+            var b = e.target.closest('[data-scene]');
+            if (!b) return;
+            count = 1;
+            setScene(b.getAttribute('data-scene'), 1);
+          });
+        }
+        if (dial) {
+          dial.addEventListener('click', function (e) {
+            var b = e.target.closest('[data-dial]');
+            if (!b || !DIAL[scene]) return;
+            var spec = DIAL[scene];
+            count = Math.min(spec.max, Math.max(spec.min, count + parseInt(b.getAttribute('data-dial'), 10)));
+            paint();
+          });
+        }
+        board.addEventListener('click', function (e) {
+          if (scene !== 'reel') return;
+          var m = e.target.closest('[data-jump]');
+          if (!m) return;
+          var jump = m.getAttribute('data-jump');
+          if (jump) setScene(jump, 1);
+        });
+
+        function tickReel() {
+          if (scene !== 'reel') return;
           if (Math.random() > 0.45) assessBase += 1;
-          assessmentsToday.textContent = assessBase;
-        }
-        if (revenueToday) {
           if (Math.random() > 0.4) revBase += Math.floor(Math.random() * 420) + 80;
-          revenueToday.textContent = usd(revBase);
-        }
-        if (pipelineUsd) {
           if (Math.random() > 0.55) pipeBase += Math.floor(Math.random() * 18000) + 4000;
-          pipelineUsd.textContent = usdCompact(pipeBase);
+          paint();
         }
-      }
-      setInterval(updateMetrics, 9000);
+        tickTimer = setInterval(tickReel, 9000);
+        paint();
+      })();
 
       /* ===== SCROLL PROGRESS BAR + NAV ===== */
       var progress = document.querySelector('.scroll-progress');
@@ -602,38 +870,64 @@ document.addEventListener('DOMContentLoaded', function () {
           });
         });
 
-        /* Manifesto: word-by-word light-up on scroll */
+        /* Manifesto: title-card rise + playhead, scrubbed to scroll */
         var manifesto = document.getElementById('manifesto-text');
         if (manifesto) {
-          var words = manifesto.textContent.split(' ');
+          var words = manifesto.textContent.trim().split(/\s+/);
           manifesto.innerHTML = words.map(function (w) {
-            var cls = /build|deploy|train/i.test(w) ? 'reveal-word accent' : 'reveal-word';
-            return '<span class="' + cls + '">' + w + '</span>';
+            var cls = /^(build|deploy|train)/i.test(w.replace(/[^a-z]/gi, '')) ? 'reveal-word accent' : 'reveal-word';
+            return '<span class="' + cls + '"><span class="reveal-inner">' + w + '</span></span>';
           }).join(' ');
           var spans = manifesto.querySelectorAll('.reveal-word');
-          var lightWords = function (self) {
-            var lit = Math.floor(self.progress * spans.length);
-            spans.forEach(function (s, i) { s.classList.toggle('lit', i <= lit); });
+          var sub = document.querySelector('#manifesto .manifesto-sub');
+          var head = document.createElement('i');
+          head.className = 'manifesto-head';
+          head.setAttribute('aria-hidden', 'true');
+          manifesto.appendChild(head);
+
+          var placeHead = function (el) {
+            if (!el) { head.classList.remove('is-on'); return; }
+            var box = manifesto.getBoundingClientRect();
+            var w = el.getBoundingClientRect();
+            head.style.left = (w.left - box.left) + 'px';
+            head.style.top = (w.bottom - box.top - 2) + 'px';
+            head.style.width = w.width + 'px';
+            head.classList.add('is-on');
           };
-          if (document.body.classList.contains('home')) {
+
+          var lightWords = function (self) {
+            var lit = Math.min(spans.length - 1, Math.floor(self.progress * spans.length));
+            spans.forEach(function (s, i) { s.classList.toggle('lit', i <= lit); });
+            placeHead(spans[lit]);
+            if (sub) sub.classList.toggle('is-in', self.progress > 0.82);
+            if (self.progress >= 1) head.classList.remove('is-on');
+          };
+
+          var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          if (reduce) {
+            spans.forEach(function (s) { s.classList.add('lit'); });
+            if (sub) sub.classList.add('is-in');
+          } else if (document.body.classList.contains('home')) {
             gsap.matchMedia().add('(min-width: 901px)', function () {
-              if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                ScrollTrigger.create({ trigger: manifesto, start: 'top 75%', end: 'bottom 40%', scrub: 0.5, onUpdate: lightWords });
-                return;
-              }
               ScrollTrigger.create({
                 trigger: '#manifesto',
                 start: 'top top',
-                end: '+=70%',
+                end: '+=95%',
                 pin: true,
                 pinSpacing: true,
-                scrub: 0.55,
+                scrub: 0.65,
                 anticipatePin: 1,
                 onUpdate: lightWords
               });
             });
             gsap.matchMedia().add('(max-width: 900px)', function () {
-              ScrollTrigger.create({ trigger: manifesto, start: 'top 75%', end: 'bottom 40%', scrub: 0.5, onUpdate: lightWords });
+              ScrollTrigger.create({
+                trigger: manifesto,
+                start: 'top 78%',
+                end: 'bottom 28%',
+                scrub: 0.55,
+                onUpdate: lightWords
+              });
             });
           } else {
             ScrollTrigger.create({
