@@ -5,26 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>For Salons &amp; Aesthetic Clinics — Wabi Sabi Studios</title>
   <meta name="description" content="Bookings on WhatsApp, billing on paper, walk-ins leaving without a trace. We run a salon ourselves — and we built the tools that fix every part of it.">
+  <meta property="og:title" content="For Salons & Aesthetic Clinics — Wabi Sabi Studios">
+  <meta property="og:description" content="We run a salon. Every tool on this page was built at our own front desk, then offered to yours.">
+  <meta property="og:image" content="https://www.wabisabi.studio/og.png">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◈</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/site.css">
+  <link rel="stylesheet" href="assets/site.css?v=2.8.1">
 </head>
 <body>
   <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
   <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
   <div class="grain" aria-hidden="true"></div>
   <div class="scroll-progress" aria-hidden="true"></div>
+  <div class="sheet" aria-hidden="true">
+    <span class="sheet-mark tl"></span>
+    <span class="sheet-mark tr"></span>
+    <span class="sheet-mark bl"></span>
+    <span class="sheet-mark br"></span>
+    <span class="folio-v">WABI SABI ◈ CHENNAI · 13.0827° N</span>
+  </div>
 
   <nav class="nav" role="navigation" aria-label="Primary">
     <div class="container">
       <div class="nav-left">
         <a href="index.html" class="nav-wordmark">WABI SABI<span>◈</span></a>
         <div class="nav-links">
+          <a href="work.html">Work</a>
           <a href="salons.html" class="active">Salons</a>
           <a href="dealerships.html">Dealerships</a>
           <a href="agencies.html">Agencies</a>
+          <a href="white-label.html">White-label</a>
         </div>
       </div>
       <div class="nav-right">
@@ -39,13 +51,29 @@
     <div class="hero-grid-bg" aria-hidden="true"></div>
     <div class="hero-glow" aria-hidden="true"></div>
     <div class="container">
-      <div class="page-hero-eyebrow">Industry 01 / 03 — Salons &amp; aesthetic clinics</div>
+      <div class="page-hero-eyebrow">Practice 01 / 03 — 19 operators · Salons &amp; aesthetic clinics</div>
       <h1>You run a salon. Your bookings live on WhatsApp, your billing is on paper, and <em>every walk-in leaves without a trace.</em></h1>
       <p class="page-hero-sub">We know because we run one. Every tool on this page was built at our own front desk in Chennai, used on real clients every day — then offered to yours.</p>
+      <p class="page-hero-replaces"><b>This replaces</b> · WhatsApp bookings · paper bills · walk-ins with no record · “what should we film this week?”</p>
+      <div class="practice-band">
+        <div class="roster solo">
+          <div class="roster-col">
+            <a class="roster-head" href="work.html">
+              <div>
+                <span class="roster-kicker">THIS PRACTICE</span>
+                <b><span data-roster-count="salons">—</span> live</b>
+              </div>
+              <span class="roster-count">INDEX →</span>
+            </a>
+            <div data-roster="salons" data-limit="8"></div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="section" id="stack">
+    <span class="ghost-num" aria-hidden="true">01</span>
     <div class="container">
       <div class="section-head">
         <span class="section-num">01</span>
@@ -113,10 +141,25 @@
         </div>
         <div class="solution-status"><span class="product-status live">Live · Client service</span></div>
       </div>
+
+      <div class="page-visual">
+        <div class="product-block">
+          <div class="product-visual reveal" data-window="nailscan.ai — live at our front desk">
+            <img src="assets/nailscan-ui.png" alt="NailScan running at Based Aesthetics" loading="lazy">
+          </div>
+          <div class="product-meta">
+            <div class="product-index">IN USE AT OUR STUDIO</div>
+            <h3 class="product-name">The scanner sits at our front desk.</h3>
+            <p class="product-description">Not a demo. Not a mockup for this website. This is the tool our own walk-ins use in Kilpauk — 1,757 leads captured, $0 of ad spend. When we license it to you, you get the same machine, with your name on it.</p>
+            <a class="product-link" href="https://www.nailscan.ai/" target="_blank" rel="noopener noreferrer">nailscan.ai <span>→</span></a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="section" id="proof">
+    <span class="ghost-num" aria-hidden="true">02</span>
     <div class="container">
       <div class="section-head">
         <span class="section-num">02</span>
@@ -141,6 +184,103 @@
     </div>
   </section>
 
+  <section class="section" id="engagement">
+    <span class="ghost-num" aria-hidden="true">03</span>
+    <div class="container">
+      <div class="section-head">
+        <span class="section-num">03</span>
+        <span class="section-title">How we start with a salon</span>
+        <span class="spacer"></span>
+        <span class="section-side-note">NO LOCK-IN. YOU OWN EVERYTHING.</span>
+      </div>
+      <div class="engagement-grid">
+        <div class="engagement-step reveal">
+          <div class="engagement-phase">Phase 01</div>
+          <div class="engagement-title">Walk the floor</div>
+          <div class="engagement-duration">WEEK 1 · PAID</div>
+          <div class="engagement-desc">You walk us through a typical Saturday — how a walk-in is greeted, how a bill is closed, where follow-ups die. We write down every leak, in your language, with a number next to it.</div>
+          <div class="engagement-deliverable">Deliverable: a build plan. Not a slide deck.</div>
+        </div>
+        <div class="engagement-step reveal">
+          <div class="engagement-phase">Phase 02</div>
+          <div class="engagement-title">Install the stack</div>
+          <div class="engagement-duration">WEEKS 2–6</div>
+          <div class="engagement-desc">Scanner, POS, CRM, follow-ups — trained on your techs, not handed over as a PDF. If a piece isn't earning its place by week four, it doesn't ship.</div>
+          <div class="engagement-deliverable">Deliverable: your team using it on live clients.</div>
+        </div>
+        <div class="engagement-step reveal">
+          <div class="engagement-phase">Phase 03</div>
+          <div class="engagement-title">We stay on the numbers</div>
+          <div class="engagement-duration">MONTHLY · ONGOING</div>
+          <div class="engagement-desc">When a walk-in isn't captured, we see it before you do. New automations, new content briefs, the next tool — an engineering team on call, without hiring one.</div>
+          <div class="engagement-deliverable">Deliverable: the system compounds instead of decaying.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="privacy">
+    <span class="ghost-num" aria-hidden="true">04</span>
+    <div class="container">
+      <div class="section-head">
+        <span class="section-num">04</span>
+        <span class="section-title">Your clients stay yours</span>
+        <span class="spacer"></span>
+        <span class="section-side-note">DATA LIVES ON YOUR SERVERS</span>
+      </div>
+      <div class="privacy-band reveal">
+        <div class="privacy-band-kicker">Your data</div>
+        <div>
+          <p class="privacy-band-line">Her name, her number, her scan — <em>on your servers.</em> Not in ours.</p>
+          <p class="privacy-band-sub">The booking app, the CRM, the “AI receptionist” you already pay for all have a live copy of your clients. We build the opposite. The system runs in your accounts. If we leave, nothing leaves with us.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <span class="ghost-num" aria-hidden="true">05</span>
+    <div class="container">
+      <div class="section-head">
+        <span class="section-num">05</span>
+        <span class="section-title">Questions salon owners ask</span>
+        <span class="spacer"></span>
+        <span class="section-side-note">STRAIGHT ANSWERS</span>
+      </div>
+      <div class="faq-wrap">
+        <div class="faq-item">
+          <button class="faq-question"><span class="faq-index">Q.01</span><span class="faq-q-text">We already book on WhatsApp. Why replace it?</span><span class="faq-toggle">+</span></button>
+          <div class="faq-answer"><div class="faq-answer-inner">You don't have to throw WhatsApp away. Clients can still message you. What we replace is the part where that message dies in a personal chat, the walk-in never gets saved, and nobody follows up on Thursday. WhatsApp becomes an inbox. The system becomes the record.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question"><span class="faq-index">Q.02</span><span class="faq-q-text">Will my techs actually use this?</span><span class="faq-toggle">+</span></button>
+          <div class="faq-answer"><div class="faq-answer-inner">Ours do — every bill, every day. The POS is a tablet at the counter, not a login they have to remember. The scanner is a photo, not a form. If a tool needs a training manual, we didn't finish building it.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question"><span class="faq-index">Q.03</span><span class="faq-q-text">Do I have to buy the whole stack?</span><span class="faq-toggle">+</span></button>
+          <div class="faq-answer"><div class="faq-answer-inner">No. Most owners start with the leak that hurts most — usually walk-in capture or billing — and add the rest once they see the numbers. The diagnostic tells you which piece pays for itself first.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question"><span class="faq-index">Q.04</span><span class="faq-q-text">You run a salon in Chennai. Does this work for mine?</span><span class="faq-toggle">+</span></button>
+          <div class="faq-answer"><div class="faq-answer-inner">The problems are the same in every city: bookings in chat, bills on paper, walk-ins with no name. The stack is white-label. Your branding, your language, your hours. We already run the same infrastructure across Chennai and Winnipeg — timezone is not the hard part. Your floor is.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question"><span class="faq-index">Q.05</span><span class="faq-q-text">Where do my clients' details actually live?</span><span class="faq-toggle">+</span></button>
+          <div class="faq-answer"><div class="faq-answer-inner">On your servers, in your accounts. Every other tool at the front desk — the booking app, the CRM, the chatbot — already has a copy of her name and number. We don't take a second one. You leave, you keep the records. We keep nothing.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee-band" aria-hidden="true">
+    <div class="marquee-inner" id="marquee-inner">
+      <span class="marquee-word">SHIPPED,</span>
+      <span class="marquee-word solid">NOT PITCHED —</span>
+      <span class="marquee-word">SHIPPED,</span>
+      <span class="marquee-word solid">NOT PITCHED —</span>
+    </div>
+  </div>
+
   <section class="contact" id="contact">
     <div class="contact-glow" aria-hidden="true"></div>
     <div class="container">
@@ -153,15 +293,18 @@
 
   <footer class="footer">
     <div class="container">
+      <div class="footer-watermark" aria-hidden="true">WABI SABI<span>◈</span></div>
       <div class="footer-grid">
         <div>
-          <div class="footer-wordmark">WABI SABI<span>◈</span></div>
+          <a href="index.html" class="footer-wordmark">WABI SABI<span>◈</span></a>
         </div>
         <div class="footer-col">
           <b>INDUSTRIES</b>
+          <a href="work.html">The reel</a><br>
           <a href="salons.html">Salons &amp; clinics</a><br>
           <a href="dealerships.html">Dealerships</a><br>
-          <a href="agencies.html">Agencies</a>
+          <a href="agencies.html">Agencies</a><br>
+          <a href="white-label.html">White-label</a>
         </div>
         <div class="footer-col">
           <b>HEADQUARTERS</b>
@@ -174,16 +317,20 @@
           YWG <span id="footer-clock-ywg">--:--</span> CST
         </div>
       </div>
+      <div class="page-next">
+        <a href="index.html"><span>←</span> Studio home</a>
+        <a href="dealerships.html">Next: Dealerships <span>→</span></a>
+      </div>
       <div class="footer-bottom">
         <span>© 2026 WABI SABI STUDIOS · CHENNAI, INDIA</span>
         <span>DESIGNED &amp; BUILT IN-HOUSE — NO TEMPLATE, NO PAGE BUILDER</span>
-        <span>V2.2.0</span>
+        <span>V2.8.0</span>
       </div>
     </div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script src="assets/site.js"></script>
+  <script src="assets/site.js?v=2.8.1"></script>
 </body>
 </html>

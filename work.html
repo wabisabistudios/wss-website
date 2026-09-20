@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Reel — Wabi Sabi Studios</title>
+  <meta name="description" content="Nineteen salons. Twelve dealer groups. Eight agencies. A production index, not a logo wall.">
+  <meta property="og:title" content="The Reel — Wabi Sabi Studios">
+  <meta property="og:description" content="39 operators in production. Three public case files. The rest named on the floor.">
+  <meta property="og:image" content="https://www.wabisabi.studio/og.png">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◈</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/site.css?v=2.8.1">
+</head>
+<body>
+  <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <div class="sheet" aria-hidden="true">
+    <span class="sheet-mark tl"></span>
+    <span class="sheet-mark tr"></span>
+    <span class="sheet-mark bl"></span>
+    <span class="sheet-mark br"></span>
+    <span class="folio-v">WABI SABI ◈ CHENNAI · 13.0827° N</span>
+  </div>
+
+  <nav class="nav" role="navigation" aria-label="Primary">
+    <div class="container">
+      <div class="nav-left">
+        <a href="index.html" class="nav-wordmark">WABI SABI<span>◈</span></a>
+        <div class="nav-links">
+          <a href="work.html" class="active">Work</a>
+          <a href="salons.html">Salons</a>
+          <a href="dealerships.html">Dealerships</a>
+          <a href="agencies.html">Agencies</a>
+          <a href="white-label.html">White-label</a>
+        </div>
+      </div>
+      <div class="nav-right">
+        <span class="nav-clock"><b>MAA</b> <span id="clock-chennai">--:--</span></span>
+        <span class="nav-clock"><b>YWG</b> <span id="clock-winnipeg">--:--</span></span>
+        <a class="nav-cta" href="[PASTE YOUR ACTUAL GHL CALENDAR URL HERE]" target="_blank" rel="noopener noreferrer">Book a call</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="hero-grid-bg" aria-hidden="true"></div>
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="container">
+      <div class="page-hero-eyebrow">Index — 19 salons · 12 dealer groups · 8 agencies</div>
+      <h1>The reel. <em>Uneven on purpose.</em></h1>
+      <p class="page-hero-sub">A production index, not a logo wall. NailScan scaled the salon practice first. Dealerships are heavier installs. Agencies are fewer, and custom. The first file in each column is a case we can walk through.</p>
+    </div>
+  </section>
+
+  <section class="section" id="index">
+    <div class="container">
+      <div class="roster-filters" role="tablist" aria-label="Filter the reel">
+        <button type="button" class="on" data-reel-filter="all">All <span data-roster-count="all">—</span></button>
+        <button type="button" data-reel-filter="salons">Salons <span data-roster-count="salons">—</span></button>
+        <button type="button" data-reel-filter="dealerships">Dealerships <span data-roster-count="dealerships">—</span></button>
+        <button type="button" data-reel-filter="agencies">Agencies <span data-roster-count="agencies">—</span></button>
+      </div>
+      <div class="roster" id="work-roster">
+        <div class="roster-col" data-practice="salons">
+          <a class="roster-head" href="salons.html">
+            <div>
+              <span class="roster-kicker">PRACTICE 01</span>
+              <b>Salons</b>
+            </div>
+            <span class="roster-count" data-roster-count="salons">—</span>
+          </a>
+          <div data-roster="salons"></div>
+        </div>
+        <div class="roster-col" data-practice="dealerships">
+          <a class="roster-head" href="dealerships.html">
+            <div>
+              <span class="roster-kicker">PRACTICE 02</span>
+              <b>Dealerships</b>
+            </div>
+            <span class="roster-count" data-roster-count="dealerships">—</span>
+          </a>
+          <div data-roster="dealerships"></div>
+        </div>
+        <div class="roster-col" data-practice="agencies">
+          <a class="roster-head" href="agencies.html">
+            <div>
+              <span class="roster-kicker">PRACTICE 03</span>
+              <b>Agencies</b>
+            </div>
+            <span class="roster-count" data-roster-count="agencies">—</span>
+          </a>
+          <div data-roster="agencies"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="selected">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-num">00</span>
+        <span class="section-title">Public files</span>
+        <span class="spacer"></span>
+        <span class="section-side-note">THE ONES WE CAN NAME</span>
+      </div>
+      <div class="qualify-grid">
+        <a class="qualify-col" href="index.html#case-studies" style="text-decoration:none;color:inherit;display:block;padding:8px 0;">
+          <div class="qualify-col-title">SLN-01 · Based Aesthetics</div>
+          <div class="qualify-item">Our own studio. NailScan + Based POS. 1,757 leads, zero ad spend. Kilpauk.</div>
+        </a>
+        <a class="qualify-col" href="index.html#case-studies" style="text-decoration:none;color:inherit;display:block;padding:8px 0;">
+          <div class="qualify-col-title">DLR-01 · CG Open Road Outlet</div>
+          <div class="qualify-item">Winnipeg. Lot Walk live in 14 days. 22,000+ contacts archived, zero data loss.</div>
+        </a>
+        <a class="qualify-col" href="index.html#case-studies" style="text-decoration:none;color:inherit;display:block;padding:8px 0;">
+          <div class="qualify-col-title">AGY-01 · Brew Media</div>
+          <div class="qualify-item">Canada. GHL operating system. CASL-clean acquisition, eight-stage pipeline.</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="contact-glow" aria-hidden="true"></div>
+    <div class="container">
+      <h2 class="contact-headline">Thirty-nine on the reel.<br><em>Three seats this quarter.</em></h2>
+      <p class="contact-sub">The call is 30 minutes. You walk us through the floor. We tell you if the next file is yours — and what it would take.</p>
+      <a class="cta" href="[PASTE YOUR ACTUAL GHL CALENDAR URL HERE]" target="_blank" rel="noopener noreferrer">Book the 30-minute call <span class="arrow">→</span></a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="footer-wordmark">WABI SABI<span>◈</span></a>
+        </div>
+        <div class="footer-col">
+          <b>INDUSTRIES</b>
+          <a href="work.html">The reel</a><br>
+          <a href="salons.html">Salons &amp; clinics</a><br>
+          <a href="dealerships.html">Dealerships</a><br>
+          <a href="agencies.html">Agencies</a><br>
+          <a href="white-label.html">White-label</a>
+        </div>
+        <div class="footer-col">
+          <b>HEADQUARTERS</b>
+          Kilpauk, Chennai 600010<br>
+          13.0827° N, 80.2707° E
+        </div>
+        <div class="footer-col">
+          <b>OPERATING HOURS</b>
+          MAA <span id="footer-clock-maa">--:--</span> IST<br>
+          YWG <span id="footer-clock-ywg">--:--</span> CST
+        </div>
+      </div>
+      <div class="page-next">
+        <a href="index.html"><span>←</span> Studio home</a>
+        <a href="salons.html">Salons <span>→</span></a>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 WABI SABI STUDIOS · CHENNAI, INDIA</span>
+        <span>DESIGNED &amp; BUILT IN-HOUSE — NO TEMPLATE, NO PAGE BUILDER</span>
+        <span>V2.8.0</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="assets/site.js?v=2.8.1"></script>
+</body>
+</html>
