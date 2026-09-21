@@ -891,6 +891,7 @@ document.addEventListener('DOMContentLoaded', function () {
           var sub = document.querySelector('#manifesto .manifesto-sub');
           var head = document.createElement('i');
           head.className = 'manifesto-head';
+          head.textContent = '▌';
           head.setAttribute('aria-hidden', 'true');
           manifesto.appendChild(head);
 
@@ -898,9 +899,8 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!el) { head.classList.remove('is-on'); return; }
             var box = manifesto.getBoundingClientRect();
             var w = el.getBoundingClientRect();
-            head.style.left = (w.left - box.left) + 'px';
-            head.style.top = (w.bottom - box.top - 2) + 'px';
-            head.style.width = w.width + 'px';
+            head.style.left = (w.right - box.left + 6) + 'px';
+            head.style.top = (w.top - box.top + w.height * 0.18) + 'px';
             head.classList.add('is-on');
           };
 
