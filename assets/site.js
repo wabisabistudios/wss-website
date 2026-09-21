@@ -397,12 +397,12 @@ document.addEventListener('DOMContentLoaded', function () {
       var headline = document.getElementById('headline');
       if (headline) {
         var html = headline.innerHTML;
-        var parts = html.split(/(<em>.*?<\/em>|<br\s*\/?>)/g);
+        var parts = html.split(/(<em>.*?<\/em>|<br\b[^>]*>)/gi);
         var out = '';
         parts.forEach(function (part) {
           if (!part) return;
           if (/^<br/i.test(part)) {
-            out += '<br>';
+            out += part;
             return;
           }
           if (part.startsWith('<em>')) {
@@ -436,7 +436,8 @@ document.addEventListener('DOMContentLoaded', function () {
       function playTitleSequence() {
         var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         var isHome = document.body.classList.contains('home');
-        if (typeof gsap === 'undefined' || reduce || document.hidden) {
+        var phone = window.matchMedia('(max-width: 900px)').matches;
+        if (typeof gsap === 'undefined' || reduce || document.hidden || phone) {
           snapTitleSequence();
           return;
         }

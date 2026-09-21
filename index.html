@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/site.css?v=2.19.0">
+  <link rel="stylesheet" href="assets/site.css?v=2.21.0">
 </head>
 <body class="home">
   <div class="preloader" id="preloader" aria-hidden="true">
@@ -94,7 +94,7 @@
       <div class="hero-terminal" id="terminal">
         <span class="prompt">wss ~ %</span> <span id="terminal-text"></span><span class="cursor">▌</span>
       </div>
-      <h1 class="hero-headline" id="headline">We build the <em>AI layer</em><br>for service businesses.</h1>
+      <h1 class="hero-headline" id="headline">We build the <em>AI layer</em><br>for service<br class="phone-break"> businesses.</h1>
       <div class="hero-rule" id="hero-rule" aria-hidden="true"></div>
       <div class="hero-subcopy" id="subcopy">
         <p>Not chatbots. Not dashboards. The infrastructure that runs your front desk, your CRM, your billing — while you sleep.</p>
@@ -114,7 +114,7 @@
   <div class="ticker" aria-hidden="true">
     <div class="ticker-track" id="ticker-track">
       <span class="ticker-item"><b>1,757</b> LEADS VIA NAILSCAN — ZERO AD SPEND</span>
-      <span class="ticker-item"><b>22,000+</b> LEADS ARCHIVED FROM DP360, ZERO DATA LOSS</span>
+      <span class="ticker-item"><b>22,000+</b> LEADS ARCHIVED FROM A LEGACY CRM, ZERO DATA LOSS</span>
       <span class="ticker-item"><b>14 DAYS</b> FROM KICKOFF TO LIVE CRM</span>
       <span class="ticker-item"><b>1,289</b> OPPORTUNITIES SYNCED IN REAL TIME</span>
       <span class="ticker-item"><b>12+</b> LEAD SOURCES PARSED &amp; ROUTED TO 13 PIPELINES</span>
@@ -332,8 +332,7 @@
 
       <div class="product-block reverse">
         <div class="product-visual reveal" data-window="lotwalk — dealership command center">
-          <!-- IMAGE PLACEHOLDER: Replace with real screenshot of Lot Walk dashboard with live data -->
-          <img src="assets/lotwalk-ui.png" alt="Lot Walk CRM dashboard" loading="lazy">
+          <img src="assets/lotwalk/dashboard.jpg" alt="Lot Walk CRM dashboard" loading="lazy">
         </div>
         <div class="product-meta">
           <div class="product-index">FLAGSHIP 02</div>
@@ -346,6 +345,7 @@
             <b>STACK</b> · React + Supabase + Cloudflare<br>
             <b>DATA RESIDENCY</b> · Canada Central (PIPEDA)
           </div>
+          <a class="product-link" href="lotwalk/index.html">Open Lot Walk <span>→</span></a>
         </div>
       </div>
 
@@ -462,7 +462,7 @@
             <div class="case-bullet">No manager visibility — no single screen showing which leads are going cold and who's responding</div>
             <div class="case-bullet">New inquiries sat unassigned; follow-ups depended on humans remembering</div>
             <div class="case-bullet">No speed-to-lead tracking — the single biggest factor in closing a sale, unmeasured</div>
-            <div class="case-bullet">Data scattered across DP360, GHL, and Kenect; 150+ stock units invisible to reps</div>
+            <div class="case-bullet">Data scattered across the old CRM, GHL, and Kenect; 150+ stock units invisible to reps</div>
           </div>
           <div class="case-part">
             <div class="case-part-label">What we built</div>
@@ -470,7 +470,7 @@
             <div class="case-bullet built"><b>AI summaries and suggested replies</b> — the rep reviews and approves every draft; AI never sends on its own</div>
             <div class="case-bullet built"><b>Custom email parser</b> — 12+ vendor formats classified by vehicle type and routed to 13 pipelines automatically</div>
             <div class="case-bullet built"><b>Round-robin assignment</b> + inventory matching inside the lead card — "units in stock that fit"</div>
-            <div class="case-bullet built"><b>DP360 archive</b> — five years of history captured before the old CRM was cancelled</div>
+            <div class="case-bullet built"><b>Full CRM archive</b> — five years of history captured before the old system was cancelled</div>
           </div>
           <div class="case-part">
             <div class="case-part-label">The result</div>
@@ -479,7 +479,7 @@
               <span class="chip"><b>1,289</b> opportunities synced</span>
               <span class="chip"><b>22,000+</b> leads archived, zero data loss</span>
               <span class="chip"><b>159</b> units synced daily</span>
-              <span class="chip">DP360 <b>fully replaced</b></span>
+              <span class="chip">Old CRM <b>fully replaced</b></span>
             </div>
           </div>
         </div>
@@ -533,7 +533,7 @@
       <div class="testimonial-grid">
         <!-- TESTIMONIAL PLACEHOLDER: Replace with real quote + headshot from CG Open Road Outlet owner/GM. 30s video testimonial even better. -->
         <div class="testimonial reveal">
-          <p class="testimonial-quote">We were quoted six months by two other vendors. These guys had us <span class="highlight">off DP360 and fully live in 14 days.</span> The team actually uses it.</p>
+          <p class="testimonial-quote">We were quoted six months by two other vendors. These guys had us <span class="highlight">off our old CRM and fully live in 14 days.</span> The team actually uses it.</p>
           <div class="testimonial-attribution">
             <div class="testimonial-avatar">[IMG]</div>
             <div>
@@ -804,6 +804,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script src="assets/site.js?v=2.19.0"></script>
+  <script src="assets/site.js?v=2.21.0"></script>
 </body>
 </html>
