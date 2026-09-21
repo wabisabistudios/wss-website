@@ -2364,6 +2364,22 @@
   z-index: 1;
   background: radial-gradient(ellipse 75% 65% at 32% 42%, transparent 28%, rgba(0, 0, 0, 0.55) 100%);
 }
+.hero-neg { display: none; }
+.home .hero-neg {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 72px;
+  height: 54%;
+  pointer-events: none;
+  z-index: 1;
+}
+.sky-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 .home .hero-scan {
   position: absolute;
   inset: 0;
@@ -3622,6 +3638,8 @@
   .home .hero-scan,
   .home .hero-rule,
   .home .hero-take,
+  .home .hero-glow,
+  .home .hero-iris,
   .home .cta-ghost { display: none !important; }
 
   .home .hero {
@@ -3633,6 +3651,21 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+  }
+  .home .hero-neg {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    width: 100%;
+    height: auto;
+    flex: 1 1 auto;
+    min-height: 32vh;
+    z-index: 2;
+    margin: 4px 0 8px;
+  }
+  .sky-canvas {
+    min-height: 32vh;
   }
   .home .hero .container {
     padding: 0;
