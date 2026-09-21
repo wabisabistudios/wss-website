@@ -9,22 +9,30 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!pre) return;
         document.body.style.overflow = 'hidden';
 
-        var bootLines = [
+        var phone = window.matchMedia('(max-width: 900px)').matches;
+        var bootLines = phone ? [
+          ['3', false],
+          ['2', false],
+          ['1', false],
+          ['<span class="ok">TAKE</span>', false]
+        ] : [
           ['wss ~ % initializing', false],
           ['mounting nailscan............ <span class="ok">OK</span>', true],
           ['mounting based-pos........... <span class="ok">OK</span>', true],
           ['mounting lotwalk............. <span class="ok">OK</span>', true],
           ['handshake maa ⇄ ywg.......... <span class="ok">OK</span>', true]
         ];
+        if (phone) pre.classList.add('is-slate');
 
         var li = 0;
         function addLine() {
           if (li < bootLines.length) {
+            if (phone) linesEl.innerHTML = '';
             var d = document.createElement('div');
             d.innerHTML = bootLines[li][0];
             linesEl.appendChild(d);
             li++;
-            setTimeout(addLine, 170);
+            setTimeout(addLine, phone ? 280 : 170);
           }
         }
         addLine();

@@ -3555,3 +3555,136 @@
   .cat-row { grid-template-columns: 56px 1fr; }
   .cat-meta, .cat-price, .cat-go { display: none; }
 }
+
+/* ============================================================
+   PHONE CINEMA — the handset is a 9:16 frame, not a shrunk desk
+   ============================================================ */
+.phone-reel-cue { display: none; }
+
+@media (max-width: 900px) {
+  .home {
+    --frame: 10px;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .home .letterbox {
+    display: block;
+    height: var(--frame);
+    background: var(--accent);
+    z-index: 120;
+  }
+  .home .letterbox.bot {
+    height: calc(var(--frame) + env(safe-area-inset-bottom, 0px));
+  }
+  .home.ready .letterbox.top,
+  .home.ready .letterbox.bot { transform: none; }
+
+  .home .nav { top: var(--frame); }
+
+  .home .ticker { display: none; }
+
+  .home .hero {
+    height: 100svh;
+    min-height: 100svh;
+    max-height: 100svh;
+    padding: calc(72px + var(--frame)) 22px calc(56px + var(--frame));
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+  .home .hero-ghost-word,
+  .home .hero-terminal,
+  .home .hero-meta-row,
+  .home .hero-scan,
+  .home .hero-rule { display: none; }
+  .home .hero-take {
+    display: block;
+    top: calc(64px + var(--frame));
+    right: 22px;
+    font-size: 10px;
+  }
+  .home .hero-slate {
+    margin-bottom: 18px;
+  }
+  .home .hero-headline {
+    font-size: clamp(42px, 12vw, 58px);
+    line-height: 0.96;
+    letter-spacing: -0.04em;
+    max-width: 9ch;
+    margin-bottom: 18px;
+  }
+  .home .hero-subcopy {
+    font-size: 15px;
+    max-width: 32ch;
+    margin-bottom: 22px;
+  }
+  .home .hero-cta-row { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .home .hero-bottom {
+    left: 22px;
+    right: 22px;
+    bottom: calc(18px + var(--frame) + env(safe-area-inset-bottom, 0px));
+  }
+
+  .home .live-metrics,
+  .home .manifesto { scroll-snap-align: start; }
+
+  .phone-reel-cue {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 16px;
+  }
+  .home .roster {
+    display: flex;
+    grid-template-columns: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 0;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 0;
+    border: 1px solid var(--hairline);
+  }
+  .home .roster::-webkit-scrollbar { display: none; }
+  .home .roster-col {
+    flex: 0 0 min(84vw, 340px);
+    scroll-snap-align: start;
+    border-right: 1px solid var(--hairline);
+    max-height: 72vh;
+    overflow-y: auto;
+  }
+  .home .roster-col:last-child { border-right: 0; }
+
+  .preloader.is-slate .preloader-inner { width: auto; text-align: center; }
+  .preloader.is-slate .preloader-lines {
+    min-height: 0;
+    margin-bottom: 8px;
+  }
+  .preloader.is-slate .preloader-lines div {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 28vw;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: var(--text);
+  }
+  .preloader.is-slate .preloader-lines .ok {
+    color: var(--accent);
+    font-size: 18vw;
+    letter-spacing: 0.08em;
+  }
+  .preloader.is-slate .preloader-bar { width: 120px; margin: 0 auto; }
+  .preloader.is-slate .preloader-pct { justify-content: center; gap: 16px; }
+}
+
+@media (max-width: 900px) and (prefers-reduced-motion: no-preference) {
+  html:has(body.home) {
+    scroll-snap-type: y proximity;
+  }
+}
