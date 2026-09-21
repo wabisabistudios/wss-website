@@ -770,6 +770,10 @@
       letter-spacing: 0.08em;
     }
 
+    .pcard-visual {
+      margin: 0 0 22px;
+    }
+
     .pcard-name {
       font-family: var(--font-display);
       font-weight: 700;
@@ -3874,6 +3878,42 @@
   padding: 8px 12px;
 }
 .product .contact-note a { color: var(--accent); }
+
+.se-phones {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 48px;
+}
+.se-phones figure { margin: 0; }
+.se-phones img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--hairline);
+  background: #f6f4ef;
+}
+.se-phones figcaption {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dim);
+  padding: 12px 4px 0;
+}
+@media (max-width: 900px) {
+  .se-phones {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 12px;
+  }
+  .se-phones figure {
+    flex: 0 0 62vw;
+    scroll-snap-align: start;
+  }
+}
 
 @media (max-width: 900px) {
   .lw-shot { flex: 0 0 88vw; }

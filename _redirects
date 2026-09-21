@@ -14,3 +14,6 @@
 /based-pos /pos 301
 /based-pos.html /pos 301
 /agency.html /agency 301
+/signal-engine.html /signal-engine 301
+/signal /signal-engine 301
+/signal.html /signal-engine 301
