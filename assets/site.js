@@ -70,6 +70,33 @@ document.addEventListener('DOMContentLoaded', function () {
         document.dispatchEvent(new CustomEvent('wss:ready'));
       }
 
+      /* ===== BOOKING — one URL in assets/book.js ===== */
+      (function () {
+        var url = (window.WSS && window.WSS.CALENDAR || '').trim();
+        var live = /^https?:\/\//i.test(url);
+        var nested = /\/(salon|dealership|agency|white-label|catalog|lotwalk|nailscan|pos|signal-engine)(\/|$)/.test(location.pathname);
+        var fallback = document.body.classList.contains('home') ? '#contact' : (nested ? '../index.html#contact' : 'index.html#contact');
+        document.querySelectorAll('.nav-cta, a.cta').forEach(function (a) {
+          if (a.classList.contains('cta-ghost')) return;
+          if (!/book/i.test(a.textContent || '')) return;
+          if (live) {
+            a.href = url;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+          } else {
+            a.href = fallback;
+            a.removeAttribute('target');
+          }
+        });
+        var frame = document.getElementById('book-frame');
+        var wait = document.getElementById('book-wait');
+        if (frame && live) {
+          frame.src = url;
+          frame.removeAttribute('hidden');
+          if (wait) wait.hidden = true;
+        }
+      })();
+
       /* ===== CUSTOM CURSOR ===== */
       (function () {
         if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
@@ -99,6 +126,37 @@ document.addEventListener('DOMContentLoaded', function () {
         var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
+        function attachStars(btn) {
+          if (btn.querySelector('.cta-stars')) return null;
+          var field = document.createElement('span');
+          field.className = 'cta-stars';
+          field.setAttribute('aria-hidden', 'true');
+          btn.appendChild(field);
+
+          function spark(x, y) {
+            var s = document.createElement('i');
+            var roll = Math.random();
+            s.className = 'cta-star' + (roll > 0.78 ? ' blue' : roll > 0.42 ? ' gold' : '') + (roll > 0.62 ? ' cross' : '');
+            var ang = Math.random() * Math.PI * 2;
+            var dist = 26 + Math.random() * 48;
+            s.style.left = x + 'px';
+            s.style.top = y + 'px';
+            s.style.setProperty('--dx', (Math.cos(ang) * dist).toFixed(1) + 'px');
+            s.style.setProperty('--dy', (Math.sin(ang) * dist).toFixed(1) + 'px');
+            field.appendChild(s);
+            setTimeout(function () { if (s.parentNode) s.parentNode.removeChild(s); }, 740);
+          }
+
+          function burst() {
+            var i;
+            for (i = 0; i < 9; i++) {
+              spark((Math.random() - 0.5) * 80, (Math.random() - 0.5) * 18);
+            }
+          }
+
+          return { spark: spark, burst: burst };
+        }
+
         function decorate(btn) {
           if (btn.getAttribute('data-cta') === '1') return;
           btn.setAttribute('data-cta', '1');
@@ -118,6 +176,13 @@ document.addEventListener('DOMContentLoaded', function () {
           flash.className = 'cta-flash';
           flash.setAttribute('aria-hidden', 'true');
 
+          var clip = document.createElement('span');
+          clip.className = 'cta-clip';
+          clip.setAttribute('aria-hidden', 'true');
+          clip.appendChild(ink);
+          clip.appendChild(sheen);
+          clip.appendChild(flash);
+
           var text = document.createElement('span');
           text.className = 'cta-text';
           raw.split('').forEach(function (ch) {
@@ -132,11 +197,10 @@ document.addEventListener('DOMContentLoaded', function () {
           go.setAttribute('aria-hidden', 'true');
           go.innerHTML = '<span class="cta-go-head">→</span>';
 
-          btn.appendChild(ink);
-          btn.appendChild(sheen);
-          btn.appendChild(flash);
+          btn.appendChild(clip);
           btn.appendChild(text);
           btn.appendChild(go);
+          var sky = attachStars(btn);
 
           if (reduce || typeof gsap === 'undefined') return;
 
@@ -157,11 +221,15 @@ document.addEventListener('DOMContentLoaded', function () {
             btn.addEventListener('mouseenter', function () {
               btn.classList.add('is-hot');
               hover.timeScale(1).play();
+              if (sky) sky.burst();
             });
             btn.addEventListener('mousemove', function (e) {
               var r = btn.getBoundingClientRect();
               xTo((e.clientX - r.left - r.width / 2) * 0.18);
               yTo((e.clientY - r.top - r.height / 2) * 0.32);
+              if (sky && Math.random() < 0.2) {
+                sky.spark(e.clientX - r.left - r.width / 2, e.clientY - r.top - r.height / 2);
+              }
             });
             btn.addEventListener('mouseleave', function () {
               btn.classList.remove('is-hot');
@@ -184,12 +252,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (fine && typeof gsap !== 'undefined') {
           document.querySelectorAll('.nav-cta').forEach(function (btn) {
+            var sky = reduce ? null : attachStars(btn);
             var xTo = gsap.quickTo(btn, 'x', { duration: 0.4, ease: 'power3' });
             var yTo = gsap.quickTo(btn, 'y', { duration: 0.4, ease: 'power3' });
+            btn.addEventListener('mouseenter', function () {
+              if (sky) sky.burst();
+            });
             btn.addEventListener('mousemove', function (e) {
               var r = btn.getBoundingClientRect();
               xTo((e.clientX - r.left - r.width / 2) * 0.2);
               yTo((e.clientY - r.top - r.height / 2) * 0.32);
+              if (sky && Math.random() < 0.2) {
+                sky.spark(e.clientX - r.left - r.width / 2, e.clientY - r.top - r.height / 2);
+              }
             });
             btn.addEventListener('mouseleave', function () { xTo(0); yTo(0); });
           });
@@ -1234,4 +1309,89 @@ document.addEventListener('DOMContentLoaded', function () {
         if (document.body.classList.contains('ready')) start();
         else document.addEventListener('wss:ready', start, { once: true });
         setTimeout(start, 80);
+      })();
+
+      /* ===== COLD OPEN — rec-tone + room, muted until they ask ===== */
+      (function () {
+        var btn = document.getElementById('sound-toggle');
+        if (!btn) return;
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce) {
+          btn.hidden = true;
+          return;
+        }
+        var ctx = null;
+        var room = null;
+        var on = false;
+
+        function ensure() {
+          var AC = window.AudioContext || window.webkitAudioContext;
+          if (!AC) return null;
+          if (!ctx) ctx = new AC();
+          if (ctx.state === 'suspended') ctx.resume();
+          return ctx;
+        }
+
+        function recBeep() {
+          if (!ctx) return;
+          var o = ctx.createOscillator();
+          var g = ctx.createGain();
+          o.type = 'square';
+          o.frequency.value = 880;
+          g.gain.setValueAtTime(0.0001, ctx.currentTime);
+          g.gain.exponentialRampToValueAtTime(0.045, ctx.currentTime + 0.01);
+          g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.09);
+          o.connect(g);
+          g.connect(ctx.destination);
+          o.start();
+          o.stop(ctx.currentTime + 0.1);
+        }
+
+        function startRoom() {
+          if (!ctx || room) return;
+          var n = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate);
+          var data = n.getChannelData(0);
+          var i;
+          for (i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * 0.18;
+          var src = ctx.createBufferSource();
+          src.buffer = n;
+          src.loop = true;
+          var filter = ctx.createBiquadFilter();
+          filter.type = 'lowpass';
+          filter.frequency.value = 280;
+          var g = ctx.createGain();
+          g.gain.value = 0.035;
+          src.connect(filter);
+          filter.connect(g);
+          g.connect(ctx.destination);
+          src.start();
+          room = { src: src, gain: g };
+        }
+
+        function stopRoom() {
+          if (!room) return;
+          try { room.src.stop(); } catch (e) {}
+          room = null;
+        }
+
+        function setOn(next) {
+          on = next;
+          btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+          btn.textContent = on ? 'SOUND ON' : 'SOUND OFF';
+          try { sessionStorage.setItem('wss-sound', on ? '1' : '0'); } catch (e) {}
+          if (on) {
+            if (!ensure()) return;
+            recBeep();
+            startRoom();
+          } else {
+            stopRoom();
+          }
+        }
+
+        btn.addEventListener('click', function () { setOn(!on); });
+        try {
+          if (sessionStorage.getItem('wss-sound') === '1') {
+            document.addEventListener('wss:ready', function () { setOn(true); }, { once: true });
+          }
+        } catch (e) {}
       })();

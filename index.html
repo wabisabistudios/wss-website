@@ -5,14 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Wabi Sabi Studios — AI Infrastructure for Service Businesses</title>
   <meta name="description" content="We build the AI layer for service businesses. Not chatbots. Not dashboards. The infrastructure that runs your front desk, your CRM, your billing.">
+  <link rel="canonical" href="https://www.wabisabi.studio/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.wabisabi.studio/">
   <meta property="og:title" content="Wabi Sabi Studios">
   <meta property="og:description" content="AI infrastructure for service businesses. Built in Chennai. Proven at our own studio.">
   <meta property="og:image" content="https://www.wabisabi.studio/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Wabi Sabi Studios">
+  <meta name="twitter:description" content="AI infrastructure for service businesses. Built in Chennai. Proven at our own studio.">
+  <meta name="twitter:image" content="https://www.wabisabi.studio/og.png">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='10' cy='16' r='6' fill='%230075CC'/%3E%3Ccircle cx='22' cy='16' r='6' fill='%23FFD401'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/site.css?v=2.28.0">
+  <link rel="stylesheet" href="assets/site.css?v=2.32.0">
 </head>
 <body class="home">
   <div class="preloader" id="preloader" aria-hidden="true">
@@ -59,7 +66,8 @@
       <div class="nav-right">
         <span class="nav-clock"><b>MAA</b> <span id="clock-chennai">--:--</span></span>
         <span class="nav-clock"><b>YWG</b> <span id="clock-winnipeg">--:--</span></span>
-        <a class="nav-cta" href="[PASTE YOUR ACTUAL GHL CALENDAR URL HERE]" target="_blank" rel="noopener noreferrer">Book a call</a>
+        <button type="button" class="sound-toggle" id="sound-toggle" aria-pressed="false">SOUND OFF</button>
+        <a class="nav-cta" href="#contact">Book a call</a>
       </div>
     </div>
   </nav>
@@ -103,7 +111,7 @@
         <p>Not chatbots. Not dashboards. The infrastructure that runs your front desk, your CRM, your billing — while you sleep.</p>
       </div>
       <div class="hero-cta-row" id="cta-row">
-        <a class="cta" href="[PASTE YOUR ACTUAL GHL CALENDAR URL HERE]" target="_blank" rel="noopener noreferrer">Book the 30-minute call <span class="arrow">→</span></a>
+        <a class="cta" href="#contact">Book the 30-minute call <span class="arrow">→</span></a>
         <a class="cta-ghost" href="#reel">See the reel ↓</a>
       </div>
     </div>
@@ -531,7 +539,7 @@
     </div>
   </section>
 
-  <section class="section" id="testimonials">
+  <section class="section" id="testimonials" hidden>
     <span class="ghost-num" aria-hidden="true">06</span>
     <div class="container">
       <div class="section-head">
@@ -771,7 +779,11 @@
     <div class="container">
       <h2 class="contact-headline">If the work fits,<br><em>let's talk.</em></h2>
       <p class="contact-sub">Thirty-nine operators already on the reel. We open three new retainer seats a quarter. The call is 30 minutes: you walk us through your operation, we tell you honestly whether we can move your numbers — and by how much.</p>
-      <a class="cta" href="[PASTE YOUR ACTUAL GHL CALENDAR URL HERE]" target="_blank" rel="noopener noreferrer">Book the 30-minute call <span class="arrow">→</span></a>
+      <a class="cta" href="#contact">Book the 30-minute call <span class="arrow">→</span></a>
+      <div class="book-embed" id="book-embed">
+        <iframe class="book-frame" id="book-frame" title="Book the 30-minute call" hidden></iframe>
+        <p class="book-wait" id="book-wait">The call is 30 minutes. The calendar mounts here on the live domain once the booking link is set — until then the button above is the door.</p>
+      </div>
       <p class="contact-note">NO PITCH DECK. NO JUNIOR "STRATEGIST." YOU TALK TO THE PEOPLE WHO BUILD.</p>
     </div>
   </section>
@@ -795,8 +807,10 @@
         <div class="footer-col">
           <b>PRODUCTS</b>
           <a href="https://www.nailscan.ai/" target="_blank" rel="noopener noreferrer">NailScan ↗</a><br>
-          <a href="https://mowglu.com" target="_blank" rel="noopener noreferrer">Mowglu ↗</a><br>
-          Based POS · Lot Walk
+          <a href="pos/index.html">Based POS</a><br>
+          <a href="lotwalk/index.html">Lot Walk</a><br>
+          <a href="signal-engine/index.html">Signal Engine</a><br>
+          <a href="https://mowglu.com" target="_blank" rel="noopener noreferrer">Mowglu ↗</a>
         </div>
         <div class="footer-col">
           <b>OPERATING HOURS</b>
@@ -814,6 +828,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script src="assets/site.js?v=2.24.0"></script>
+  <script src="https://link.msgsndr.com/js/form_embed.js"></script>
+  <script src="assets/book.js"></script>
+  <script src="assets/site.js?v=2.32.0"></script>
 </body>
 </html>
