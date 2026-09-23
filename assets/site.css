@@ -4084,4 +4084,7 @@
   /* a long no-wrap chip widens the whole case column and clips the copy */
   .chip { white-space: normal; }
   .roster-name { text-overflow: ellipsis; }
+  /* the counted-up case number ("22,000+") must never widen its column */
+  .case-block > * { min-width: 0; }
+  .case-number { font-size: clamp(56px, 16vw, 84px); }
 }
