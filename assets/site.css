@@ -3794,7 +3794,7 @@
     opacity: 1 !important;
   }
   .home .hero-headline {
-    font-size: clamp(36px, 11vw, 48px);
+    font-size: clamp(28px, 9.7vw, 46px);
     line-height: 1.02;
     letter-spacing: -0.035em;
     max-width: none;
@@ -3868,7 +3868,7 @@
 
   .home .manifesto { padding: 72px 20px 64px; }
   .home .manifesto-statement {
-    font-size: clamp(28px, 8vw, 38px);
+    font-size: clamp(24px, 7.8vw, 38px);
     line-height: 1.12;
   }
   .home .section { padding: 72px 20px; }
@@ -4068,4 +4068,20 @@
   .lw-shot { flex: 0 0 88vw; }
   .lw-grid { grid-template-columns: 1fr; }
   .lw-hero { padding-bottom: 24px; }
+}
+
+/* ============================================================
+   PHONE OVERFLOW GUARDS — nothing may widen the page sideways.
+   Late in the file on purpose: the .nav-wordmark base rules above
+   would otherwise override the responsive resets.
+   ============================================================ */
+@media (max-width: 900px) {
+  html { overflow-x: hidden; overflow-x: clip; }
+  .nav-wordmark { padding-right: 0; margin-right: 0; border-right: 0; min-height: 0; }
+  .nav-wordmark img { height: 28px; width: auto; }
+  .nav-slate-btn { margin-right: 6px; }
+  .nav-right .nav-cta { margin-left: 10px; }
+  /* a long no-wrap chip widens the whole case column and clips the copy */
+  .chip { white-space: normal; }
+  .roster-name { text-overflow: ellipsis; }
 }
