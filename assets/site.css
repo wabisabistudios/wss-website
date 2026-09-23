@@ -1005,6 +1005,13 @@
       flex-shrink: 0;
     }
 
+    .testimonial-avatar img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
     .testimonial-author { font-size: 14px; font-weight: 600; color: var(--text); }
     .testimonial-role { font-family: var(--font-mono); font-size: 11px; color: var(--dim); letter-spacing: 0.03em; margin-top: 2px; }
 
