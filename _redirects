@@ -8,4 +8,12 @@
 /catalog.html /catalog 301
 /salon.html /salon 301
 /dealership.html /dealership 301
+/lotwalk.html /lotwalk 301
+/nailscan.html /nailscan 301
+/pos.html /pos 301
+/based-pos /pos 301
+/based-pos.html /pos 301
 /agency.html /agency 301
+/signal-engine.html /signal-engine 301
+/signal /signal-engine 301
+/signal.html /signal-engine 301

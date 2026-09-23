@@ -2,17 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Wabi Sabi Studios — AI Infrastructure for Service Businesses</title>
   <meta name="description" content="We build the AI layer for service businesses. Not chatbots. Not dashboards. The infrastructure that runs your front desk, your CRM, your billing.">
+  <link rel="canonical" href="https://www.wabisabi.studio/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.wabisabi.studio/">
   <meta property="og:title" content="Wabi Sabi Studios">
   <meta property="og:description" content="AI infrastructure for service businesses. Built in Chennai. Proven at our own studio.">
   <meta property="og:image" content="https://www.wabisabi.studio/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Wabi Sabi Studios">
+  <meta name="twitter:description" content="AI infrastructure for service businesses. Built in Chennai. Proven at our own studio.">
+  <meta name="twitter:image" content="https://www.wabisabi.studio/og.png">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='10' cy='16' r='6' fill='%230075CC'/%3E%3Ccircle cx='22' cy='16' r='6' fill='%23FFD401'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/site.css?v=2.18.0">
+  <link rel="stylesheet" href="assets/site.css?v=2.34.0">
 </head>
 <body class="home">
   <div class="preloader" id="preloader" aria-hidden="true">
@@ -59,7 +66,8 @@
       <div class="nav-right">
         <span class="nav-clock"><b>MAA</b> <span id="clock-chennai">--:--</span></span>
         <span class="nav-clock"><b>YWG</b> <span id="clock-winnipeg">--:--</span></span>
-        <a class="nav-cta" href="[PASTE YOUR ACTUAL GHL CALENDAR URL HERE]" target="_blank" rel="noopener noreferrer">Book a call</a>
+        <button type="button" class="sound-toggle" id="sound-toggle" aria-pressed="false">SOUND OFF</button>
+        <a class="nav-cta" href="#contact">Book a call</a>
       </div>
     </div>
   </nav>
@@ -75,6 +83,9 @@
     <div class="hero-grid-bg" aria-hidden="true"></div>
     <div class="hero-glow" id="hero-glow" aria-hidden="true"></div>
     <div class="hero-iris" aria-hidden="true"></div>
+    <div class="hero-neg" aria-hidden="true">
+      <canvas class="sky-canvas" id="sky-canvas"></canvas>
+    </div>
     <div class="hero-scan" aria-hidden="true"></div>
     <div class="hero-ghost-word" aria-hidden="true">LAYER</div>
     <div class="hero-take" id="hero-take" aria-hidden="true">TAKE 01 · 24 FPS</div>
@@ -94,13 +105,13 @@
       <div class="hero-terminal" id="terminal">
         <span class="prompt">wss ~ %</span> <span id="terminal-text"></span><span class="cursor">▌</span>
       </div>
-      <h1 class="hero-headline" id="headline">We build the <em>AI layer</em><br>for service businesses.</h1>
+      <h1 class="hero-headline" id="headline">We build the <em>AI layer</em><br>for service<br class="phone-break"> businesses.</h1>
       <div class="hero-rule" id="hero-rule" aria-hidden="true"></div>
       <div class="hero-subcopy" id="subcopy">
         <p>Not chatbots. Not dashboards. The infrastructure that runs your front desk, your CRM, your billing — while you sleep.</p>
       </div>
       <div class="hero-cta-row" id="cta-row">
-        <a class="cta" href="[PASTE YOUR ACTUAL GHL CALENDAR URL HERE]" target="_blank" rel="noopener noreferrer">Book the 30-minute call <span class="arrow">→</span></a>
+        <a class="cta" href="#contact">Book the 30-minute call <span class="arrow">→</span></a>
         <a class="cta-ghost" href="#reel">See the reel ↓</a>
       </div>
     </div>
@@ -114,7 +125,7 @@
   <div class="ticker" aria-hidden="true">
     <div class="ticker-track" id="ticker-track">
       <span class="ticker-item"><b>1,757</b> LEADS VIA NAILSCAN — ZERO AD SPEND</span>
-      <span class="ticker-item"><b>22,000+</b> LEADS ARCHIVED FROM DP360, ZERO DATA LOSS</span>
+      <span class="ticker-item"><b>22,000+</b> LEADS ARCHIVED FROM A LEGACY CRM, ZERO DATA LOSS</span>
       <span class="ticker-item"><b>14 DAYS</b> FROM KICKOFF TO LIVE CRM</span>
       <span class="ticker-item"><b>1,289</b> OPPORTUNITIES SYNCED IN REAL TIME</span>
       <span class="ticker-item"><b>12+</b> LEAD SOURCES PARSED &amp; ROUTED TO 13 PIPELINES</span>
@@ -221,6 +232,7 @@
         <span class="section-side-note">19 SALONS · 12 DEALER GROUPS · 8 AGENCIES</span>
       </div>
       <p class="reel-lede">Nineteen salons. Twelve dealer groups. Eight agencies. The first file in each column is a case we can talk through. The rest are on the floor — product named, operator named.</p>
+      <p class="phone-reel-cue" aria-hidden="true">Swipe the reel →</p>
       <div class="roster" id="home-roster">
         <div class="roster-col">
           <a class="roster-head" href="salon/index.html">
@@ -311,8 +323,7 @@
 
       <div class="product-block">
         <div class="product-visual reveal" data-window="nailscan.ai — live capture">
-          <!-- IMAGE PLACEHOLDER: Replace with real screenshot of NailScan running at Based Aesthetics front desk -->
-          <img src="assets/nailscan-ui.png" alt="NailScan interface" loading="lazy">
+          <img src="assets/nailscan/report.jpg" alt="NailScan branded assessment report" loading="lazy">
         </div>
         <div class="product-meta">
           <div class="product-index">FLAGSHIP 01</div>
@@ -325,14 +336,13 @@
             <b>PRICING</b> · $399 setup + $97/month<br>
             <b>MARKET</b> · Independent salons, US + Canada
           </div>
-          <a class="product-link" href="https://www.nailscan.ai/" target="_blank" rel="noopener noreferrer">nailscan.ai <span>→</span></a>
+          <a class="product-link" href="nailscan/index.html">Open NailScan <span>→</span></a>
         </div>
       </div>
 
       <div class="product-block reverse">
         <div class="product-visual reveal" data-window="lotwalk — dealership command center">
-          <!-- IMAGE PLACEHOLDER: Replace with real screenshot of Lot Walk dashboard with live data -->
-          <img src="assets/lotwalk-ui.png" alt="Lot Walk CRM dashboard" loading="lazy">
+          <img src="assets/lotwalk/dashboard.jpg" alt="Lot Walk CRM dashboard" loading="lazy">
         </div>
         <div class="product-meta">
           <div class="product-index">FLAGSHIP 02</div>
@@ -345,6 +355,7 @@
             <b>STACK</b> · React + Supabase + Cloudflare<br>
             <b>DATA RESIDENCY</b> · Canada Central (PIPEDA)
           </div>
+          <a class="product-link" href="lotwalk/index.html">Open Lot Walk <span>→</span></a>
         </div>
       </div>
 
@@ -354,18 +365,26 @@
             <span class="pcard-index">P/03</span>
             <span class="product-status live">Live · In daily use</span>
           </div>
+          <div class="pcard-visual product-visual" data-window="based pos — the sentence">
+            <img src="assets/based-pos/bill.jpg" alt="Based POS bill — a sentence with gold blanks" loading="lazy">
+          </div>
           <h3 class="pcard-name">Based POS</h3>
           <p class="pcard-desc">Tablet point-of-sale wired into GHL. Multiple open bills, UPI + cash + part payments, tips routed straight to the tech's own UPI, biometric staff login, WhatsApp receipts, passkey day-close.</p>
           <div class="pcard-spec"><b>EVERY BILL</b> at our studio runs through it · English, Tamil, Hindi</div>
+          <a class="product-link" href="pos/index.html">Open Based POS <span>→</span></a>
         </div>
         <div class="pcard reveal">
           <div class="pcard-top">
             <span class="pcard-index">P/04</span>
             <span class="product-status development">In development</span>
           </div>
+          <div class="pcard-visual product-visual" data-window="signal engine — the radar">
+            <img src="assets/signal-engine/radar.png" alt="Signal Engine radar — chrome nails picking up in Chennai" loading="lazy">
+          </div>
           <h3 class="pcard-name">Signal Engine</h3>
-          <p class="pcard-desc">Content intelligence for local businesses. Scans live trends, breaks down competitor strategy, and returns shoot-ready briefs — hook, script, visual direction, posting window. Plans 60 days ahead of cultural moments.</p>
-          <div class="pcard-spec"><b>TESTED ON</b> our own studio + a Canadian dealership · 9 markets</div>
+          <p class="pcard-desc">Content intelligence for local businesses. Scans live trends, competitor breakdowns, and returns shoot-ready briefs — hook, script, visual direction, posting window. Plans 60 days ahead of cultural moments.</p>
+          <div class="pcard-spec"><b>TESTED ON</b> our own studio + a Canadian dealership</div>
+          <a class="product-link" href="signal-engine/index.html">Open Signal Engine <span>→</span></a>
         </div>
         <div class="pcard reveal">
           <div class="pcard-top">
@@ -461,7 +480,7 @@
             <div class="case-bullet">No manager visibility — no single screen showing which leads are going cold and who's responding</div>
             <div class="case-bullet">New inquiries sat unassigned; follow-ups depended on humans remembering</div>
             <div class="case-bullet">No speed-to-lead tracking — the single biggest factor in closing a sale, unmeasured</div>
-            <div class="case-bullet">Data scattered across DP360, GHL, and Kenect; 150+ stock units invisible to reps</div>
+            <div class="case-bullet">Data scattered across the old CRM, GHL, and Kenect; 150+ stock units invisible to reps</div>
           </div>
           <div class="case-part">
             <div class="case-part-label">What we built</div>
@@ -469,7 +488,7 @@
             <div class="case-bullet built"><b>AI summaries and suggested replies</b> — the rep reviews and approves every draft; AI never sends on its own</div>
             <div class="case-bullet built"><b>Custom email parser</b> — 12+ vendor formats classified by vehicle type and routed to 13 pipelines automatically</div>
             <div class="case-bullet built"><b>Round-robin assignment</b> + inventory matching inside the lead card — "units in stock that fit"</div>
-            <div class="case-bullet built"><b>DP360 archive</b> — five years of history captured before the old CRM was cancelled</div>
+            <div class="case-bullet built"><b>Full CRM archive</b> — five years of history captured before the old system was cancelled</div>
           </div>
           <div class="case-part">
             <div class="case-part-label">The result</div>
@@ -478,7 +497,7 @@
               <span class="chip"><b>1,289</b> opportunities synced</span>
               <span class="chip"><b>22,000+</b> leads archived, zero data loss</span>
               <span class="chip"><b>159</b> units synced daily</span>
-              <span class="chip">DP360 <b>fully replaced</b></span>
+              <span class="chip">Old CRM <b>fully replaced</b></span>
             </div>
           </div>
         </div>
@@ -520,7 +539,7 @@
     </div>
   </section>
 
-  <section class="section" id="testimonials">
+  <section class="section" id="testimonials" hidden>
     <span class="ghost-num" aria-hidden="true">06</span>
     <div class="container">
       <div class="section-head">
@@ -532,7 +551,7 @@
       <div class="testimonial-grid">
         <!-- TESTIMONIAL PLACEHOLDER: Replace with real quote + headshot from CG Open Road Outlet owner/GM. 30s video testimonial even better. -->
         <div class="testimonial reveal">
-          <p class="testimonial-quote">We were quoted six months by two other vendors. These guys had us <span class="highlight">off DP360 and fully live in 14 days.</span> The team actually uses it.</p>
+          <p class="testimonial-quote">We were quoted six months by two other vendors. These guys had us <span class="highlight">off our old CRM and fully live in 14 days.</span> The team actually uses it.</p>
           <div class="testimonial-attribution">
             <div class="testimonial-avatar">[IMG]</div>
             <div>
@@ -760,7 +779,11 @@
     <div class="container">
       <h2 class="contact-headline">If the work fits,<br><em>let's talk.</em></h2>
       <p class="contact-sub">Thirty-nine operators already on the reel. We open three new retainer seats a quarter. The call is 30 minutes: you walk us through your operation, we tell you honestly whether we can move your numbers — and by how much.</p>
-      <a class="cta" href="[PASTE YOUR ACTUAL GHL CALENDAR URL HERE]" target="_blank" rel="noopener noreferrer">Book the 30-minute call <span class="arrow">→</span></a>
+      <a class="cta" href="#contact">Book the 30-minute call <span class="arrow">→</span></a>
+      <div class="book-embed" id="book-embed">
+        <iframe class="book-frame" id="book-frame" title="Book the 30-minute call" hidden></iframe>
+        <p class="book-wait" id="book-wait">The call is 30 minutes. The calendar mounts here on the live domain once the booking link is set — until then the button above is the door.</p>
+      </div>
       <p class="contact-note">NO PITCH DECK. NO JUNIOR "STRATEGIST." YOU TALK TO THE PEOPLE WHO BUILD.</p>
     </div>
   </section>
@@ -784,8 +807,10 @@
         <div class="footer-col">
           <b>PRODUCTS</b>
           <a href="https://www.nailscan.ai/" target="_blank" rel="noopener noreferrer">NailScan ↗</a><br>
-          <a href="https://mowglu.com" target="_blank" rel="noopener noreferrer">Mowglu ↗</a><br>
-          Based POS · Lot Walk
+          <a href="pos/index.html">Based POS</a><br>
+          <a href="lotwalk/index.html">Lot Walk</a><br>
+          <a href="signal-engine/index.html">Signal Engine</a><br>
+          <a href="https://mowglu.com" target="_blank" rel="noopener noreferrer">Mowglu ↗</a>
         </div>
         <div class="footer-col">
           <b>OPERATING HOURS</b>
@@ -803,6 +828,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script src="assets/site.js?v=2.18.0"></script>
+  <script src="https://link.msgsndr.com/js/form_embed.js"></script>
+  <script src="assets/book.js"></script>
+  <script src="assets/site.js?v=2.34.0"></script>
 </body>
 </html>

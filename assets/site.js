@@ -9,22 +9,30 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!pre) return;
         document.body.style.overflow = 'hidden';
 
-        var bootLines = [
+        var phone = window.matchMedia('(max-width: 900px)').matches;
+        var bootLines = phone ? [
+          ['3', false],
+          ['2', false],
+          ['1', false],
+          ['<span class="ok">TAKE</span>', false]
+        ] : [
           ['wss ~ % initializing', false],
           ['mounting nailscan............ <span class="ok">OK</span>', true],
           ['mounting based-pos........... <span class="ok">OK</span>', true],
           ['mounting lotwalk............. <span class="ok">OK</span>', true],
           ['handshake maa ⇄ ywg.......... <span class="ok">OK</span>', true]
         ];
+        if (phone) pre.classList.add('is-slate');
 
         var li = 0;
         function addLine() {
           if (li < bootLines.length) {
+            if (phone) linesEl.innerHTML = '';
             var d = document.createElement('div');
             d.innerHTML = bootLines[li][0];
             linesEl.appendChild(d);
             li++;
-            setTimeout(addLine, 170);
+            setTimeout(addLine, phone ? 280 : 170);
           }
         }
         addLine();
@@ -62,6 +70,33 @@ document.addEventListener('DOMContentLoaded', function () {
         document.dispatchEvent(new CustomEvent('wss:ready'));
       }
 
+      /* ===== BOOKING — one URL in assets/book.js ===== */
+      (function () {
+        var url = (window.WSS && window.WSS.CALENDAR || '').trim();
+        var live = /^https?:\/\//i.test(url);
+        var nested = /\/(salon|dealership|agency|white-label|catalog|lotwalk|nailscan|pos|signal-engine)(\/|$)/.test(location.pathname);
+        var fallback = document.body.classList.contains('home') ? '#contact' : (nested ? '../index.html#contact' : 'index.html#contact');
+        document.querySelectorAll('.nav-cta, a.cta').forEach(function (a) {
+          if (a.classList.contains('cta-ghost')) return;
+          if (!/book/i.test(a.textContent || '')) return;
+          if (live) {
+            a.href = url;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+          } else {
+            a.href = fallback;
+            a.removeAttribute('target');
+          }
+        });
+        var frame = document.getElementById('book-frame');
+        var wait = document.getElementById('book-wait');
+        if (frame && live) {
+          frame.src = url;
+          frame.removeAttribute('hidden');
+          if (wait) wait.hidden = true;
+        }
+      })();
+
       /* ===== CUSTOM CURSOR ===== */
       (function () {
         if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
@@ -91,6 +126,37 @@ document.addEventListener('DOMContentLoaded', function () {
         var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
+        function attachStars(btn) {
+          if (btn.querySelector('.cta-stars')) return null;
+          var field = document.createElement('span');
+          field.className = 'cta-stars';
+          field.setAttribute('aria-hidden', 'true');
+          btn.appendChild(field);
+
+          function spark(x, y) {
+            var s = document.createElement('i');
+            var roll = Math.random();
+            s.className = 'cta-star' + (roll > 0.78 ? ' blue' : roll > 0.42 ? ' gold' : '') + (roll > 0.62 ? ' cross' : '');
+            var ang = Math.random() * Math.PI * 2;
+            var dist = 26 + Math.random() * 48;
+            s.style.left = x + 'px';
+            s.style.top = y + 'px';
+            s.style.setProperty('--dx', (Math.cos(ang) * dist).toFixed(1) + 'px');
+            s.style.setProperty('--dy', (Math.sin(ang) * dist).toFixed(1) + 'px');
+            field.appendChild(s);
+            setTimeout(function () { if (s.parentNode) s.parentNode.removeChild(s); }, 740);
+          }
+
+          function burst() {
+            var i;
+            for (i = 0; i < 9; i++) {
+              spark((Math.random() - 0.5) * 80, (Math.random() - 0.5) * 18);
+            }
+          }
+
+          return { spark: spark, burst: burst };
+        }
+
         function decorate(btn) {
           if (btn.getAttribute('data-cta') === '1') return;
           btn.setAttribute('data-cta', '1');
@@ -110,6 +176,13 @@ document.addEventListener('DOMContentLoaded', function () {
           flash.className = 'cta-flash';
           flash.setAttribute('aria-hidden', 'true');
 
+          var clip = document.createElement('span');
+          clip.className = 'cta-clip';
+          clip.setAttribute('aria-hidden', 'true');
+          clip.appendChild(ink);
+          clip.appendChild(sheen);
+          clip.appendChild(flash);
+
           var text = document.createElement('span');
           text.className = 'cta-text';
           raw.split('').forEach(function (ch) {
@@ -124,11 +197,10 @@ document.addEventListener('DOMContentLoaded', function () {
           go.setAttribute('aria-hidden', 'true');
           go.innerHTML = '<span class="cta-go-head">→</span>';
 
-          btn.appendChild(ink);
-          btn.appendChild(sheen);
-          btn.appendChild(flash);
+          btn.appendChild(clip);
           btn.appendChild(text);
           btn.appendChild(go);
+          var sky = attachStars(btn);
 
           if (reduce || typeof gsap === 'undefined') return;
 
@@ -149,11 +221,15 @@ document.addEventListener('DOMContentLoaded', function () {
             btn.addEventListener('mouseenter', function () {
               btn.classList.add('is-hot');
               hover.timeScale(1).play();
+              if (sky) sky.burst();
             });
             btn.addEventListener('mousemove', function (e) {
               var r = btn.getBoundingClientRect();
               xTo((e.clientX - r.left - r.width / 2) * 0.18);
               yTo((e.clientY - r.top - r.height / 2) * 0.32);
+              if (sky && Math.random() < 0.2) {
+                sky.spark(e.clientX - r.left - r.width / 2, e.clientY - r.top - r.height / 2);
+              }
             });
             btn.addEventListener('mouseleave', function () {
               btn.classList.remove('is-hot');
@@ -176,12 +252,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (fine && typeof gsap !== 'undefined') {
           document.querySelectorAll('.nav-cta').forEach(function (btn) {
+            var sky = reduce ? null : attachStars(btn);
             var xTo = gsap.quickTo(btn, 'x', { duration: 0.4, ease: 'power3' });
             var yTo = gsap.quickTo(btn, 'y', { duration: 0.4, ease: 'power3' });
+            btn.addEventListener('mouseenter', function () {
+              if (sky) sky.burst();
+            });
             btn.addEventListener('mousemove', function (e) {
               var r = btn.getBoundingClientRect();
               xTo((e.clientX - r.left - r.width / 2) * 0.2);
               yTo((e.clientY - r.top - r.height / 2) * 0.32);
+              if (sky && Math.random() < 0.2) {
+                sky.spark(e.clientX - r.left - r.width / 2, e.clientY - r.top - r.height / 2);
+              }
             });
             btn.addEventListener('mouseleave', function () { xTo(0); yTo(0); });
           });
@@ -389,12 +472,12 @@ document.addEventListener('DOMContentLoaded', function () {
       var headline = document.getElementById('headline');
       if (headline) {
         var html = headline.innerHTML;
-        var parts = html.split(/(<em>.*?<\/em>|<br\s*\/?>)/g);
+        var parts = html.split(/(<em>.*?<\/em>|<br\b[^>]*>)/gi);
         var out = '';
         parts.forEach(function (part) {
           if (!part) return;
           if (/^<br/i.test(part)) {
-            out += '<br>';
+            out += part;
             return;
           }
           if (part.startsWith('<em>')) {
@@ -428,7 +511,8 @@ document.addEventListener('DOMContentLoaded', function () {
       function playTitleSequence() {
         var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         var isHome = document.body.classList.contains('home');
-        if (typeof gsap === 'undefined' || reduce || document.hidden) {
+        var phone = window.matchMedia('(max-width: 900px)').matches;
+        if (typeof gsap === 'undefined' || reduce || document.hidden || phone) {
           snapTitleSequence();
           return;
         }
@@ -882,6 +966,7 @@ document.addEventListener('DOMContentLoaded', function () {
           var sub = document.querySelector('#manifesto .manifesto-sub');
           var head = document.createElement('i');
           head.className = 'manifesto-head';
+          head.textContent = '▌';
           head.setAttribute('aria-hidden', 'true');
           manifesto.appendChild(head);
 
@@ -889,9 +974,8 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!el) { head.classList.remove('is-on'); return; }
             var box = manifesto.getBoundingClientRect();
             var w = el.getBoundingClientRect();
-            head.style.left = (w.left - box.left) + 'px';
-            head.style.top = (w.bottom - box.top - 2) + 'px';
-            head.style.width = w.width + 'px';
+            head.style.left = (w.right - box.left + 6) + 'px';
+            head.style.top = (w.top - box.top + w.height * 0.18) + 'px';
             head.classList.add('is-on');
           };
 
@@ -1054,4 +1138,260 @@ document.addEventListener('DOMContentLoaded', function () {
             h.hidden = !any;
           });
         });
+      })();
+
+      /* ===== HERO SKY — starfield + tilted galaxy ===== */
+      (function () {
+        var canvas = document.getElementById('sky-canvas');
+        if (!canvas || !canvas.getContext) return;
+        var ctx = canvas.getContext('2d');
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var dpr = 1, w = 0, h = 0, cx = 0, cy = 0, scale = 0;
+        var stars = [], dust = [], meteors = [];
+        var tilt = 0.36;
+        var yaw = -0.55;
+        var running = false;
+
+        function rgba(c, a) {
+          return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a + ')';
+        }
+
+        function seed() {
+          var box = canvas.getBoundingClientRect();
+          if (box.width < 8 || box.height < 8) return;
+          dpr = Math.min(2, window.devicePixelRatio || 1);
+          w = Math.floor(box.width * dpr);
+          h = Math.floor(box.height * dpr);
+          canvas.width = w;
+          canvas.height = h;
+          cx = w * 0.52;
+          cy = h * 0.52;
+          scale = Math.min(w, h) * 0.92;
+          var phone = window.matchMedia('(max-width: 900px)').matches;
+          var nStar = phone ? 140 : 220;
+          var nDust = phone ? 900 : 1600;
+          stars = [];
+          for (var i = 0; i < nStar; i++) {
+            var k = Math.random();
+            stars.push({
+              x: Math.random() * w,
+              y: Math.random() * h,
+              r: (0.6 + Math.random() * 1.8) * dpr,
+              tw: Math.random() * Math.PI * 2,
+              c: k > 0.93 ? [255, 212, 1] : k > 0.86 ? [0, 117, 204] : [237, 237, 230]
+            });
+          }
+          dust = [];
+          for (var j = 0; j < nDust; j++) {
+            var arm = j % 2;
+            var t = Math.pow(Math.random(), 0.62) * 4.4;
+            var r = 0.05 + 0.42 * (t / 4.4);
+            r += (Math.random() - 0.5) * 0.05 * (0.6 + t);
+            var ang = t + arm * Math.PI + (Math.random() - 0.5) * 0.32;
+            var kind = Math.random();
+            var col = kind > 0.9 ? [255, 212, 1] : kind > 0.74 ? [0, 117, 204] : kind > 0.42 ? [170, 196, 230] : [237, 237, 230];
+            dust.push({
+              r: r,
+              a0: ang,
+              s: (0.8 + Math.random() * 2.1) * dpr,
+              c: col,
+              tw: Math.random() * 6
+            });
+          }
+          meteors = [];
+        }
+
+        function spawnMeteor() {
+          if (meteors.length > 1) return;
+          var x = w * (0.1 + Math.random() * 0.7);
+          var y = h * (0.05 + Math.random() * 0.35);
+          meteors.push({
+            x: x,
+            y: y,
+            vx: (2.4 + Math.random() * 2.2) * dpr,
+            vy: (1.1 + Math.random() * 1.2) * dpr,
+            life: 1
+          });
+        }
+
+        function paint(t) {
+          ctx.clearRect(0, 0, w, h);
+          var rot = (t || 0) * 0.000045;
+
+          var i, s, a;
+          for (i = 0; i < stars.length; i++) {
+            s = stars[i];
+            a = 0.35 + 0.65 * (0.5 + 0.5 * Math.sin((t || 0) / 620 + s.tw));
+            ctx.fillStyle = rgba(s.c, a);
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+            ctx.fill();
+          }
+
+          var core = ctx.createRadialGradient(cx, cy, 0, cx, cy, scale * 0.28);
+          core.addColorStop(0, 'rgba(255, 244, 210, 0.85)');
+          core.addColorStop(0.18, 'rgba(255, 212, 1, 0.38)');
+          core.addColorStop(0.42, 'rgba(0, 117, 204, 0.2)');
+          core.addColorStop(1, 'rgba(10, 10, 9, 0)');
+          ctx.fillStyle = core;
+          ctx.beginPath();
+          ctx.ellipse(cx, cy, scale * 0.4, scale * 0.16, yaw + rot * 0.4, 0, Math.PI * 2);
+          ctx.fill();
+
+          var armGlow = ctx.createRadialGradient(cx, cy, scale * 0.04, cx, cy, scale * 0.58);
+          armGlow.addColorStop(0, 'rgba(0, 117, 204, 0.18)');
+          armGlow.addColorStop(0.4, 'rgba(255, 212, 1, 0.1)');
+          armGlow.addColorStop(1, 'rgba(10, 10, 9, 0)');
+          ctx.fillStyle = armGlow;
+          ctx.beginPath();
+          ctx.ellipse(cx, cy, scale * 0.58, scale * 0.24, yaw + rot * 0.4, 0, Math.PI * 2);
+          ctx.fill();
+
+          for (i = 0; i < dust.length; i++) {
+            var d = dust[i];
+            var ang = d.a0 + rot;
+            var px = cx + Math.cos(ang) * d.r * scale;
+            var py = cy + Math.sin(ang) * d.r * scale * tilt;
+            var rx = (px - cx) * Math.cos(yaw) - (py - cy) * Math.sin(yaw) + cx;
+            var ry = (px - cx) * Math.sin(yaw) + (py - cy) * Math.cos(yaw) + cy;
+            var fade = 1 - d.r * 1.15;
+            if (fade < 0.08) fade = 0.08;
+            a = fade * (0.55 + 0.45 * (0.5 + 0.5 * Math.sin((t || 0) / 900 + d.tw)));
+            ctx.fillStyle = rgba(d.c, a);
+            ctx.fillRect(rx, ry, d.s, d.s);
+          }
+
+          for (i = meteors.length - 1; i >= 0; i--) {
+            var m = meteors[i];
+            m.x += m.vx;
+            m.y += m.vy;
+            m.life -= 0.018;
+            if (m.life <= 0 || m.x > w + 40 || m.y > h + 40) {
+              meteors.splice(i, 1);
+              continue;
+            }
+            ctx.strokeStyle = 'rgba(237, 237, 230,' + (0.7 * m.life) + ')';
+            ctx.lineWidth = 1.2 * dpr;
+            ctx.beginPath();
+            ctx.moveTo(m.x, m.y);
+            ctx.lineTo(m.x - m.vx * 8, m.y - m.vy * 8);
+            ctx.stroke();
+            ctx.fillStyle = 'rgba(255, 212, 1,' + (0.85 * m.life) + ')';
+            ctx.beginPath();
+            ctx.arc(m.x, m.y, 1.3 * dpr, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+
+        function tick(t) {
+          if (document.hidden) {
+            running = false;
+            return;
+          }
+          paint(t);
+          if (!reduce && Math.random() < 0.006) spawnMeteor();
+          if (!reduce) requestAnimationFrame(tick);
+        }
+
+        function start() {
+          seed();
+          paint(0);
+          if (!reduce && !running && !document.hidden) {
+            running = true;
+            requestAnimationFrame(tick);
+          }
+        }
+
+        document.addEventListener('visibilitychange', function () {
+          if (!document.hidden) start();
+        });
+        window.addEventListener('resize', start);
+        if (document.body.classList.contains('ready')) start();
+        else document.addEventListener('wss:ready', start, { once: true });
+        setTimeout(start, 80);
+      })();
+
+      /* ===== COLD OPEN — rec-tone + room, muted until they ask ===== */
+      (function () {
+        var btn = document.getElementById('sound-toggle');
+        if (!btn) return;
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce) {
+          btn.hidden = true;
+          return;
+        }
+        var ctx = null;
+        var room = null;
+        var on = false;
+
+        function ensure() {
+          var AC = window.AudioContext || window.webkitAudioContext;
+          if (!AC) return null;
+          if (!ctx) ctx = new AC();
+          if (ctx.state === 'suspended') ctx.resume();
+          return ctx;
+        }
+
+        function recBeep() {
+          if (!ctx) return;
+          var o = ctx.createOscillator();
+          var g = ctx.createGain();
+          o.type = 'square';
+          o.frequency.value = 880;
+          g.gain.setValueAtTime(0.0001, ctx.currentTime);
+          g.gain.exponentialRampToValueAtTime(0.045, ctx.currentTime + 0.01);
+          g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.09);
+          o.connect(g);
+          g.connect(ctx.destination);
+          o.start();
+          o.stop(ctx.currentTime + 0.1);
+        }
+
+        function startRoom() {
+          if (!ctx || room) return;
+          var n = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate);
+          var data = n.getChannelData(0);
+          var i;
+          for (i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * 0.18;
+          var src = ctx.createBufferSource();
+          src.buffer = n;
+          src.loop = true;
+          var filter = ctx.createBiquadFilter();
+          filter.type = 'lowpass';
+          filter.frequency.value = 280;
+          var g = ctx.createGain();
+          g.gain.value = 0.035;
+          src.connect(filter);
+          filter.connect(g);
+          g.connect(ctx.destination);
+          src.start();
+          room = { src: src, gain: g };
+        }
+
+        function stopRoom() {
+          if (!room) return;
+          try { room.src.stop(); } catch (e) {}
+          room = null;
+        }
+
+        function setOn(next) {
+          on = next;
+          btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+          btn.textContent = on ? 'SOUND ON' : 'SOUND OFF';
+          try { sessionStorage.setItem('wss-sound', on ? '1' : '0'); } catch (e) {}
+          if (on) {
+            if (!ensure()) return;
+            recBeep();
+            startRoom();
+          } else {
+            stopRoom();
+          }
+        }
+
+        btn.addEventListener('click', function () { setOn(!on); });
+        try {
+          if (sessionStorage.getItem('wss-sound') === '1') {
+            document.addEventListener('wss:ready', function () { setOn(true); }, { once: true });
+          }
+        } catch (e) {}
       })();
