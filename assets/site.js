@@ -75,11 +75,16 @@ document.addEventListener('DOMContentLoaded', function () {
         var url = (window.WSS && window.WSS.CALENDAR || '').trim();
         var live = /^https?:\/\//i.test(url);
         var nested = /\/(salon|dealership|agency|white-label|catalog|lotwalk|nailscan|pos|signal-engine)(\/|$)/.test(location.pathname);
-        var fallback = document.body.classList.contains('home') ? '#contact' : (nested ? '../index.html#contact' : 'index.html#contact');
+        var home = document.body.classList.contains('home');
+        var fallback = home ? '#contact' : (nested ? '../index.html#contact' : 'index.html#contact');
         document.querySelectorAll('.nav-cta, a.cta').forEach(function (a) {
           if (a.classList.contains('cta-ghost')) return;
           if (!/book/i.test(a.textContent || '')) return;
-          if (live) {
+          /* On the home page the calendar is embedded at #contact, so the hero
+             and nav buttons scroll there. Only the button sitting beside the
+             embed opens the calendar in its own tab, as an escape hatch. */
+          var besideEmbed = !!a.closest('.contact');
+          if (live && (!home || besideEmbed)) {
             a.href = url;
             a.target = '_blank';
             a.rel = 'noopener noreferrer';
@@ -684,7 +689,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         var DIAL = {
           salon: { min: 1, max: 19, unit: 'salon', plural: 'salons' },
-          dealership: { min: 1, max: 12, unit: 'rooftop', plural: 'rooftops' },
+          dealership: { min: 1, max: 12, unit: 'dealership', plural: 'dealerships' },
           agency: { min: 1, max: 8, unit: 'agency', plural: 'agencies' }
         };
 
