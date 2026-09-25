@@ -3,4 +3,4 @@
    https://api.leadconnectorhq.com/widget/booking/xxxxxxxx
    Leave empty and every CTA goes to #contact instead of a dead href. */
 window.WSS = window.WSS || {};
-window.WSS.CALENDAR = '';
+window.WSS.CALENDAR = 'https://api.leadconnectorhq.com/widget/bookings/book-a-call-4402';
